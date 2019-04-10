@@ -1,0 +1,26 @@
+#nav ul{
+	list-style-type: none;
+  margin-top: 50px;
+  
+  padding: 0;
+}
+
+#nav li
+{
+	float: left;
+	font-weight: bold;
+  display: inline;
+  height: 25px;
+  line-height: 25px;
+  margin-left: 15px;
+}
+#nav a
+{
+  text-decoration: none;
+  color:black;
+}
+
+  #nav a:hover 
+  {
+    color:orange;
+  }
