@@ -1,71 +1,8 @@
-
-.site
-{
-  margin:-8px;
-  padding: 0;
-  height: 80px;
-  background-color: #FAA61A;
-}
-
-.homeimg
-{
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#nav
-{
-  margin: -8px;
-  margin-top: -16px;
-  padding: 0;
-  height: 30px;
-  background-color: #F04747;
-}
-#nav ul{
-	list-style-type: none;  
-  padding: 0;
-}
-
-#nav li
-{
-	float: left;
-	font-weight: bold;
-  height: 30px;
-  width: 150px;
-  font-size: 25px;
-  border-right: 1px solid orange;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 30px;
-}
-#nav a
-{
-  text-decoration: none;
-  color:black;
-}
-
-  #nav a:hover 
-  {
-    color:orange;
-  }
-
-* {box-sizing:border-box}
-
-/* Slideshow container */
 .slideshow-container {
-  width: 500px;
-  height: 350px;
+  max-width: 1000px;
   position: relative;
-  margin: left;
+  margin: auto;
 }
-
-/* Hide the images by default */
-.mySlides {
-  width: 100%;
-  height: 100%;
-  display: none;
-}
-
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;

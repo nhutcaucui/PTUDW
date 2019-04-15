@@ -1,5 +1,6 @@
-/****************** U S E D   F O N T S **********************/
 @import url("top-sticky-navbar.css");
+@import url("slide-show.css");
+
 @font-face {
     font-family: 'LeagueGothic';
     src: url('../fonts/League_Gothic-webfont.eot');
