@@ -1,0 +1,30 @@
+#navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+#navbar a{
+
+}
+
+#navbar a:hover{
+    /* background color */
+    background-color: #ddd;
+    /* foreground color*/
+    color: black;
+}
+
+#navbar a:active{
+    background-color: #ddd;
+    color: black;
+}
+
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+}
