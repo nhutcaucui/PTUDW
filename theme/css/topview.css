@@ -1,0 +1,47 @@
+.top10viewl
+{
+	height: 300px;
+	width: 420px;
+	margin-right: 5px;
+	float: left;
+	overflow: hidden;
+}
+.mostview
+{
+	color: black;
+	font-weight: bold;
+	border-bottom: 1px solid black;
+}
+.top10viewr
+{
+	height: 300px;
+	width: 420px;
+	float: right;
+	overflow: hidden;
+}
+
+.title a
+{
+	color: black;
+}
+
+.title
+{
+	height: 53px;
+	max-height: 53px;
+	overflow-wrap: break-word;
+	border-bottom: 1px solid black;
+	overflow: hidden;
+}
+
+.title img
+{
+	width: 60px;
+	height: 50px;
+	float: left;
+}
+
+.date
+{
+	float: right;
+}

@@ -1,5 +1,7 @@
 @import url("top-sticky-navbar.css");
 @import url("slide-show.css");
+@import url("homepic.css");
+@import url("topview.css");
 
 @font-face {
     font-family: 'LeagueGothic';
@@ -482,9 +484,4 @@ input[type="submit"]:active{
 footer{
 	margin-top: 30px;
 	text-align: right;
-}
-
-.homeimg{
-	height: 100px;
-	width: 200px;
 }
