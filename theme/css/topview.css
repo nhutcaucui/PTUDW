@@ -1,0 +1,92 @@
+.topview{
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.mostview
+{
+	overflow: hidden;
+	text-align: left;
+	font-weight: bold;
+	border-bottom: 1px solid white;
+}
+
+.article
+{
+	display: inline-block;
+	position: relative;
+	margin-left: 30px;
+	margin-top: 20px;
+	width: 250px;
+	height: 260px;
+}
+
+.article img
+{
+	
+	border:1px solid red;
+	height: 250px;
+	width: 250px;
+}
+
+.date
+{
+	background-color: rgba(0,0,0,.5);
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.category{
+	display: inline-block;
+	background-color: #400D09;
+	text-align: center;
+	position: absolute;
+	border-radius: 5px;
+	left: 5px;
+	top: 5px;
+}
+
+.title {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	background-color: rgba(0,0,0,.5);
+	bottom: 10px;
+	text-align: center;
+	white-space: normal;
+	overflow: hidden;
+}
+.title:hover
+{
+	background-color: black; 
+}
+
+.title a{
+	width: 100%;
+	font-size: 20px;
+	white-space: normal;
+}
+
+.topview::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+
+}
+
+.topview::-webkit-scrollbar
+{
+	border-radius: 10px;
+	background-color: 	;
+	height: 8px;
+}
+
+.topview::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+
+}

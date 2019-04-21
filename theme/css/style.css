@@ -1,5 +1,13 @@
 @import url("top-sticky-navbar.css");
 @import url("slide-show.css");
+@import url("homepic.css");
+@import url("topview.css");
+@import url("newest.css");
+@import url("topcategory.css");
+@import url("articlelist.css");
+@import url("Pagination.css");
+@import url("comment.css");
+@import url("personal-info.css");
 
 @font-face {
     font-family: 'LeagueGothic';
@@ -482,4 +490,14 @@ input[type="submit"]:active{
 footer{
 	margin-top: 30px;
 	text-align: right;
+}
+
+html
+{
+	background-color: black;
+}
+
+.bigcontainer{
+	margin-left: 90px;
+	margin-right: 90px;
 }
