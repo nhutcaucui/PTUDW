@@ -3,40 +3,90 @@
 <head>
 	<title>Articles List</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="./theme/css/style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
 	<div id= "navbar">
-		<a href="#"><i class="fas fa-home"></i></a>
-		<a href="#">Kinh Doanh</a>
-		<a href="#">Chính Trị</a>
-		<a href="#">Khoa Học</a>
-		<a href="#">Xã Hội</a>
-		<a href="#">¯\_(ツ)_/¯</a>
-	</div>
-	<br>
-	<div class="site">
-		<a href="#"><img class="homeimg" src="https://static1.squarespace.com/static/54a19d6de4b0cddb26d066d2/58665681f7e0ab0f0ee4f1f7/5a8ab5d4e4966ba44f2e5f38/1519039957812/ABSOLUTELY+NOTHING.jpg?format=500w"></a>
+		<ul>
+			<li><a href="#"><i class="fas fa-home"></i></a></li>
+			<li><a href="#">Kinh Doanh</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Nông sản</a></li>
+      				<li><a href="#">Hải sản</a></li>
+      			</ul>
+		    </div>
+		    </li>
+			<li><a href="#">Chính Trị</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Trong nước</a></li>
+      				<li><a href="#">Ngoài nước</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="#">Khoa Học</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Công Nghệ</a></li>
+      				<li><a href="#">Tự Nhiên</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="#">Xã Hội</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Đời sống</a></li>
+      				<li><a href="#">Hải sản</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="./articleslist.html">¯\_(ツ)_/¯</a></li>
+		</ul>
+</div>
+<br>
+<div class="site">
+		<a href="#"><img class="homeimg" src="https://i2.wp.com/troendesforsamling.org/wp-content/uploads/theres-nothing-new-under-the-sun-or-is-there-1-728.jpg?fit=728%2C546&resize=350%2C200"></a>
 	</div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+<div class="bigcontainer">
+	<div class="listlabel">Danh sách bài viết</div>
+	<div class="filter">
+		<ul>
+			<li>Chuyên mục:</li>
+			<li>
+				<a href="#">Kinh doanh</a>
+				<div class="catdrop">
+				<a href="#">Nông sản</a>
+				<br>
+				<a href="#">Hải sản</a>
+			</div>
+			</li>
+			<li>
+				<a href="#">Chính trị</a>
+			</li>
+			<li>
+				<a href="#">Khoa học</a>
+			</li>
+			<li>
+				<a href="#">Xã hội</a>
+			</li>
+		<ul>
+	</div>
+
+	<div class="tagsearch">
+	Nhập tag: 
+	<input type="" name="taginput" id="taginput">
+	<button id="tagbutton">Lọc</button>
+
+	<div class="articles">
+		<a href="#"><img src="https://i.pinimg.com/236x/d8/aa/46/d8aa46f8a33fc67bbbabe23dfbb81bc7--random-meme-a-potato.jpg"></a>
+		<div class="listtitle"><a href="#">Tiêu đề</a></div>
+		<div class="listabstract">Tóm tắt</div>
+		<div class="listtag"><a href="#">#tag</a></div>
+		<div class="listcat">Chuyên mục</div>
+		<div class="listdate">Ngày đăng</div>
+	</div>
+</div>
+</div>
 </nav>
 </body>
 </html>

@@ -2,6 +2,9 @@
 @import url("slide-show.css");
 @import url("homepic.css");
 @import url("topview.css");
+@import url("newest.css");
+@import url("topcategory.css");
+@import url("articlelist.css");
 
 @font-face {
     font-family: 'LeagueGothic';
@@ -484,4 +487,14 @@ input[type="submit"]:active{
 footer{
 	margin-top: 30px;
 	text-align: right;
+}
+
+html
+{
+	background-color: black;
+}
+
+.bigcontainer{
+	margin-left: 90px;
+	margin-right: 90px;
 }

@@ -1,0 +1,51 @@
+.topcat
+{
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 25px;
+	border-bottom: 2px solid white;
+}
+
+.top10cat
+{
+	margin-top: 15px;
+	width: 40%;
+	background-color: #161617;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+	margin-left: 75px;
+}
+
+.top10cat img
+{
+	float: left;
+	height: 200px;
+	width: 200px;
+}
+
+.cattitle{
+	font-size: 24px;
+	word-break:break-all;
+	margin-top: 10px;
+	overflow: hidden;
+	height: 150px;
+}
+
+.cattitle a{
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+.catcategory {
+	position: absolute;
+	bottom: 5px;
+	left: 205px;
+}
+
+.catdate{
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
