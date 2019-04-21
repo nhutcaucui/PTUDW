@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400);
+
+#personal_info_container{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: white;
+}
+
+#personal_info_container h1{
+    font-size: 32px;
+}
+
+#personal_info_container div{
+    display: inline;
+    line-break: auto;
+}
+
+#personal_info_container div:hover{
+    background: cornflowerblue;
+}
+
+#personal_info_container div:active{
+    background-color: aliceblue;
+    animation: effect_dylan 0.8s ease-out;
+    transform: scale(0.001, 0.001);
+    background: red;
+}
+
+#personal_info_container hr{
+    clear: both;
+}
+
+#personal_info_container p{
+    display: inline;
+    font-size: 24px;
+}
+
+@keyframes effect_dylan {
+    50% {
+      transform: scale(1.5, 1.5);
+      opacity: 0;
+    }
+    99% {
+      transform: scale(0.001, 0.001);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.001, 0.001);
+      opacity: 1;
+    }
+  }
+  
