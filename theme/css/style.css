@@ -6,6 +6,7 @@
 @import url("topcategory.css");
 @import url("articlelist.css");
 @import url("Pagination.css");
+@import url("comment.css");
 
 @font-face {
     font-family: 'LeagueGothic';

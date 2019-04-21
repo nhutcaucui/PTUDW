@@ -14,3 +14,7 @@
   background-color: #400D09;
   color: white;
 }
+
+	.pagination a:hover {
+ 	 	background-color: #161617;
+	}
