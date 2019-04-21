@@ -1,0 +1,16 @@
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.pagination a {
+	padding: 8px 15px;
+}
+
+.pagination a.active {
+  background-color: #400D09;
+  color: white;
+}
