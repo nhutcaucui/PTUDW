@@ -27,15 +27,18 @@
 
 .newtitle{
 	font-size: 24px;
-	word-break:break-all;
+	word-break:break-word;
 	margin-top: 10px;
 	overflow: hidden;
 	height: 150px;
 }
 
 .newtitle a{
-	padding-left: 20px;
-	padding-right: 10px;
+	position: absolute;
+	top: 5px;
+	left: 210px;
+	height: 150px;
+	overflow: hidden;
 }
 
 .newcategory {

@@ -34,8 +34,11 @@
 }
 
 .cattitle a{
-	padding-left: 20px;
-	padding-right: 10px;
+	position: absolute;
+	top: 5px;
+	left: 210px;
+	height: 150px;
+	overflow: hidden;
 }
 
 .catcategory {

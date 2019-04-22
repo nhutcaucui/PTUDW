@@ -1,0 +1,42 @@
+.samesame{
+	width: 35%;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 10px;
+	margin-top: 15px;
+	position: sticky;
+	top:0;
+}
+
+.body-sticky{
+		margin-top: 50px;
+}
+
+.samesame h3{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.sticky-post{
+	margin-top: 10px;
+	overflow: hidden;
+	background-color: #161616;
+}
+
+.sticky-post img{
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.sticky-post-title{
+  	position: relative;
+ }
+
+ .sticky-post-title a{
+ 	position: absolute;
+ 	left: 110px;
+ 	top: 10px;
+ 	font-size: 18px;
+ }

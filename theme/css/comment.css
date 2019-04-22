@@ -7,6 +7,7 @@
 .commentbox{
 	height: 150px;
 	background-color: #161617; 
+	margin-top: 30px;
 }
 
 .commentinputcontain{
@@ -50,4 +51,51 @@
 	float: right;
 	margin-right: 5px;
 	margin-top: 5px;
+}
+
+.user-comments-container{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 30px;
+
+}
+
+.a-comment{
+	margin-top: 20px;
+	background-color: #161616;
+	position: relative;
+}
+
+.user-avatar img{
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.user-name a{
+	color: #3B5998;
+	font-weight: bold;
+	font-size: 20px;	
+	padding-left: 15px;
+	line-height: 60px; 
+}
+
+.user-comment{
+	font-size: 18px;
+	margin-left: 60px;
+	padding-left: 10px;
+	margin-top: 10px;
+}
+
+.comment-header{
+	font-size: 24px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.comment-date{
+	position: absolute;
+	right:10px;
+	top: 10px;
 }
