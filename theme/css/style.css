@@ -7,7 +7,10 @@
 @import url("articlelist.css");
 @import url("Pagination.css");
 @import url("comment.css");
+@import url("posts.css");
 @import url("personal-info.css");
+@import url("sticky-posts.css");
+@import url("side-nagivgation.css");
 
 @font-face {
     font-family: 'LeagueGothic';
