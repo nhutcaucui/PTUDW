@@ -160,18 +160,22 @@ input#facebook{
   cursor: pointer;
 }
 
-.button_login_as :hover{
+.button_login_as:hover{
   background-color: #C8C8C8;
 }
 
 .button_login_as img{
-  height: 32px;
-  width: 32px;
-
+  height: 30px;
+  width: 30px;
+  float: left;
 }
 
 .button_login_as i{
-  font-size: 12pt;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+  padding-top: 6px;
+  padding-left: 6px;
   /* vertical-align: 10px; */
 }
 
