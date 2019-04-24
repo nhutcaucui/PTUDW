@@ -152,21 +152,36 @@ input#facebook{
 .button_login_as{
   display: inline-block;
   height: 32px;
-  align-items: center;
-  justify-content: center;
-  background: blue;
-  border-width: 0px;
+  width: 128px;
+  background-color: #666666;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button_login_as:hover{
+  background-color: #C8C8C8;
 }
 
 .button_login_as img{
-  display: inline-block;
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
+  float: left;
 }
 
-.button_login_as p{
-  display: inline;
-  font-size: 12pt;
-  vertical-align: 10px;
-  color: cornflowerblue;
+.button_login_as i{
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+  padding-top: 6px;
+  padding-left: 6px;
+  /* vertical-align: 10px; */
+}
+
+.fa {
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
 }
