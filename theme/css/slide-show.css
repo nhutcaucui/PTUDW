@@ -41,13 +41,20 @@
 /* Caption text */
 .slidetitle {
   color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  width: 500px;
   text-align: center;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  bottom: 5px;
+  left: 0; 
 }
+
+  .slidetitle:hover
+  {
+    background-color: rgba(0,0,0,1);
+  }
 
 /* Number text (1/3 etc) */
 .numbertext {

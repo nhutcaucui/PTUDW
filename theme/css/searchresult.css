@@ -1,0 +1,26 @@
+.searchlbl{
+	margin-top: 20px;
+	font-size: 30px;
+	font-weight: bold;
+	border-bottom: 2px solid white;
+	margin-bottom: 30px;
+}
+
+.searchresult
+{
+	background-color: #161616;
+	border-bottom:1px solid rgba(255,255,255,0.8);
+}
+
+.searchtitle{
+	font-size: 20px;
+	padding: 10px 20px;
+	overflow: hidden;
+}
+
+.searchabtract{
+	font-size: 16px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}

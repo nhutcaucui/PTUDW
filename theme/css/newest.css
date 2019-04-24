@@ -31,12 +31,10 @@
 	margin-top: 10px;
 	overflow: hidden;
 	height: 150px;
+	margin-left: 210px;
 }
 
 .newtitle a{
-	position: absolute;
-	top: 5px;
-	left: 210px;
 	height: 150px;
 	overflow: hidden;
 }

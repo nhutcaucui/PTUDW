@@ -9,6 +9,7 @@
 @import url("comment.css");
 @import url("posts.css");
 @import url("sticky-posts.css");
+@import url("searchresult.css");
 
 @font-face {
     font-family: 'LeagueGothic';
