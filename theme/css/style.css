@@ -12,6 +12,7 @@
 @import url("searchresult.css");
 @import url("new-article.css");
 @import url("my-articles.css");
+@import url("draft.css");
 
 @font-face {
     font-family: 'LeagueGothic';
