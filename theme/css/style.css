@@ -10,6 +10,8 @@
 @import url("posts.css");
 @import url("sticky-posts.css");
 @import url("searchresult.css");
+@import url("new-article.css");
+@import url("my-articles.css");
 
 @font-face {
     font-family: 'LeagueGothic';
