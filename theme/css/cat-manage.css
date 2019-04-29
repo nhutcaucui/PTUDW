@@ -1,0 +1,166 @@
+.admin-cat-head, .admin-tag-head, .ad-article-head, .ad-article-head, .admin-edt-wrt-head, .admin-reader-head, .admin-asign-head{
+	font-size: 24px;
+	border-bottom: 2px solid white;
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+.manage-cat-container, .manage-tag-container, .manage-edt-wrt-container, .manage-reader-container{
+	width: 65%;
+	display: inline-block;
+}
+
+.manage-cat-container input, .manage-tag-container input, .manage-edt-wrt-container input{
+	margin-right: 0px;
+}
+.radio-container input
+{
+	margin-right: 10px;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+.ad-cat-list, .ad-tag, .ad-edt-wrt-list, .ad-reader, .ad-asign-cat-list,.ad-asign{
+	width: 30%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.add-cat, .edt-cat, .del-cat, .add-tag, .edt-tag, .del-tag, .add-edt-wrt, .edt-edt-wrt, .del-edt-wrt, .extend-reader, .del-reader{
+	margin-top: 10px;
+}
+
+.add-cat input, .edt-cat input, .add-tag input, .edt-tag input, .add-edt-wrt input, .edt-edt-wrt input{
+	background-color: black;
+	color: white;
+	border:1px solid white;
+	height: 20px;
+	font-size: 18px;
+	padding-left: 5px;
+}
+
+.add-cat button, .edt-cat button, .add-tag button, .edt-tag button, .add-edt-wrt button, .edt-edt-wrt button{
+	background-color: white;
+	border-radius: 5px;
+	width: 80px;
+	height: 20px;
+	border: 1px solid white;
+}
+
+.del-cat button,.del-tag button,.del-edt-wrt button{
+	background-color: white;
+	border-radius: 5px;
+	width: 310px;
+	height: 20px;
+	border: 1px solid white;
+}
+
+.big-cat{
+	width: 150px;
+	text-align-last: center;
+	text-align:center;
+	margin-top: 19px;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+}
+
+.small-cat, .ad-tag-lst, .edt-wrt, .ad-reader-lst,.ad-asign-lst{
+	width: 150px;
+	overflow: hidden;
+	margin-top: 15px;
+	text-align-last: center; 
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+}
+
+.cat-manage, .tag-manage, .edt-wrt-manage, .reader-manage,.asignment-manage{
+	width: 45%;
+	display: inline-block;
+	margin-left: 15px;
+	vertical-align: top;
+}
+
+.ad-tag input, .ad-reader input, .ad-asign input{
+	color: white;
+	background-color: black;
+	border:1px solid white;
+	height: 20px;
+	width: 120px;
+	margin-right: 0px;
+	padding-left: 5px;
+	margin-top: 19px;
+}
+
+.ad-tag button,.ad-reader button, .ad-asign button{
+	background-color: white;
+	border: 1px solid white;
+	height: 20px;
+	width: 20px;
+	margin-top: 19px;
+}
+
+.edt-wrt-list{
+	width: 150px;
+	text-align-last: center;
+	text-align:center;
+	margin-top: 19px;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+	overflow: hidden;
+}
+
+.ad-edt-wrt-list input{
+	color: white;
+	background-color: black;
+	border:1px solid white;
+	height: 20px;
+	width: 120px;
+	margin-right: 0px;
+	padding-left: 5px;
+}
+
+.ad-edt-wrt-list button{
+	background-color: white;
+	border: 1px solid white;
+	height: 20px;
+	width: 20px;
+	margin-top: 19px;
+}
+
+.manage-edt-wrt-container{
+	margin-top: 43px;
+}
+
+.manage-reader-container button{
+	background-color: white;
+	border-radius: 5px;
+	width: 310px;
+	height: 20px;
+	border: 1px solid white;	
+}
+
+.manage-reader-container{
+	margin-top: 50px;
+}
+
+.asign-edt{
+	width: 20%;
+	vertical-align: top;
+	display: inline-block;
+	margin-left: 35px;
+}
+
+.asign-edt button
+{
+	background-color: white;
+	border: 1px solid white;
+	height: 20px;
+	margin-top: 19px;
+	border-radius: 5px;
+}

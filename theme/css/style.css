@@ -13,6 +13,7 @@
 @import url("new-article.css");
 @import url("my-articles.css");
 @import url("draft.css");
+@import url("cat-manage.css");
 
 @font-face {
     font-family: 'LeagueGothic';
