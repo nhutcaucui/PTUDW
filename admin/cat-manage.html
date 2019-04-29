@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quản lí chuyên mục</title>
+	<meta charset="utf-8">
+	<link href="../theme/css/style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+	<div id= "navbar">
+		<ul>
+			<li><a href="#"><i class="fas fa-home"></i></a></li>
+			<li><a href="#">Kinh Doanh</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Nông sản</a></li>
+      				<li><a href="#">Hải sản</a></li>
+      			</ul>
+		    </div>
+		    </li>
+			<li><a href="#">Chính Trị</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Trong nước</a></li>
+      				<li><a href="#">Ngoài nước</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="#">Khoa Học</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Công Nghệ</a></li>
+      				<li><a href="#">Tự Nhiên</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="#">Xã Hội</a>
+			<div class="dropdown-content">
+				<ul>
+      				<li><a href="#">Đời sống</a></li>
+      				<li><a href="#">Hài hước</a></li>
+      			</ul>
+		    </div></li>
+			<li><a href="./articleslist.html">¯\_(ツ)_/¯</a></li>
+		</ul>
+</div>
+<br>
+<div class="site">
+		<a href="#"><img class="homeimg" src="https://i2.wp.com/troendesforsamling.org/wp-content/uploads/theres-nothing-new-under-the-sun-or-is-there-1-728.jpg?fit=728%2C546&resize=350%2C200"></a>
+	</div>
+	<div class="bigcontainer">
+		<div class="cat-manage">
+		<div class="admin-cat-head">Quản lý chuyên mục</div>
+		<div class="manage-cat-container">
+			<div class="radio-container">
+				<div>Chọn chuyên mục:</div>
+			<input type="radio" name="cat-radio" value="big">Chuyên mục lớn<br>
+			<input type="radio" name="cat-radio" value="small">Chuyên mục nhỏ<br>
+			</div>
+			<div class="add-cat">
+				<input type="text" name="themchuyenmuc" id="themchuyenmuc">
+				<button id="add-btn-cat">Thêm</button>
+			</div>
+			<div class="edt-cat">
+				<input type="text" name="suachuyenmuc" id="suachuyenmuc">
+				<button id="edt-btn-cat">Sửa</button>
+			</div>
+			<div class="del-cat">
+				<button id="del-btn-cat">Xóa</button>
+			</div>
+		</div>
+		<div class="ad-cat-list">
+			<select name="dschuyenmuclon" class="big-cat">
+				<option>Kinh doanh</option>
+				<option>Chính trị</option>
+				<option>Xã hội</option>
+			</select>
+			<br>
+			<select name="dschuyenmucnho" class="small-cat" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>
+		</div>
+		<div class="tag-manage">
+		<div class="admin-tag-head">Quản lý nhãn</div>
+		<div class="manage-tag-container">			
+			<div class="add-tag">
+				<input type="text" name="themnhan" id="themnhan">
+				<button id="add-btn-tag">Thêm</button>
+			</div>
+			<div class="edt-tag">
+				<input type="text" name="suanhan" id="suanhan">
+				<button id="edt-btn-tag">Sửa</button>
+			</div>
+			<div class="del-tag">
+				<button id="del-btn-tag">Xóa</button>
+			</div>
+		</div>
+		<div class="ad-tag">
+			<input type="text" name="tag-manage-search">
+			<button><i class="fas fa-search"></i></button>
+			<br>
+			<select name="dsnhan" class="ad-tag-lst" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>
+		</div>
+		<div class="ad-article-head">Quản lí bài viết</div>
+		<div class="dr-container" id="dr-container">
+			<div class="dr-list">
+				<a href="#"><img src="https://lunaticpsyche.files.wordpress.com/2013/11/random-pic-01.jpg"></a>
+				<div class="dr-title"><a href="#">Tiêu đề</a></div>
+				<div class="dr-abstract">Tóm tắt</div>
+				<div class="dr-cat">Chuyên mục</div>
+				<div class="dr-buttons">
+				<button class="dr-accept"><i class="fas fa-check"></i></button>
+				<button class="dr-deny" id="dr-deny"><i class="fas fa-times"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="ad-article-head">Quản lí người dùng</div>
+		<div class="edt-wrt-manage">
+		<div class="admin-edt-wrt-head">Quản lý biên tập viên & phóng viên</div>
+		<div class="manage-edt-wrt-container">
+			<div class="add-edt-wrt">
+				<input type="text" name="thembtvpv" id="thembtvpv">
+				<button id="add-btn-ew">Thêm</button>
+			</div>
+			<div class="edt-edt-wrt">
+				<input type="text" name="suabtvpv" id="suabtvpv">
+				<button id="edt-btn-ew">Sửa</button>
+			</div>
+			<div class="del-edt-wrt">
+				<button id="del-btn-ew">Xóa</button>
+			</div>
+		</div>
+		<div class="ad-edt-wrt-list">
+			<select name="slbtvpv" class="edt-wrt">
+				<option>Biên tập viên</option>
+				<option>Phóng viên</option>
+			</select>
+			<br>
+			<input type="text" name="edt-wrt-search">
+			<button><i class="fas fa-search"></i></button>
+			<select name="dsbtvpv" class="edt-wrt-list" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>
+		</div>
+		<div class="reader-manage">
+		<div class="admin-reader-head">Quản lý đọc giả</div>
+		<div class="manage-reader-container">			
+			<div class="extend-reader">
+				<button id="add-btn-reader">Gia hạn</button>
+			</div>
+			<div class="del-reader">
+				<button id="del-btn-reader">Xóa</button>
+			</div>
+		</div>
+		<div class="ad-reader">
+			<input type="text" name="tag-manage-search">
+			<button><i class="fas fa-search"></i></button>
+			<br>
+			<select name="dsnhan" class="ad-reader-lst" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>
+		</div>
+		<div class="asignment-manage">
+		<div class="admin-asign-head">Phân công biên tập viên</div>
+		<div class="ad-asign">
+			<input type="text" name="asign-manage-search">
+			<button><i class="fas fa-search"></i></button>
+			<br>
+			<select name="dsnhan" class="ad-asign-lst" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>			
+			<div class="asign-edt">
+				<button id="asign-btn">Phân công</button>
+			</div>
+		<div class="ad-asign-cat-list">
+			<select name="dschuyenmuclon" class="big-cat">
+				<option>Kinh doanh</option>
+				<option>Chính trị</option>
+				<option>Xã hội</option>
+			</select>
+			<br>
+			<select name="dschuyenmucnho" class="small-cat" size="5">
+				<option>Nông sản</option>
+				<option>Hải sản</option>
+			</select>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
