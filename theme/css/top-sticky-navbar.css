@@ -67,3 +67,25 @@
   opacity: 1;
   visibility: visible;
 }
+
+#searchbar {
+  float: right;
+  height: 100%;
+}
+
+#searchbar input{
+  height: 32px;
+  opacity: 0;
+}
+
+#searchbar img{
+  vertical-align: middle;
+}
+
+#searchbar img:hover{
+  opacity: 0;
+}
+
+#searchbar img:active{
+  opacity: 1;
+}
