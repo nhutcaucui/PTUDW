@@ -1,0 +1,98 @@
+#pic{
+	background-color: #000;
+}
+
+.new-header{
+	font-size: 24px;
+	border-bottom: 2px solid white;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.new-container span{
+	font-size: 16px;
+}
+
+.new-title input{
+	height: 20px;
+	width: 99%;
+	font-size: 16px;
+	padding-left: 10px;
+	background-color: #000;
+	color: white;
+	border: 1px solid rgba(255,255,255,.5);
+	margin-top: 5px;
+}
+
+.new-cat{
+	margin-top: 10px;
+}
+
+.new-cat select{
+	color: white;
+	background-color: black;
+	height: 20px;
+	font-size: 16px;
+}
+
+.new-pic{
+	margin-top: 10px;
+}
+
+.new-abstract{
+	margin-top: 10px;
+}
+.new-abstract textarea{
+	width: 98%;
+	resize: none;
+	background-color: black;
+	color: white;
+	height: 40px;
+	font-size: 16px;
+	padding: 5px 10px;
+	margin-top: 5px;
+}
+
+.new-body{
+	margin-top: 10px;
+}
+
+.new-body .ql-toolbar.ql-snow{
+	margin-top: 5px;
+}	
+
+#quill-body{
+	font-size: 16px;
+}
+
+.article-submit{
+	background-color: rgba(255,255,255,0.8);
+	float: right;
+	margin-top: 10px;
+	height: 40px;
+	width: 150px;
+	border: 2px solid white;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: bold;
+
+}
+
+	.article-submit:hover{
+		background-color: rgba(255,255,255,1);
+	}	
+
+.new-tag{
+	margin-top: 10px;
+}
+
+.new-tag input
+{
+	background-color: black;
+	color: white;
+	border:1px solid white;
+	height: 20px;
+	padding-left: 10px;
+	width: 60%;
+}

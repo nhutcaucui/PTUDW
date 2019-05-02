@@ -31,12 +31,9 @@
 }
 
 .sticky-post-title{
-  	position: relative;
+  	margin-left: 110px;
  }
 
  .sticky-post-title a{
- 	position: absolute;
- 	left: 110px;
- 	top: 10px;
  	font-size: 18px;
  }

@@ -11,6 +11,11 @@
 @import url("personal-info.css");
 @import url("sticky-posts.css");
 @import url("side-nagivgation.css");
+@import url("searchresult.css");
+@import url("new-article.css");
+@import url("my-articles.css");
+@import url("draft.css");
+@import url("cat-manage.css");
 
 @font-face {
     font-family: 'LeagueGothic';
