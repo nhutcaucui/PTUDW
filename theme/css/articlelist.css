@@ -4,27 +4,7 @@
 	font-weight: bold;
 	border-bottom: 2px solid white;
 }
-.filter{
-	display: inline-block;
-	text-align: center;
-	margin-top: 10px;
-	font-size: 18px;
-}
-.catdrop{
-	background-color: #161617;
-	text-align: center;
-	opacity: 0;
-	position: absolute;
-}
 
-.filter li{
-	float: left;
-	margin-left: 15px;
-}
-
-.filter li:hover .catdrop{
-	opacity: 1;
-}
 
 .tagsearch{
 	margin-top: 10px;
