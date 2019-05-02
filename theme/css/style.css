@@ -16,6 +16,7 @@
 @import url("my-articles.css");
 @import url("draft.css");
 @import url("cat-manage.css");
+@import url("modal.css");
 
 @font-face {
     font-family: 'LeagueGothic';

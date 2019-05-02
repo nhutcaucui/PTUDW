@@ -1,9 +1,9 @@
 
 #personal_info_container{
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 10px;
+    position: relative;
+    
     border-color: white;
+    left: 20%;
 }
 
 #personal_info_container h1{
@@ -14,7 +14,11 @@
     display: inline-block;
     line-break: auto;
     color: red;
-    width: 100%;
+    width: 80%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
 }
 
 
@@ -37,6 +41,7 @@
     display: inline;
     font-size: 24px;
 }
+
 
 @keyframes effect_dylan {
     50% {

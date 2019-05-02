@@ -1,0 +1,47 @@
+.modal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+}
+
+.modal input{
+    outline: 0;
+    border-color: white;
+    border-width: 0 0 0px 0;
+    border-radius: 0;
+    background-color: black;
+    width: inherit;
+}
+
+.modal div{
+    width: 20%;
+}
+
+.modal div input{
+    width: 100%;
+    color: white;
+}
+
+.modal input:focus ~hr{
+    width: 100%;
+    color: red;
+    animation: openBorder 0.5s;
+}
+
+@keyframes openBorder {
+    /*this animation mean:
+        at 0% (start animation), opacity of element will be 1
+        at 100% (end animation), opacity of element will be 0.5
+        you can add more milestone for more fancy animation*/
+    0% {
+        width: 0px;
+        color: white;
+    }
+
+    100% {
+        width: 100%;
+        color: red;
+    }
+}
