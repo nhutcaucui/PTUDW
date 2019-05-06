@@ -3,7 +3,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    overflow: auto;
+    width: 20%;
+    background-color: white;
 }
 
 .modal input{
@@ -11,16 +12,20 @@
     border-color: white;
     border-width: 0 0 0px 0;
     border-radius: 0;
-    background-color: black;
-    width: inherit;
+    width: 100%
+}
+
+.modal label{
+    font-size: 12px;
+    color: black;
 }
 
 .modal div{
-    width: 20%;
+    background-color: black;
 }
 
-.modal div input{
-    width: 100%;
+.modal div{
+    width: 80%;
     color: white;
 }
 

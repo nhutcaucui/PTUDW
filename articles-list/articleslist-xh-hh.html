@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sửa bài viết</title>
+	<title>Articles List</title>
 	<meta charset="utf-8">
 	<link href="../theme/css/style.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+		<link rel="icon" href="https://cdn158.picsart.com/222491352018202.jpg?c256x256">
+
 </head>
 <body>
-<div id= "navbar">
+	<div id= "navbar">
 		<ul>
 			<li><a href="../home.html"><i class="fas fa-home"></i></a></li>
 			<li><a href="../articles-list/articleslist-kd.html">Kinh Doanh</a>
@@ -58,46 +59,35 @@
 <div class="site">
 		<a href="#"><img class="homeimg" src="https://i2.wp.com/troendesforsamling.org/wp-content/uploads/theres-nothing-new-under-the-sun-or-is-there-1-728.jpg?fit=728%2C546&resize=350%2C200"></a>
 	</div>
-	<div class="bigcontainer">
-		<div class="new-header">Sửa bài viết</div>
-		<div class="new-container">
-			<form id="new-article-form">
-				<div class="new-title">
-					<span>Tiêu đề:</span>
-					<input type="text" name="tieude" id="tieude"></input>
-				</div>
-				<div class="new-cat">
-					<span>Chuyên mục:</span>
-					<select name="chuyenmuc" id="chuyenmuc">
-						<option value="Kinh doanh">Kinh doanh</option>
-						<option value="Nông sản">Nông sản</option>
-						<option value="Hải sản">Hải sản</option>
-						<option value="Chính trị">Chính trị</option>
-						<option value="Trong nước">Trong nước</option>
-						<option value="Ngoài nước">Ngoài nước</option>
-					</select>
-				</div>
-				<div class="new-pic">
-					<span>Ảnh đại diện:</span>
-					<input type="file" name="pic" id="pic" accept="image/*">
-				</div>
-				<div class="new-abstract">
-					<span>Tóm tắt:</span>
-					<textarea name="tomtat" id="tomtat"></textarea>
-				</div>
-				<div class="new-body">
-				<span>Nội dung:</span>
-					<div id="quill-body" name="noidung"></div>
-				</div>
-				<div class="new-tag">
-					<span>Gán nhãn:</span>
-					<input type="text" name="tag" placeholder="tag1,tag2,tag3">
-				</div>
-				<button class="article-submit" id="article-submit">Sửa bài viết</button>
-			</form>
-		</div>
+
+<div class="bigcontainer">
+	<div class="listlabel">Danh sách bài viết</div>	
+	<div class="tagsearch">
+	Nhập tag: 
+	<input type="" name="taginput" id="taginput">
+	<button id="tagbutton">Lọc</button>
+
+<div class="list-articles" id="list-articles">
+		<a href="../articles/xa-hoi/hai-huoc/3-chu-t.html"><img src="https://cdn.discordapp.com/attachments/511182519731879956/569725983322800159/FB_IMG_1555903638295.jpg"></a>
+		<div class="listtitle"><a href="../articles/xa-hoi/hai-huoc/3-chu-t.html">“Đời là ba chữ T”</a></div>
+		<div class="listabstract">
+			Không khó lắm để tìm trên mạng những giai thoại về Ba Vân, nghệ sĩ hài đã nổi danh trước năm 1975, với câu nói cửa miệng: “Đời là ba chữ T. Có tiền thì sẽ có tình. Có tiền, có tình thì mặc sức mà tê tê”. Ba Vân được truyền tụng là thường nói câu này.
 	</div>
-	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-	<script type="text/javascript" src="new-article.js"></script>
+		<div class="listtag"><a href="#">#tag</a> <a href="#">#tag1</a> <a href="#">#tag2</a> <a href="#">#tag3</a></div>
+		<div class="listcat">Hài hước</div>
+		<div class="listdate">Ngày đăng</div>
+	</div>
+	<div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">&raquo;</a>
+</div>
+</div>
+</div>
+</nav>
 </body>
 </html>

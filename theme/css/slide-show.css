@@ -1,12 +1,9 @@
 * {box-sizing:border-box}
 
 .slideshow-container {
-<<<<<<< HEAD
   max-width: 512px;
-=======
   width: 500px;
   height: 300px;
->>>>>>> c3bc312ef018e8f9d6ab0fde050e928af3da6bd4
   position: relative;
   margin: auto;
   display: inline-block;
