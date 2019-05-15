@@ -8,10 +8,10 @@ const session = require('express-session');
 const ejs = require('ejs');
 
 const app = express();
-require('./init');
+//require('./init');
 
-app.use(favicon(path.join(__dirname, 'public', 'favicons/favicon.ico')));
-app.use(log4js.connectLogger(logger.instanceRequest()));
+//app.use(favicon(path.join(__dirname, 'public', 'favicons/favicon.ico')));
+//app.use(log4js.connectLogger(logger.instanceRequest()));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/theme', express.static(path.join(__dirname, 'theme')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
@@ -19,5 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+    res.render('home', {title: 'Trang chu'});
+
+});
+
+app.listen(8080);
 
 module.exports = app;

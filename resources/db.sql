@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS account
     `password` VARCHAR(32),
     `is_login` BIT,
     `level` INT,
-    `ID` VARCHAR(255) AUTO_INCREMENT PRIMARY KEY
+    `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS article_pending
@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS article_pending
     `content` VARCHAR(1000),
     `abstract` VARCHAR(255),
     `image` VARCHAR(255),
-    `writerId` VARCHAR(255),
-)
+    `writerId` VARCHAR(255)
+);
 
 CREATE TABLE IF NOT EXISTS article
 (
@@ -37,15 +37,15 @@ CREATE TABLE IF NOT EXISTS comment
     `ID` VARCHAR(20) PRIMARY KEY,
     `username` VARCHAR(32)
 
-)
+);
 CREATE TABLE IF NOT EXISTS category
 (
     `name` VARCHAR(255),
     `ID` INT AUTO_INCREMENT PRIMARY KEY
-)
+);
 
 CREATE TABLE IF NOT EXISTS tag
 (
     `name` VARCHAR(255),
     `ID` INT AUTO_INCREMENT PRIMARY KEY
-)
+);
