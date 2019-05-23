@@ -15,6 +15,7 @@ const app = express();
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/theme', express.static(path.join(__dirname, 'theme')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
+app.use('/parts', express.static('parts'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
@@ -27,6 +28,8 @@ app.get('/', function(req, res) {
 });
 
 app.use('/login', require('./routes/login.routes'));
+app.use('/article', require('./routes/article.routes'));
+app.use('/category', require('./routes/category.routes'));
 
 app.listen(8080);
 
