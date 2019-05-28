@@ -9,6 +9,8 @@ const ejs = require('ejs');
 var ejsLayout = require('express-ejs-layouts');
 
 const app = express();
+
+require('./models/index');
 //require('./init');
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicons/favicon.ico')));
