@@ -6,6 +6,7 @@ const passport = require('passport');
 const log4js = require('log4js');
 const session = require('express-session');
 const ejs = require('ejs');
+var ejsLayout = require('express-ejs-layouts');
 
 const app = express();
 //require('./init');
@@ -15,13 +16,16 @@ const app = express();
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/theme', express.static(path.join(__dirname, 'theme')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
-app.use('/parts', express.static('parts'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(ejsLayout);
+
 
 app.set('view engine', 'ejs');
+app.set("layout extractScripts", true);
+app.set("layout extractStyles", true);
 
 app.get('/', function(req, res) {
     res.render('home', {title: 'Trang chu'});
