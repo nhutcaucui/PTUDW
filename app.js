@@ -36,6 +36,19 @@ app.get('/', function(req, res) {
 app.use('/login', require('./routes/login.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
+app.use('/writer', require('./routes/writer/writer.routes'));
+
+app.use((req, res, next) => {
+    res.render('404', { layout: false });
+  })
+  
+  app.use((error, req, res, next) => {
+    res.render('error', {
+      layout: false,
+      message: error.message,
+      error
+    })
+  })
 
 app.listen(8080);
 

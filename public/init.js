@@ -1,19 +1,8 @@
 //var event_handlers = require('./controllers/event_handlers')
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
 var slideIndex = 1;
 
 function init(){
-    window.onscroll = function() {stickyNavbarHandler()};
     showSlides(slideIndex);
-}
-
-function stickyNavbarHandler(){
-    if (window.pageYOffset > sticky){
-        navbar.classList.add("sticky")
-    }else{
-        navbar.classList.remove("sticky")
-    }
 }
 
 // Next/previous controls

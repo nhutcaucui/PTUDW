@@ -1,0 +1,59 @@
+.error-big-div{
+    background: #161616;
+    height: 250px;
+    width: 500px;
+    
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+    margin: auto;
+    border-radius: 5px;
+}
+
+.error-big-div .er-txt{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.er-lnk-ctn{
+    display: flex;
+    justify-content: space-around;
+}
+
+.er-home-btn, .er-report-btn{
+  display: inline-block;
+  height: 45px;
+  width: 180px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 24px;
+}
+
+.er-home-btn i, .er-report-btn i{
+    line-height: 45px;
+}
+
+.er-home-btn{
+    background: green;
+    border-radius: 10px;
+}
+    .er-home-btn:hover{
+     background: #6AB74C;     
+    }
+
+.er-report-btn{
+    background: red;
+    border-radius: 10px;
+}
+
+    .er-report-btn:hover{
+        background: #FE1A1A;
+        color: white;
+    }
