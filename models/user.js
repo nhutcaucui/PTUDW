@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const facebook_strategy = require('passport-facebook').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const SALT_ROUNDS = 10;
 
 function new_user(username, password, role){
@@ -45,17 +46,17 @@ passport.use(new LocalStrategy(
      }
    ));
 
-passport.use(new FacebookStrategy({
+/* passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     callbackURL: "http://www.example.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
+    User.findOrCreate(... function(err, user) {
       if (err) { return done(err); }
       done(null, user);
     });
   }
-));
+)); */
 verify('meomeomeo', '$2a$10$rqNNDhzSOmHnB/tega5kE.BpW5ALiAY9XNx5bNZ0qou8EOMEaQvli');
 new_user('hi mom', 'meomeomeo', '');

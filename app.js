@@ -37,6 +37,8 @@ app.use('/login', require('./routes/login.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
 app.use('/writer', require('./routes/writer/writer.routes'));
+app.use('/admin', require('./routes/admin/admin.routes'));
+app.use('/editor', require('./routes/editor/editor.routes'));
 
 app.use((req, res, next) => {
     res.render('404', { layout: false });
