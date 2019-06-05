@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
     res.render('home', {title: 'Trang chu'});
 });
 
-app.use('/login', require('./routes/login.routes'));
+app.use('/', require('./routes/login.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
 app.use('/writer', require('./routes/writer/writer.routes'));
