@@ -3,8 +3,20 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const SALT_ROUNDS = 10;
+const db = require('./index').mysql;
 
 function new_user(username, password, role){
+    return new Promise((resolve, reject) => {
+        let query = "SELECT * FROM account WHERE username = ?";
+        db.query(query, [username], (err, result) => {
+    		if (err){
+        		throw err;
+			}
+			
+			resolve(result);
+        });
+    });
+
     bcrypt.hash(password, SALT_ROUNDS, (err, hash) =>{
         console.log(hash);
     });
@@ -60,3 +72,9 @@ passport.use(new LocalStrategy(
 )); */
 verify('meomeomeo', '$2a$10$rqNNDhzSOmHnB/tega5kE.BpW5ALiAY9XNx5bNZ0qou8EOMEaQvli');
 new_user('hi mom', 'meomeomeo', '');
+
+module.exports = {
+  new_user : new_user,
+  verify : verify,
+
+}
