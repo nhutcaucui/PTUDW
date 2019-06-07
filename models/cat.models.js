@@ -1,11 +1,11 @@
-var db = require('./index.js');
+var db = require('./basedb');
 
 module.exports = {
     allCat: ()=>{
-        return db.load('select * from category');
+        return  ('select * from category');
     },
 
     subCatbyCat: ()=>{
-        return db.load('select c.ID as catID, c.name as catName, sc.name as subName, sc.ID as subID, belongto from category c, subcategory sc where belongto=c.ID');
+        return db.loaddb('select c.ID as catID, c.name as catName, sc.name as subName, belongto from category c, subcategory sc where belongto=c.ID');
     }
 }

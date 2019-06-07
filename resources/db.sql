@@ -1,6 +1,4 @@
-CREATE DATABASE News
-
-CREATE TABLE IF NOT EXISTS account
+CREATE TABLE account
 (
     `username` VARCHAR(32),
     `password` VARCHAR(100),
@@ -9,7 +7,7 @@ CREATE TABLE IF NOT EXISTS account
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS article_pending
+CREATE TABLE article_pending
 (
     `header` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `content` VARCHAR(12000) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
@@ -18,7 +16,7 @@ CREATE TABLE IF NOT EXISTS article_pending
     `writerId` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci
 );
 
-CREATE TABLE IF NOT EXISTS article
+CREATE TABLE article
 (
     `header` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `content` VARCHAR(12000) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
@@ -32,7 +30,7 @@ CREATE TABLE IF NOT EXISTS article
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS comment
+CREATE TABLE comment
 (
     `date` DATETIME,
     `content` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
@@ -42,13 +40,13 @@ CREATE TABLE IF NOT EXISTS comment
 
 );
 
-CREATE TABLE IF NOT EXISTS category
+CREATE TABLE category
 (
     `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS subcategory
+CREATE TABLE subcategory
 (
     `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `belongto` INT,

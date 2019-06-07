@@ -65,17 +65,25 @@ app.use('/admin', require('./routes/admin/admin.routes'));
 app.use('/editor', require('./routes/editor/editor.routes'));
 
 app.use((req, res, next) => {
+    console.log('hi');
     res.render('404', { layout: false });
-  })
+});
   
-  app.use((error, req, res, next) => {
+app.use((error, req, res, next) => {
+    console.log('a');
     res.render('error', {
       layout: false,
       message: error.message,
       error
-    })
-  })
+    });
+});
 
-app.listen(8080);
+app.get('/', (req, res) => {
+	console.log('hi mom');	
+	res.render('home');
+});
+
+
+app.listen(8081);
 
 module.exports = app;
