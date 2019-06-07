@@ -1,4 +1,5 @@
 var self = this;
+var db;
 const mysql = require('mysql');
 require('./user');
 
@@ -17,79 +18,79 @@ var database = mysql.createConnection({
 //     });
 // }
 
-var db = database.connect((err) =>{
-    if (err){
-        throw err;
-    }
-    console.log("[Database] - Connected");
-});
+// var db = database.connect((err) =>{
+//     if (err){
+//         throw err;
+//     }
+//     console.log("[Database] - Connected");
+// });
 
 module.exports = {
     mysql : db,
 }
-    load: sql => {
-      return new Promise((resolve, reject) => {
-        var connection = createConnection();
-        connection.connect();
-        connection.query(sql, (error, results, fields) => {
-          if (error)
-            reject(error);
-          else {
-            resolve(results);
-          }
-          connection.end();
-        });
-      });
-    },
+  //   load: sql => {
+  //     return new Promise((resolve, reject) => {
+  //       var connection = createConnection();
+  //       connection.connect();
+  //       connection.query(sql, (error, results, fields) => {
+  //         if (error)
+  //           reject(error);
+  //         else {
+  //           resolve(results);
+  //         }
+  //         connection.end();
+  //       });
+  //     });
+  //   },
   
-    add: (tableName, entity) => {
-      return new Promise((resolve, reject) => {
-        var sql = `insert into ${tableName} set ?`;
-        var connection = createConnection();
-        connection.connect();
-        connection.query(sql, entity, (error, value) => {
-          if (error)
-            reject(error);
-          else {
-            resolve(value.insertId);
-          }
-          connection.end();
-        });
-      });
-    },
+  //   add: (tableName, entity) => {
+  //     return new Promise((resolve, reject) => {
+  //       var sql = `insert into ${tableName} set ?`;
+  //       var connection = createConnection();
+  //       connection.connect();
+  //       connection.query(sql, entity, (error, value) => {
+  //         if (error)
+  //           reject(error);
+  //         else {
+  //           resolve(value.insertId);
+  //         }
+  //         connection.end();
+  //       });
+  //     });
+  //   },
   
-    update: (tableName, idField, entity) => {
-      return new Promise((resolve, reject) => {
-        var id = entity[idField];
-        delete entity[idField];
+  //   update: (tableName, idField, entity) => {
+  //     return new Promise((resolve, reject) => {
+  //       var id = entity[idField];
+  //       delete entity[idField];
   
-        var sql = `update ${tableName} set ? where ${idField} = ?`;
-        var connection = createConnection();
-        connection.connect();
-        connection.query(sql, [entity, id], (error, value) => {
-          if (error)
-            reject(error);
-          else {
-            resolve(value.changedRows);
-          }
-          connection.end();
-        });
-      });
-    },
+  //       var sql = `update ${tableName} set ? where ${idField} = ?`;
+  //       var connection = createConnection();
+  //       connection.connect();
+  //       connection.query(sql, [entity, id], (error, value) => {
+  //         if (error)
+  //           reject(error);
+  //         else {
+  //           resolve(value.changedRows);
+  //         }
+  //         connection.end();
+  //       });
+  //     });
+  //   },
   
-    delete: (tableName, idField, id) => {
-      return new Promise((resolve, reject) => {
-        var sql = `delete from ${tableName} where ${idField} = ?`;
-        var connection = createConnection();
-        connection.connect();
-        connection.query(sql, id, (error, value) => {
-          if (error)
-            reject(error);
-          else {
-            resolve(value.affectedRows);
-          }
-          connection.end();
-        });
-      });
-    },
-  };
+  //   delete: (tableName, idField, id) => {
+  //     return new Promise((resolve, reject) => {
+  //       var sql = `delete from ${tableName} where ${idField} = ?`;
+  //       var connection = createConnection();
+  //       connection.connect();
+  //       connection.query(sql, id, (error, value) => {
+  //         if (error)
+  //           reject(error);
+  //         else {
+  //           resolve(value.affectedRows);
+  //         }
+  //         connection.end();
+  //       });
+  //     });
+  //   },
+  // };
