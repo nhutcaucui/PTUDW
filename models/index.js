@@ -7,13 +7,13 @@ self.database = mysql.createConnection({
     password: ""
 });
 
-// self.database.connect(()=>{
-//     if (err){
-//         throw err;
-//     }
-//     console.log("[Database] - Connected");
-// });
+var db = database.connect(()=>{
+    if (err){
+        throw err;
+    }
+    console.log("[Database] - Connected");
+});
 
 module.exports = {
-    mysql : mysql,
+    mysql : db,
 }

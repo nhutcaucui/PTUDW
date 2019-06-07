@@ -70,8 +70,6 @@ passport.use(new LocalStrategy(
     });
   }
 )); */
-verify('meomeomeo', '$2a$10$rqNNDhzSOmHnB/tega5kE.BpW5ALiAY9XNx5bNZ0qou8EOMEaQvli');
-new_user('hi mom', 'meomeomeo', '');
 
 module.exports = {
   new_user : new_user,
