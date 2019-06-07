@@ -42,15 +42,21 @@ app.use('/editor', require('./routes/editor/editor.routes'));
 
 app.use((req, res, next) => {
     res.render('404', { layout: false });
-  })
+});
   
-  app.use((error, req, res, next) => {
+app.use((error, req, res, next) => {
     res.render('error', {
       layout: false,
       message: error.message,
       error
-    })
-  })
+    });
+});
+
+app.get('/', (req, res) => {
+	res.render('home', {
+
+	});
+});
 
 app.listen(8080);
 
