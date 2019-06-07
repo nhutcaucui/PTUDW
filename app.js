@@ -7,6 +7,7 @@ const log4js = require('log4js');
 const session = require('express-session');
 const ejs = require('ejs');
 var ejsLayout = require('express-ejs-layouts');
+const cool = require('cool-ascii-faces');
 
 const app = express();
 
@@ -53,10 +54,11 @@ app.use((error, req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-	res.render('home', {
-
-	});
+	console.log('hi mom');	
+	res.render('home');
 });
+
+app.get('/cool', (req, res) => res.send(cool()));
 
 app.listen(8080);
 
