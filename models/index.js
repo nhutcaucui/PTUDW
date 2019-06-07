@@ -1,7 +1,7 @@
 var self = this;
 const mysql = require('mysql');
 require('./user');
-self.database = mysql.createConnection({
+var database = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: ""
