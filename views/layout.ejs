@@ -12,7 +12,7 @@
         <div id= "navbar">
             <ul>
                 <li><a href="/"><i class="fas fa-home"></i></a></li>
-                <li><a href="/category">Kinh Doanh</a>
+                <!-- <li><a href="/category">Kinh Doanh</a>
                 <div class="dropdown-content">
                     <ul>
                           <li><a href="./articles-list/articleslist-kd-ns.html">Nông sản</a></li>    				
@@ -43,7 +43,38 @@
                     </div>
                 </li>
                 <li><a href="#">¯\_(ツ)_/¯</a></li>
-            </ul>
+            </ul> -->
+
+            <%  lcCategories.forEach(function(row, index) { %>
+                <% if(index > 0) { %>
+                <% if(row.catName != lcCategories[index-1].catName) { %>
+            <li><a href="/category"><%= row.catName %></a>
+            <div class="dropdown-content">
+                <ul>
+                <%  lcCategories.forEach(function(subcat) { %>
+                    <% if(subcat.belongto == row.catID) { %>                     
+                      <li><a href="./articles-list/articleslist-kd-ns.html"><%= subcat.subName %></a></li>    	
+                      <% } %>
+                      <%  }) %>			
+                  </ul>
+            </div>
+            </li>
+            <%  } %>
+            <%  } %>
+            <%  if (index <= 0) { %>
+                <li><a href="/category"><%= row.catName %></a>
+                    <div class="dropdown-content">
+                        <ul>
+                                <%  lcCategories.forEach(function(subcat) { %>
+                                    <% if(subcat.belongto == row.catID) { %>                     
+                                      <li><a href="./articles-list/articleslist-kd-ns.html"><%= subcat.subName %></a></li>    	
+                                      <% } %>
+                                      <%  }) %>			
+                          </ul>
+                    </div>
+                    </li>
+                    <% } %>
+            <%  }) %>
         
             <div id="user-icon">
                 <a href="/login"><i class="far fa-user"></i></a>			

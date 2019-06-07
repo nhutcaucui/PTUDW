@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayout);
+app.use(require('./mdw/local.mdw'));
 
 
 app.set('view engine', 'ejs');
