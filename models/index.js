@@ -7,7 +7,7 @@ var database = mysql.createConnection({
     password: ""
 });
 
-var db = database.connect(()=>{
+var db = database.connect((err) =>{
     if (err){
         throw err;
     }
