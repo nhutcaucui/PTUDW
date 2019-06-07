@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayout);
+app.use(require('./mdw/local.mdw'));
 
 
 app.set('view engine', 'ejs');
@@ -55,7 +56,7 @@ app.use((error, req, res, next) => {
 
 app.get('/', (req, res) => {
 	console.log('hi mom');	
-	res.render('home');
+	res.render('404');
 });
 
 app.get('/cool', (req, res) => res.send(cool()));

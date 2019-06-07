@@ -27,7 +27,7 @@ function verify(password, hash){
         if (res){
             console.log('Yes, indeed');
         } else{
-            console.log('No, you');
+            console.log('No u');
         }
     });
 }
