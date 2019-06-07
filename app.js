@@ -30,8 +30,31 @@ app.set('view engine', 'ejs');
 app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
 
+var homeModel= require('./models/home.model');
+
 app.get('/', function(req, res) {
-    res.render('home', {title: 'Trang chu'});
+  var h=homeModel.hot();
+  var t=homeModel.top();
+  var n=homeModel.new();
+  var c=homeModel.cat();
+  h.then(hrows =>{
+    t.then(trows =>{
+      n.then(nrows =>{
+        c.then(crows =>{
+          res.render('home', {title: 'Trang chủ', hot: hrows, top: trows, news: nrows, cats:crows});
+        }).catch(err => {
+          console.log(err);
+        });
+      }).catch(err => {
+        console.log(err);
+      });
+    }).catch(err => {
+      console.log(err);
+    });
+  }).catch(err => {
+    console.log(err);
+  });
+    
 });
 
 app.use('/', require('./routes/login.routes'));

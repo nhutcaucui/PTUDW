@@ -4,14 +4,15 @@
                 <div class="slideshow-container" id="hottest">
                     <p class="hot">Nổi bật nhất</p>
                   <!-- Full-width images with number and caption text -->
+                  <% hot.forEach(function(row){ %>
                   <div class="mySlides">
-                    <div class="numbertext">Công nghệ</div>
-                    <div class="slidedate">Ngày đăng</div>
-                    <a href="./articles/khoa-hoc/cong-nghe/cntt.html"><img src="http://dev.cdn.sgt.tamminh.tech/sgt/1553959063490-d554f_img20190329102811.jpg" style="width:100%;height: 100%"></a>
-                    <div class="slidetitle"><a href="./articles/khoa-hoc/cong-nghe/cntt.html" class="slidetitle">Đà Nẵng đưa vào hoạt động dự án khu công nghệ thông tin</a></div>
+                    <div class="numbertext"><%= row.subcat %></div>
+                    <div class="slidedate"><%= row.fDate %></div>
+                    <a href="/article/<%= row.ID %>"><img src="<%= row.image%>" style="width:100%;height: 100%"></a>
+                    <div class="slidetitle"><a href="/article/<%= row.ID %>" class="slidetitle"><%= row.header %></a></div>
                   </div>
-                
-                  <div class="mySlides">
+                  <%})%>
+                  <!-- <div class="mySlides">
                     <div class="numbertext">Tự nhiên</div>
                     <div class="slidedate">Ngày đăng</div>
                     <a href="./articles/khoa-hoc/tu-nhien/tranh-chap.html"><img src="https://cdn.thesaigontimes.vn/Uploads/Articles/286434/458d1_a4.jpg" style="width:100%;height: 100%"></a>
@@ -30,7 +31,7 @@
                     <div class="slidedate">Ngày đăng</div>
                     <a href="#"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" style="width:100%;height: 100%"></a>
                     <div class="slidetitle"><a href="#" class="slidetitle">Caption Text</a></div>
-                  </div>
+                  </div> -->
                 
                   <!-- Next and previous buttons -->
                   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -40,13 +41,15 @@
                 <div class="mostview">Xem nhiều</div>
                 
                 <div class="topview" id="topview">
+                    <% top.forEach(function(row){ %>
                     <div class="article">
-                        <a href="/article"><img src="https://cdn.discordapp.com/attachments/511182519731879956/569725983322800159/FB_IMG_1555903638295.jpg"></a>
-                        <div class="category">Hài hước</div>
-                        <div class="date">Date</div>
-                        <div class="title"><a href="/article">“Đời là ba chữ T”</a></div>
+                        <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
+                        <div class="category"><%= row.subcat%></div>
+                        <div class="date"><%= row.fDate%></div>
+                        <div class="title"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                     </div>
-                    <div class="article">
+                    <%}) %>
+                    <!-- <div class="article">
                         <a href="./articles/xa-hoi/doi-song/tuong-ot.html"><img src="https://znews-photo.zadn.vn/w660/Uploaded/aohunkx/2019_04_21/28d79ae748bcade2f4ad.jpg"></a>
                         <div class="category">Đời sống</div>
                         <div class="date">Date</div>
@@ -57,20 +60,22 @@
                         <div class="category">Hải sản</div>
                         <div class="date">Date</div>
                         <div class="title"><a href="./articles/kinh-doanh/hai-san/doanh-nghiep.html">Luật Doanh nghiệp ở đâu trong vụ phân chia tài sản tại Trung Nguyên?</a></div>
-                    </div>
+                    </div> -->
                 </div>
                 <br>
                 
                 <div class="newest">Các bài viết mới nhất</div>
                 <div class="newscontainer" id="newscontainer">
+                    <% news.forEach(function(row){ %>
                 <div class="news">
-                            <a href="./articles/kinh-doanh/nong-san/vat-nuoi.html"><img src="https://cdn.thesaigontimes.vn/Uploads/Articles/286433/0a0cc_tuduylamluat_thanhoa.jpg"></a>
-                            <div class="newtitle"><a href="./articles/kinh-doanh/nong-san/vat-nuoi.html">Tư duy làm luật, nhìn từ thông tư “thức ăn chăn nuôi”</a></div>
-                            <div class="newcategory">Nông sản</div>
-                            <div class="newdate">Ngày đăng</div>
+                            <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
+                            <div class="newtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
+                            <div class="newcategory"><%= row.subcat%></div>
+                            <div class="newdate"><%= row.fDate%></div>
                 </div>
+                <% }) %>
                 
-                <div class="news">
+                <!-- <div class="news">
                             <a href="./articles/khoa-hoc/tu-nhien/tranh-chap.html"><img src="https://cdn.thesaigontimes.vn/Uploads/Articles/286434/458d1_a4.jpg"></a>
                             <div class="newtitle"><a href="./articles/khoa-hoc/tu-nhien/tranh-chap.html">Tranh chấp phí bảo trì chung cư: Sửa Luật Nhà ở để hạn chế tranh chấp</a></div>
                             <div class="newcategory">Tự nhiên</div>
@@ -89,18 +94,20 @@
                             <div class="newtitle"><a href="./articles/kinh-doanh/hai-san/doanh-nghiep.html">Luật Doanh nghiệp ở đâu trong vụ phân chia tài sản tại Trung Nguyên?</a></div>
                             <div class="newcategory">Chuyên mục</div>
                             <div class="newdate">Ngày đăng</div>
-                </div>
+                </div> -->
                 </div>
                 <div class="topcat">Các chuyên mục đáng chú ý</div>
                 
                 <div class="top10cat" id="top10cat">
+                    <% cats.forEach(function(row){ %>
                     <div class="cat">
-                            <a href="./articles/xa-hoi/hai-huoc/3-chu-t.html"><img src="https://cdn.discordapp.com/attachments/511182519731879956/569725983322800159/FB_IMG_1555903638295.jpg"></a>
-                            <div class="cattitle"><a href="./articles/xa-hoi/hai-huoc/3-chu-t.html">“Đời là ba chữ T”</a></div>
-                            <div class="catcategory">Hài hước</div>
-                            <div class="catdate">Ngày đăng</div>
+                            <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
+                            <div class="cattitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
+                            <div class="catcategory"><%= row.subcat%></div>
+                            <div class="catdate"><%= row.fDate%></div>
                 </div>
-                <div class="cat">
+                <% }) %>
+                <!-- <div class="cat">
                             <a href="./articles/kinh-doanh/nong-san/vat-nuoi.html"><img src="https://cdn.thesaigontimes.vn/Uploads/Articles/286433/0a0cc_tuduylamluat_thanhoa.jpg"></a>
                             <div class="cattitle"><a href="./articles/kinh-doanh/nong-san/vat-nuoi.html">Tư duy làm luật, nhìn từ thông tư “thức ăn chăn nuôi”</a></div>
                             <div class="catcategory">Nông sản</div>
@@ -117,6 +124,6 @@
                             <div class="cattitle"><a href="#">Tiêu đề</a></div>
                             <div class="catcategory">Chuyên mục</div>
                             <div class="catdate">Ngày đăng</div>
-                </div>
+                </div> -->
                 </div>
                 <script src="/public/init.js" type="text/javascript"></script>

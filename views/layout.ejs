@@ -48,12 +48,12 @@
             <%  lcCategories.forEach(function(row, index) { %>
                 <% if(index > 0) { %>
                 <% if(row.catName != lcCategories[index-1].catName) { %>
-            <li><a href="/category"><%= row.catName %></a>
+            <li><a href="/category/<%= row.catID %>"><%= row.catName %></a>
             <div class="dropdown-content">
                 <ul>
                 <%  lcCategories.forEach(function(subcat) { %>
                     <% if(subcat.belongto == row.catID) { %>                     
-                      <li><a href="./articles-list/articleslist-kd-ns.html"><%= subcat.subName %></a></li>    	
+                      <li><a href="/category/<%= row.catID %>/<%= row.subID %>"><%= subcat.subName %></a></li>    	
                       <% } %>
                       <%  }) %>			
                   </ul>
@@ -62,12 +62,12 @@
             <%  } %>
             <%  } %>
             <%  if (index <= 0) { %>
-                <li><a href="/category"><%= row.catName %></a>
+                <li><a href="/category/<%= row.catID %>"><%= row.catName %></a>
                     <div class="dropdown-content">
                         <ul>
                                 <%  lcCategories.forEach(function(subcat) { %>
                                     <% if(subcat.belongto == row.catID) { %>                     
-                                      <li><a href="./articles-list/articleslist-kd-ns.html"><%= subcat.subName %></a></li>    	
+                                      <li><a href="/category/<%= row.catID %>/<%= row.subID %>"><%= subcat.subName %></a></li>    	
                                       <% } %>
                                       <%  }) %>			
                           </ul>
