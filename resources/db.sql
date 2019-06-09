@@ -34,7 +34,7 @@ CREATE TABLE comment
 (
     `date` DATETIME,
     `content` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-    `articleID` VARCHAR(255),
+    `articleID` INT,
     `ID` VARCHAR(20) PRIMARY KEY,
     `username` VARCHAR(32)
 

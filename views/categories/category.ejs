@@ -6,17 +6,18 @@
             <button id="tagbutton">Lọc</button>
         
         <div class="list-articles" id="list-articles">
-                <a href="../articles/kinh-doanh/nong-san/vat-nuoi.html"><img src="https://cdn.thesaigontimes.vn/Uploads/Articles/286433/0a0cc_tuduylamluat_thanhoa.jpg"></a>
-                <div class="listtitle"><a href="../articles/kinh-doanh/nong-san/vat-nuoi.html">Tư duy làm luật, nhìn từ thông tư “thức ăn chăn nuôi”</a></div>
+            <% arbycat.forEach(function(row){ %>
+                <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
+                <div class="listtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                 <div class="listabstract">
-                    Những ngày gần đây truyền thông đã đưa tin về những bất cập trong Thông tư 02/2019 của Bộ Nông nghiệp và Phát triển nông thôn (NN&PTNT), ban hành Danh mục sản phẩm thức ăn chăn nuôi theo tập quán và nguyên liệu đơn được phép lưu hành tại Việt Nam. Đọc kỹ thông tư này, cùng các trường hợp đã xảy ra trước đó, có thể thấy những hạn chế về hoạt động lập quy.
-            </div>
+                        <%= row.abstract%>
+                </div>
                 <div class="listtag"><a href="#">#tag</a> <a href="#">#tag1</a> <a href="#">#tag2</a> <a href="#">#tag3</a></div>
-                <div class="listcat">Nông sản</div>
-                <div class="listdate">Ngày đăng</div>
+                <div class="listcat"><%= row.subcat%></div>
+                <div class="listdate"><%= row.fDate%></div>
             </div>
-        
-            <div class="list-articles" id="list-articles">
+            <% } %>
+            <!-- <div class="list-articles" id="list-articles">
                 <a href="../articles/kinh-doanh/hai-san/doanh-nghiep.html"><img src="http://dev.cdn.sgt.tamminh.tech/sgt/1553959646776-fbc02_vu_thao_pjbu.jpg"></a>
                 <div class="listtitle"><a href="../articles/kinh-doanh/hai-san/doanh-nghiep.html">Luật Doanh nghiệp ở đâu trong vụ phân chia tài sản tại Trung Nguyên?</a></div>
                 <div class="listabstract">
@@ -25,7 +26,7 @@
                 <div class="listtag"><a href="#">#tag</a> <a href="#">#tag1</a> <a href="#">#tag2</a> <a href="#">#tag3</a></div>
                 <div class="listcat">Hải sản</div>
                 <div class="listdate">Ngày đăng</div>
-            </div>
+            </div> -->
         
             <div class="pagination">
           <a href="#">&laquo;</a>
