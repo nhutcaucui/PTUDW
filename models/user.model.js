@@ -6,6 +6,6 @@ add: entity => {
   },
 
   singleByUserName: userName => {
-    return db.loaddb(`select * from account where username = '${userName}'`);
+    return db.loaddb(`SELECT * FROM account WHERE username = '${userName}'`);
   },
 }

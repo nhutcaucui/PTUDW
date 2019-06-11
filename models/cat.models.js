@@ -2,10 +2,10 @@ var db = require('./index.js');
 
 module.exports = {
     allCat: ()=>{
-        return  ('select * from category');
+        return  ('SELECT * FROM category');
     },
 
     subCatbyCat: ()=>{
-        return db.loaddb('select c.ID as catID, c.name as catName, sc.name as subName, sc.ID as subID , belongto from category c, subcategory sc where belongto=c.ID');
+        return db.loaddb('SELECT c.ID AS catID, c.name AS catName, sc.name AS subName, sc.ID AS subID , belongto FROM category c, subcategory sc WHERE belongto=c.ID');
     }
 }
