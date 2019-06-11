@@ -2,15 +2,15 @@ var db = require('./index.js');
 
 module.exports = {
     hot: ()=>{
-        return db.loaddb("select *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate from article order by date DESC, view DESC  limit 4");
+        return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY date DESC, view DESC  LIMIT 4");
     },
 
     top: ()=>{
-        return db.loaddb("select *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate from article order by view DESC limit 10");
+        return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY view DESC LIMIT 10");
     },
 
     new: ()=>{
-        return db.loaddb("select *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate from article order by fDate DESC limit 10");
+        return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY fDate DESC LIMIT 10");
     },
 
     cat: () =>{
