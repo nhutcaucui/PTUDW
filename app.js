@@ -70,7 +70,6 @@ app.use((req, res, next) => {
 });
   
 app.use((error, req, res, next) => {
-    console.log('a');
     res.render('error', {
       layout: false,
       message: error.message,
