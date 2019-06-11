@@ -56,7 +56,7 @@ passport.use(new LocalStrategy(
          })
        })
      }
-   ));
+));
 
 /* passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
