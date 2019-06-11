@@ -11,11 +11,11 @@
                     <p>Đăng kí</p>
                 </div>
         <div id="register">
-            <form method="get" id="loginFrm" action="">
+            <form method="POST" id="loginFrm" action="" novalidate>
 
                 <fieldset class="clearfix">
       
-                  <p><i class="fas fa-user"></i><input name="username" type="text" placeholder="Username" required></p>
+                  <p><i class="fas fa-user"></i><input autofocus name="username" type="text" placeholder="Username" required></p>
                   <p><i class="fas fa-lock"></i><input name="pass" type="password"  placeholder="Password" required></p>
                   <p><i class="fas fa-key"></i><input name="passconfirm" type="password"  placeholder="Password Confirm" required></p>
                   <p><input type="submit" value="Sign Up"></p>
@@ -33,6 +33,9 @@
                  rules: { 
                     username:{
                         required: true,
+                        remote: {
+                            url: '/is-available',
+                        }
                     },
                     pass: {
                         required: true,
@@ -45,6 +48,7 @@
                  messages:{
                      username:{
                          required: 'Please enter your username',
+                         remote: 'Username existed, please choose another one'
                      },
                      pass: {
                         required: 'Please enter your password',

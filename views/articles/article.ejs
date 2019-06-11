@@ -5,42 +5,50 @@
                       <a href="/">
                         <i class="fas fa-home"></i>
                         Trang chủ
+                        <% article.forEach(function(arow){%>
                       </a>
                     </li>
                     <li>
                         >
-                      <a href="/category/<%= breadc.ID%>"><%= article.cat%></a>
+                     <%  breadc.forEach(function(bcrow) { %>
+                      <a href="/category/<%= bcrow.ID%>"><%= arow.cat%></a>
+                      
                     </li>
                     <li>
                         >
-                      <a href="/category/<%= breads.ID%>"><%= article.subcat%></a>
+                        <%  breads.forEach(function(bsrow) { %>
+                      <a href="/category/<%= bcrow.ID%>/<%= bsrow.ID%>"><%= arow.subcat%></a>
+                      <%})%>
+                      <%})%>
                     </li>
                     <li>
                         >
-                        <%= article.header%>
+                        <%= arow.header%>
                     </li>
                   </ol>
                 </div>
         <div class ="bigpicctn">
-            <img src="<%= article.image%>" style="width: 100%;height: 100%">
+            <img src="<%= arow.image%>" style="width: 100%;height: 100%">
         </div>
         <div class="body-sticky" id="body-sticky">
         <div id="da-body" class="da-body">
             <div class="post-header" id="post-header">
-                <h2 class="post-title lg"><%= article.header%></h2>
-                <i class="far fa-clock"> <%= article.fDate%></i>
+                <h2 class="post-title lg"><%= arow.header%></h2>
+                <i class="far fa-clock"> <%= arow.fDate%></i>
             </div>
             <div class="post-abstract" id="post-abstract">		
-              <%= article.abstract%>
+              <%= arow.abstract%>
             </div>
             <div class="post-content" id="post-content">
             <div class="post-content-area">
                     <div class="entry-content">
-                      <%= article.content%></div>
+                      <%- arow.content%>
+                    </div>
                   </div>
         </div>
                 <div class="post-tag" id="post-tag"><a href="#">#tag1</a><a href="#">#tag2</a><a href="#">#tag3</a></div>
         </div>
+        <% }) %>
         
         <div class="samesame" id="samesame">
             <h3>Các bài viết khác</h3>
@@ -49,7 +57,7 @@
                 <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
                 <div><div class="sticky-post-title"><a href="/article/<%= row.ID%>"><%= row.header%></a></div></div>
             </div>
-            <% } %>
+            <% }) %>
             <!-- <div class="sticky-post">
                 <a href="../../xa-hoi/hai-huoc/3-chu-t.html"><img src="https://cdn.discordapp.com/attachments/511182519731879956/569725983322800159/FB_IMG_1555903638295.jpg"></a>
                 <div class="sticky-post-title"><a href="../../xa-hoi/hai-huoc/3-chu-t.html">“Đời là ba chữ T”</a></div>
@@ -88,7 +96,7 @@
                 <div class="comment-date"><%= row.fDate%></div>
                 <div class="user-comment"><%= row.content%></div> 
             </div>
-            <% } %>
+            <% }) %>
             <!-- <div class="a-comment" id="a-comment">
                 <div class="user-avatar" id="user-avatar"><a href="#"><img src="https://i.imgflip.com/8u2j.jpg"></a></div>
                 <div class="user-name" id="user-name"><a href="#">Uvuvwevwevwe Onyetevwevwe Ugwemuhwem Osas</a></div>

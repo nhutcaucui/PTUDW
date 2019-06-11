@@ -5,8 +5,8 @@
             <input type="" name="taginput" id="taginput">
             <button id="tagbutton">Lọc</button>
         
-        <div class="list-articles" id="list-articles">
             <% arbycat.forEach(function(row){ %>
+        <div class="list-articles" id="list-articles">  
                 <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
                 <div class="listtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                 <div class="listabstract">
@@ -16,7 +16,7 @@
                 <div class="listcat"><%= row.subcat%></div>
                 <div class="listdate"><%= row.fDate%></div>
             </div>
-            <% } %>
+            <% }) %>
             <!-- <div class="list-articles" id="list-articles">
                 <a href="../articles/kinh-doanh/hai-san/doanh-nghiep.html"><img src="http://dev.cdn.sgt.tamminh.tech/sgt/1553959646776-fbc02_vu_thao_pjbu.jpg"></a>
                 <div class="listtitle"><a href="../articles/kinh-doanh/hai-san/doanh-nghiep.html">Luật Doanh nghiệp ở đâu trong vụ phân chia tài sản tại Trung Nguyên?</a></div>

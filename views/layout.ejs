@@ -53,7 +53,7 @@
                 <ul>
                 <%  lcCategories.forEach(function(subcat) { %>
                     <% if(subcat.belongto == row.catID) { %>                     
-                      <li><a href="/category/<%= row.catID %>/<%= row.subID %>"><%= subcat.subName %></a></li>    	
+                      <li><a href="/category/<%= row.catID %>/<%= subcat.subID %>"><%= subcat.subName %></a></li>    	
                       <% } %>
                       <%  }) %>			
                   </ul>
@@ -67,7 +67,7 @@
                         <ul>
                                 <%  lcCategories.forEach(function(subcat) { %>
                                     <% if(subcat.belongto == row.catID) { %>                     
-                                      <li><a href="/category/<%= row.catID %>/<%= row.subID %>"><%= subcat.subName %></a></li>    	
+                                      <li><a href="/category/<%= row.catID %>/<%= subcat.subID %>"><%= subcat.subName %></a></li>    	
                                       <% } %>
                                       <%  }) %>			
                           </ul>
