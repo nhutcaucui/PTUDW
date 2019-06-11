@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user.model');
 
-var bcrypt= require('bcryptjs');
+var bcrypt = require('bcryptjs');
+var userdb = require('../models/user');
 
 router.get('/login', (req,res)=>{
-    res.render('login', {title: 'Đăng nhập', layout: false});
+    res.render('login', {title: 'Đăng nhập', error:'', layout: false});
 });
 
 router.get('/register', (req,res)=>{
@@ -25,6 +26,21 @@ router.post('/register', (req,res)=>{
     userModel.add(entity).then(id => {
         res.redirect('/login');
       })   
+});
+
+router.get('/logins', (req, res) => {
+	console.log('hi mom');
+	let username = req.query.username;
+	let password = req.query.password;
+	console.log(username, password);
+	let aaa = userdb.accountVerify(username, password).then(yes => {
+		if (yes){
+			console.log("yes, indeed");
+		}
+		else{
+			res.render('login', {title: 'Đăng nhập', error: 'meo', layout: false});;
+		}
+	});
 });
 
 router.get('/is-available', (req, res, next) => {

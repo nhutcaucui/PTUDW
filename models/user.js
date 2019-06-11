@@ -3,7 +3,8 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const SALT_ROUNDS = 10;
-const db = require('./index').mysql;
+
+var db = require('./index').mysql;
 
 function new_user(username, password, role){
     return new Promise((resolve, reject) => {
@@ -22,14 +23,24 @@ function new_user(username, password, role){
     });
 }
 
-function verify(password, hash){
-    bcrypt.compare(password, hash, (err, res) => {
-        if (res){
-            console.log('Yes, indeed');
-        } else{
-            console.log('No u');
-        }
-    });
+function accountVerify(username, password){
+	return new Promise((resolve, reject) => {
+		let query = "SELECT * FROM account WHERE username=?";
+		let param = [username];
+		db.query(query, param, (err, res) => {
+			if (err){
+				reject(err);
+			}
+			if (res.length > 0){
+				let hash = res.password;
+				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+			}
+			else{
+				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+				//resolve('Account is not exist');
+			}
+		});
+	});
 }
 
 passport.use(new LocalStrategy(
@@ -73,6 +84,6 @@ passport.use(new LocalStrategy(
 
 module.exports = {
   new_user : new_user,
-  verify : verify,
+  accountVerify : accountVerify,
 
 }
