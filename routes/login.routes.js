@@ -5,41 +5,41 @@ var autoMail = require('../utils/auto_mail');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
 
-const USER = 'tangkiemthusinh@gmail.com';
-const PASS = 'ufvzyqzwayeopcyg';
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: USER,
-      pass: PASS
-    }
-});
-
 router.get('/login', (req,res)=>{
     res.render('login', {title: 'Đăng nhập', error:'', layout: false});
 });
 
 router.get('/register', (req,res)=>{
-    res.render('register', {title: 'Đăng kí', layout: false});
+    res.render('register', {title: 'Đăng kí', error: '', layout: false});
 });
 
-router.post('/register', (req,res)=>{
-    var saltR=10;
-    var hash = bcrypt.hashSync(req.body.pass, saltR);
+router.post('/verify', (req,res) => {
+	let username = req.query.username;
+	let email = req.query.email;
+	let token = req.query.token;
 
-    var entity = {
-        username: req.body.username,
-        password: hash,
-        level: 3,
-	}
-	
-	userdb.accountRegister(req.body.username, req.body.password, 3).then(result => {
+	console.log("verify: ", username, email, token);
+	userdb.accountVerify(username, email, token);
+});
+
+router.get('/verify', (req, res) => {
+	console.log('yes');
+})
+
+router.post('/register', (req,res)=>{
+	let username = req.body.username;
+	let password = req.body.password;
+	let email = req.body.email;
+	console.log(username, password);
+	userdb.accountRegister(username, password, email, -1).then(result => {
+		//console.log(result);
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
 		}
 		else{
-			
+			console.log(result);
+			let verifyLink = "localhost:8081/verify?username=" + result.username + "&email=" + result.email + "&token=" + result.token;
+			autoMail.sendMail(result.email, "meo meo cute", verifyLink);
 		}
 	});
 

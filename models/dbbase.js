@@ -21,7 +21,6 @@ function addtb(tableName, entity){
         else {
           resolve(value.insertId);
         }
-        connection.end();
       });
     });
 }
