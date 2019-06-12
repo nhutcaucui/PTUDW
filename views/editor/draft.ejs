@@ -3,8 +3,8 @@
     <div class="dr-container" id="dr-container">
         <% pending.forEach(function(row){ %>
         <div class="dr-list">
-            <a href="#"><img src="row.image"></a>
-            <div class="dr-title"><a href="#">row.header</a></div>
+            <a href="/editor/drafts/<%= row.ID%>"><img src="row.image"></a>
+            <div class="dr-title"><a href="/editor/drafts/<%= row.ID%>">row.header</a></div>
             <div class="dr-abstract">row.abstract</div>
             <div class="dr-cat">row.subcat</div>
             <div class="dr-buttons">

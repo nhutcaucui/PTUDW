@@ -8,7 +8,7 @@ router.get('/new', (req,res)=>{
 })
 
 router.get('/my-article', (req,res)=>{
-    res.render('writer/my-article', {title: 'Bài viết của tôi'});
+    res.render('writer/my-article', {title: 'Bài viết của tôi', pending: 'not yet'});
 })
 
 module.exports = router;

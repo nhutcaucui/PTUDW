@@ -1,0 +1,20 @@
+<div class="bigcontainer">
+    <% article.forEach(function(row){%>
+    <div class ="bigpicctn">
+        <img src="<%=row.image%>" style="width: 100%;height: 100%">
+    </div>
+    <div class="body-sticky" id="body-sticky">
+    <div id="da-body" class="da-body">
+        <div class="post-header" id="post-header">
+            <h2 class="post-title lg"><%=row.header%></h2>
+            <i class="far fa-clock"> Ngày đăng</i>
+        </div>
+        <div class="post-abstract" id="post-abstract">		
+                <%=row.abstract%>        
+            </div>
+        <div class="post-content" id="post-content">
+                <%=row.content%>
+        </div>
+            <div class="post-tag" id="post-tag"><a href="#">#tag1</a><a href="#">#tag2</a><a href="#">#tag3</a></div>
+              <% })%>
+        </div>
