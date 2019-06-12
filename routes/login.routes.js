@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user.model');
-var autoMail = require('../controllers/auto_mail');
+var autoMail = require('../utils/auto_mail');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
 
@@ -36,10 +36,13 @@ router.post('/register', (req,res)=>{
 	
 	userdb.accountRegister(req.body.username, req.body.password, 3).then(result => {
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
-			res.render('register', {title: 'Đăng kí', error: result.message, layout: false})
+			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
+		}
+		else{
+			
 		}
 	});
-	
+
 });
 
 router.get('/logins', (req, res) => {
