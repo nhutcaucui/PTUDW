@@ -3,18 +3,29 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const SALT_ROUNDS = 10;
+const crypto = require('crypto');
 
 var db = require('./index').mysql;
 
-function new_user(username, password, role){
+function accountRegister(username, password, role){
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
-        db.query(query, [username], (err, result) => {
+        db.query(query, [username], (err, res) => {
     		if (err){
         		throw err;
 			}
 			
-			resolve(result);
+			if (res.length > 0){
+				let result = {
+					status : 'failed',
+					message : "Username is existed",
+					token: '',
+				}
+				resolve(result);
+			}
+			else{
+				resolve(generate_token());
+			}
         });
     });
 
@@ -23,7 +34,12 @@ function new_user(username, password, role){
     });
 }
 
-function accountVerify(username, password){
+function accountVerify(){
+	return new Promise((resolve, reject) => {
+	});
+}
+
+function accountLogin(username, password){
 	return new Promise((resolve, reject) => {
 		let query = "SELECT * FROM account WHERE username=?";
 		let param = [username];
@@ -84,6 +100,18 @@ passport.use(new LocalStrategy(
 
 module.exports = {
   new_user : new_user,
-  accountVerify : accountVerify,
+  accountLogin : accountLogin,
 
+}
+
+function generate_token(){
+    return new Promise((resolve, reject) => {
+        let token;
+
+        crypto.randomBytes(48, function(err, buffer){
+            token = buffer.toString('hex');
+            resolve(token);
+        });
+
+    });
 }
