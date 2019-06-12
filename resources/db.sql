@@ -13,6 +13,8 @@ CREATE TABLE article_pending
     `content` VARCHAR(12000) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `abstract` VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `image` VARCHAR(255),
+    `cat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    `subcat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `writerId` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci
 );
 

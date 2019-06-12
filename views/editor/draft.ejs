@@ -1,7 +1,19 @@
 <div class="bigcontainer">
     <div class="dr-header">Các bài viết chờ duyệt</div>
     <div class="dr-container" id="dr-container">
+        <% pending.forEach(function(row){ %>
         <div class="dr-list">
+            <a href="#"><img src="row.image"></a>
+            <div class="dr-title"><a href="#">row.header</a></div>
+            <div class="dr-abstract">row.abstract</div>
+            <div class="dr-cat">row.subcat</div>
+            <div class="dr-buttons">
+            <button class="dr-accept"><i class="fas fa-check"></i></button>
+            <button class="dr-deny" name="dr-deny"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <% }) %>       
+        <!-- <div class="dr-list">
             <a href="#"><img src="https://lunaticpsyche.files.wordpress.com/2013/11/random-pic-01.jpg"></a>
             <div class="dr-title"><a href="#">Tiêu đề</a></div>
             <div class="dr-abstract">Tóm tắt</div>
@@ -10,19 +22,19 @@
             <button class="dr-accept"><i class="fas fa-check"></i></button>
             <button class="dr-deny" name="dr-deny"><i class="fas fa-times"></i></button>
             </div>
-        </div>
-        <div class="dr-list">
-            <a href="#"><img src="https://lunaticpsyche.files.wordpress.com/2013/11/random-pic-01.jpg"></a>
-            <div class="dr-title"><a href="#">Tiêu đề</a></div>
-            <div class="dr-abstract">Tóm tắt</div>
-            <div class="dr-cat">Chuyên mục</div>
-            <div class="dr-buttons">
-            <button class="dr-accept"><i class="fas fa-check"></i></button>
-            <button class="dr-deny" name="dr-deny"><i class="fas fa-times"></i></button>
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
+
+<div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">&raquo;</a>
+      </div>
 
 <div id="deny-modal" class="deny-modal">
 
