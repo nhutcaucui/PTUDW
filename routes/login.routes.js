@@ -1,16 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user.model');
+var autoMail = require('../controllers/auto_mail');
+var bcrypt = require('bcryptjs');
+var userdb = require('../models/user');
 
-var bcrypt= require('bcrypt');
+const USER = 'tangkiemthusinh@gmail.com';
+const PASS = 'ufvzyqzwayeopcyg';
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: USER,
+      pass: PASS
+    }
+});
 
 router.get('/login', (req,res)=>{
-    res.render('login', {title: 'Đăng nhập', layout: false});
-})
+    res.render('login', {title: 'Đăng nhập', error:'', layout: false});
+});
 
 router.get('/register', (req,res)=>{
     res.render('register', {title: 'Đăng kí', layout: false});
-})
+});
 
 router.post('/register', (req,res)=>{
     var saltR=10;
@@ -20,12 +32,30 @@ router.post('/register', (req,res)=>{
         username: req.body.username,
         password: hash,
         level: 3,
-    }
+	}
+	
+	userdb.accountRegister(req.body.username, req.body.password, 3).then(result => {
+		if (result.status.toLowerCase().localeCompare('failed') === 0){
+			res.render('register', {title: 'Đăng kí', error: result.message, layout: false})
+		}
+	});
+	
+});
 
-    userModel.add(entity).then(id => {
-        res.redirect('/login');
-      })   
-})
+router.get('/logins', (req, res) => {
+	console.log('hi mom');
+	let username = req.query.username;
+	let password = req.query.password;
+	console.log(username, password);
+	userdb.accountVerify(username, password).then(yes => {
+		if (yes){
+			console.log("yes, indeed");
+		}
+		else{
+			res.render('login', {title: 'Đăng nhập', error: 'meo', layout: false});;
+		}
+	});
+});
 
 router.get('/is-available', (req, res, next) => {
     var user = req.query.username;
@@ -35,6 +65,8 @@ router.get('/is-available', (req, res, next) => {
   
       return res.json(true);
     });
-  })
+});
+
+
 
 module.exports = router;

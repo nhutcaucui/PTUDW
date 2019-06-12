@@ -3,17 +3,29 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const SALT_ROUNDS = 10;
-const db = require('./index').mysql;
+const crypto = require('crypto');
 
-function new_user(username, password, role){
+var db = require('./index').mysql;
+
+function accountRegister(username, password, role){
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
-        db.query(query, [username], (err, result) => {
+        db.query(query, [username], (err, res) => {
     		if (err){
         		throw err;
 			}
 			
-			resolve(result);
+			if (res.length > 0){
+				let result = {
+					status : 'failed',
+					message : "Username is existed",
+					token: '',
+				}
+				resolve(result);
+			}
+			else{
+				resolve(generate_token());
+			}
         });
     });
 
@@ -22,14 +34,29 @@ function new_user(username, password, role){
     });
 }
 
-function verify(password, hash){
-    bcrypt.compare(password, hash, (err, res) => {
-        if (res){
-            console.log('Yes, indeed');
-        } else{
-            console.log('No u');
-        }
-    });
+function accountVerify(){
+	return new Promise((resolve, reject) => {
+	});
+}
+
+function accountLogin(username, password){
+	return new Promise((resolve, reject) => {
+		let query = "SELECT * FROM account WHERE username=?";
+		let param = [username];
+		db.query(query, param, (err, res) => {
+			if (err){
+				reject(err);
+			}
+			if (res.length > 0){
+				let hash = res.password;
+				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+			}
+			else{
+				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+				//resolve('Account is not exist');
+			}
+		});
+	});
 }
 
 passport.use(new LocalStrategy(
@@ -56,7 +83,7 @@ passport.use(new LocalStrategy(
          })
        })
      }
-   ));
+));
 
 /* passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
@@ -73,6 +100,18 @@ passport.use(new LocalStrategy(
 
 module.exports = {
   new_user : new_user,
-  verify : verify,
+  accountLogin : accountLogin,
 
+}
+
+function generate_token(){
+    return new Promise((resolve, reject) => {
+        let token;
+
+        crypto.randomBytes(48, function(err, buffer){
+            token = buffer.toString('hex');
+            resolve(token);
+        });
+
+    });
 }

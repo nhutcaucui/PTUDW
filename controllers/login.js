@@ -11,3 +11,7 @@ function register(username, password){
 function loginWithFacebook(){
     
 }
+
+function sendVerifycationMail(){
+    
+}

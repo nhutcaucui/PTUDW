@@ -65,12 +65,10 @@ app.use('/admin', require('./routes/admin/admin.routes'));
 app.use('/editor', require('./routes/editor/editor.routes'));
 
 app.use((req, res, next) => {
-    console.log('hi');
     res.render('404', { layout: false });
 });
   
 app.use((error, req, res, next) => {
-    console.log('a');
     res.render('error', {
       layout: false,
       message: error.message,
