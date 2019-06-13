@@ -9,6 +9,9 @@ CREATE TABLE account
 (
     `username` VARCHAR(32),
     `password` VARCHAR(100),
+    `flname` VARCHAR(100),
+    `alias` VARCHAR(100),
+    `birthday` DATE,
     `is_login` BIT,
     `level` INT,
     `token` VARCHAR(100),

@@ -6,26 +6,30 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <body>
-     <div class="container">
+        <div class="container">
             <div id="header">
                     <p><%= title %></p>
-                </div>
-        <div id="register">
-            <form method="POST" id="loginFrm" action="" novalidate>
+            </div>
+            <div id="register">
+                <form method="POST" id="loginFrm" action="" novalidate>
 
-                <fieldset class="clearfix">
-      
-                  <p><i class="fas fa-user"></i><input autofocus name="username" type="text" placeholder="Username" required></p>
-                  <p><i class="fas fa-lock"></i><input name="password" type="password"  placeholder="Password" required></p>
-                  <p><i class="fas fa-key"></i><input name="passconfirm" type="password"  placeholder="Password Confirm" required></p>
-                  <p><i class="fas fa-user"></i><input name="email" type="email" placeholder="Email" required></p>
-                  <p><%= error %></p>
-                  <p><input type="submit" value="Sign Up"></p>
-      
-                </fieldset>
-      
-              </form>
-        </div>
+                    <fieldset class="clearfix">
+        
+                    <p><i class="fas fa-user"></i><input autofocus name="username" type="text" placeholder="Username" required></p>
+                    <p><i class="fas fa-lock"></i><input name="password" type="password"  placeholder="Password" required></p>
+                    <p><i class="fas fa-key"></i><input name="passconfirm" type="password"  placeholder="Password Confirm" required></p>
+                    <p><i class="fas fa-user"></i><input name="firstname" type="text" placeholder="First Name" required></p>
+                    <p><i class="fas fa-user"></i><input name="lastname" type="text" placeholder="Last Name" required></p>
+                    <p><i class="fas fa-calendar-week"></i><input name="birthdate" type="date"  placeholder="Password Confirm" required></p>
+                    <p><i class="far fa-envelope-open"></i><input name="email" type="email" placeholder="Email" required></p>
+                    <p><i class="fas fa-user"></i><input name="email" type="email" placeholder="Email" required></p>
+                    <p><%= error %></p>
+                    <p><input type="submit" value="Sign Up"></p>
+        
+                    </fieldset>
+        
+                </form>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>

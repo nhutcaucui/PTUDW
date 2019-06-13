@@ -26,8 +26,9 @@ function addtb(tableName, entity){
 }
 function updatetb(tableName, updateField, conditionField, entity){
     return new Promise((resolve, reject) => {
-	  let sql = `UPDATE ${tableName} SET ${updateField}=? WHERE ${conditionField}=?`;
-	  let params = [entity.level, entity.username];
+    let sql = `UPDATE ${tableName} SET ${updateField}=? WHERE ${conditionField}=?`;
+    console.log("update", entity[updateField]);
+	  let params = [entity[updateField], entity[conditionField]];
       db.query(sql, params, (error, value) => {
         if (error){
 			reject(error);

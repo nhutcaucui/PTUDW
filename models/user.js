@@ -106,7 +106,6 @@ function accountResetPassword(username, email, newPass){
 
 function accountChangePassword(username, email, oldPass, newPass){
 	return new Promise((resolve, reject) => {
-		console.log("modify password: ", username, email, oldPass, newPass);
 		let query = "SELECT * FROM account WHERE username=?";
 		let params = [username];
 		db.query(query, params, (err, res) => {
@@ -132,8 +131,21 @@ function accountChangePassword(username, email, oldPass, newPass){
 
 							resolve(result);
 						});
+					}else{
+						let result = {
+							status: 'failed',
+							message: 'Mật khẩu đã được thay đổi'
+						};
+
+						resolve(result);
 					}
 				});
+			}
+			else{
+				let result = {
+					status : 'failed',
+					message: 'Tài khoản không tồn tại',
+				}
 			}
 		});
 	});
@@ -149,32 +161,29 @@ function userVerify(username, email){
 				throw err;
 			}
 
+			let result = {
+				status : 'success',
+				message: '',
+				email: email
+			};
+
+			console.log(res);
 			if (res.length > 0){
 				let reg_email = res[0].email;
 
 				if (reg_email === email){
-					let result = {
-						status : 'success',
-						message: 'Hợp lệ',
-						email: email
-					};
-
-					resolve(result);
+					result.status = 'success';
+					status.message = 'Hợp lệ';
 				}
 				else{
-					let result = {
-						status: 'failed',
-						message: 'Sai email',
-					};
-
-					resolve(result);
+					result.status = 'failed';
+					result.message = 'Sai email';
 				}
+				resolve(result);
 			}
 			else{
-				let result = {
-					status: 'failed',
-					message: 'Không tìm thấy tài khoản',
-				}
+				result.status = 'failed';
+				result.message = 'Không tìm thấy tài khoản';
 
 				resolve(result);
 			}
@@ -233,14 +242,42 @@ function accountLogin(username, password){
 		let param = [username];
 		db.query(query, param, (err, res) => {
 			if (err){
-				reject(err);
+				throw err;
 			}
+
 			if (res.length > 0){
-				let hash = res.password;
-				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+				console.log(res[0]);
+				let hash = res[0].password;
+				let level = res[0].level;
+				let result = {
+					status : 'success',
+					message : '' 
+				}
+				bcrypt.compare(password, hash).then((match) => {
+					if (match){
+						if (level === -1){
+							result.status = 'failed';
+							result.message = 'Tài khoản chưa được kích hoạt';
+						}
+						else{
+							result.message = 'Đăng nhập thành công'
+						}
+					}
+					else{
+						result.status = 'failed';
+						result.message = 'Sai tên tài khoản hoặc mật khẩu';
+					}
+
+					resolve(result);
+				});
 			}
 			else{
-				resolve(bcrypt.compare(password, "$2y$12$R3cj5newyVWoKrqiQ9HTvOPV.uCqC2TZdk8hE6qts8mX1xHMCf4du"));
+				let result = {
+					status: 'failed',
+					message: 'Sai tên tài khoản hoặc mật khẩu'
+				}
+
+				resolve(result);
 				//resolve('Account is not exist');
 			}
 		});
