@@ -5,13 +5,6 @@ const PATH = [];
 const USER = 'tangkiemthusinh@gmail.com';
 const PASS = 'ufvzyqzwayeopcyg';
 
-URL[0] = 'https://endpointa.eyeq.tech';
-URL[1] = 'https://endpointf.eyeq.tech';
-URL[2] = 'https://endpoints.eyeq.tech';
-
-PATH[0] = '/recognize';
-PATH[1] = '/register';
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -20,9 +13,10 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-function sendMail(sender, receiver, subject, content){
+function sendMail(receiver, subject, content){
+	console.log(receiver);
     let mailOptions = {
-        from: sender,
+        from: USER,
         to: receiver,
         subject: subject,
         text: content
@@ -38,6 +32,7 @@ function sendMail(sender, receiver, subject, content){
 };
 
 module.exports = {
+	transporter : transporter,
     sendMail : sendMail,
 }
 

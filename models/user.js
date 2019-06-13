@@ -6,13 +6,15 @@ const SALT_ROUNDS = 10;
 const crypto = require('crypto');
 
 var db = require('./index').mysql;
+var dbbase = require('./dbbase');
 
-function accountRegister(username, password, role){
+function accountRegister(username, password, email, role){
+	console.log("pass:" + password);
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
         db.query(query, [username], (err, res) => {
     		if (err){
-        		throw err;
+        		reject(err);
 			}
 			
 			if (res.length > 0){
@@ -24,8 +26,45 @@ function accountRegister(username, password, role){
 				resolve(result);
 			}
 			else{
-				resolve(generate_token());
+				console.log(password);
+				generate_token().then(token => {
+					bcrypt.hash(password, SALT_ROUNDS, (err, hash) => {
+						let entity = {
+							username: username,
+							password: hash,
+							is_login: 0,
+							email: email,
+							level: -1,
+							token: token,
+						}
+
+						let response = {
+							status: 'success',
+							username: username,
+							password: hash,
+							email: email,
+							token: token,
+						}
+						dbbase.addtb('account', entity);
+						resolve(response);
+					});
+				})
+				
+				//resolve(bcrypt.hash("asdsadsa", SALT_ROUNDS));
+				// resolve(generate_token());
 			}
+				// resolve(bcrypt.hash().then((err, hash) =>{
+				// 	generate_token().then(token => {
+				// 		let entity = {
+				// 			username: username,
+				// 			password: hash,
+				// 			level: -1,
+				// 			token: token,
+				// 		}
+
+				// 		dbbase.addtb('account', entity);
+				// 	});
+				// }));
         });
     });
 
@@ -34,8 +73,157 @@ function accountRegister(username, password, role){
     });
 }
 
-function accountVerify(){
+function accountResetPassword(username, email, newPass){
 	return new Promise((resolve, reject) => {
+		let query = "SELECT * FROM account WHERE username=?";
+		let params = [username];
+
+		db.query(query, params, (err, res) => {
+			if (err){
+				throw err;
+			}
+
+			if (res.length > 0){
+				bcrypt.hash(newPass, SALT_ROUNDS).then((hash) => {
+					let entity = {
+						password: hash,
+						username: username,
+					};
+
+					dbbase.updatetb('account', 'password', 'username', entity);
+
+					let result= {
+						status: 'success',
+						message: 'Đặt lại mật khẩu thành công'
+					};
+
+					resolve(result);
+				});
+			}
+		});
+	});
+}
+
+function accountChangePassword(username, email, oldPass, newPass){
+	return new Promise((resolve, reject) => {
+		console.log("modify password: ", username, email, oldPass, newPass);
+		let query = "SELECT * FROM account WHERE username=?";
+		let params = [username];
+		db.query(query, params, (err, res) => {
+			if (err){
+				throw err;
+			}
+
+			if (res.length > 0){
+				let password = res[0].password;
+				bcrypt.compare(oldPass, password).then((res) => {
+					if (res){
+						bcrypt.hash(newPass, SALT_ROUNDS).then((hash) => {
+							let entity = {
+								password: hash,
+								username: username,
+							};
+							dbbase.updatetb('account', 'password', 'username', entity);
+
+							let result= {
+								status: 'success',
+								message: 'Thay đổi mật khẩu thành công'
+							};
+
+							resolve(result);
+						});
+					}
+				});
+			}
+		});
+	});
+}
+
+function userVerify(username, email){
+	return new Promise((resolve, reject) => {
+		let query = "SELECT * FROM account WHERE username=?";
+		let params = [username];
+
+		db.query(query, params, (err, res) => {
+			if (err){
+				throw err;
+			}
+
+			if (res.length > 0){
+				let reg_email = res[0].email;
+
+				if (reg_email === email){
+					let result = {
+						status : 'success',
+						message: 'Hợp lệ',
+						email: email
+					};
+
+					resolve(result);
+				}
+				else{
+					let result = {
+						status: 'failed',
+						message: 'Sai email',
+					};
+
+					resolve(result);
+				}
+			}
+			else{
+				let result = {
+					status: 'failed',
+					message: 'Không tìm thấy tài khoản',
+				}
+
+				resolve(result);
+			}
+		});
+	});
+}
+
+function accountVerify(username, email, token){
+	return new Promise((resolve, reject) => {
+		console.log("account: " ,username, email, token);
+		let query = "SELECT * FROM account WHERE username=?";
+		let params = [username, email, token];
+		db.query(query, params, (err, res) => {
+			if (err){
+				throw (err);
+			}
+
+			console.log(res);
+			if (res.length > 0){
+				let level = res[0].level;
+				let entity = {
+					level: 1,
+					username: username,
+				};
+
+				let result = {
+					status: "success",
+					message: "",
+				}
+
+				if (level === -1 ){
+					dbbase.updatetb('account', 'level', 'username', entity);
+					result.message = 'Verify successfully';
+				}
+				else{
+					result.message = 'This account is already actived';
+				}
+
+				resolve(result);
+			}
+			else{
+				let result = {
+					status: "failed",
+					message: "Cannot find any account",
+
+				}
+				resolve('Cannot find any account');
+			}
+		})
 	});
 }
 
@@ -98,12 +286,6 @@ passport.use(new LocalStrategy(
   }
 )); */
 
-module.exports = {
-  new_user : new_user,
-  accountLogin : accountLogin,
-
-}
-
 function generate_token(){
     return new Promise((resolve, reject) => {
         let token;
@@ -115,3 +297,13 @@ function generate_token(){
 
     });
 }
+
+module.exports = {
+  accountLogin : accountLogin,
+  accountVerify: accountVerify,
+  accountRegister : accountRegister,
+  acoountResetPassword: accountResetPassword,
+  accountChangePassword : accountChangePassword,
+  userVerify : userVerify,
+}
+

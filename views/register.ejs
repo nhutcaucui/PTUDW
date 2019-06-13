@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Đăng kí</title>
+        <title><%= title %></title>
         <meta charset="UTF-8">
         <link href="../theme/css/register.css" rel="stylesheet" type="text/css" >
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -8,7 +8,7 @@
     <body>
      <div class="container">
             <div id="header">
-                    <p>Đăng kí</p>
+                    <p><%= title %></p>
                 </div>
         <div id="register">
             <form method="POST" id="loginFrm" action="" novalidate>
@@ -16,9 +16,10 @@
                 <fieldset class="clearfix">
       
                   <p><i class="fas fa-user"></i><input autofocus name="username" type="text" placeholder="Username" required></p>
-                  <p><i class="fas fa-lock"></i><input name="pass" type="password"  placeholder="Password" required></p>
+                  <p><i class="fas fa-lock"></i><input name="password" type="password"  placeholder="Password" required></p>
                   <p><i class="fas fa-key"></i><input name="passconfirm" type="password"  placeholder="Password Confirm" required></p>
                   <p><i class="fas fa-user"></i><input name="email" type="email" placeholder="Email" required></p>
+                  <p><%= error %></p>
                   <p><input type="submit" value="Sign Up"></p>
       
                 </fieldset>
@@ -43,7 +44,7 @@
                     },
                     passconfirm:{
                         required: true,
-                        equalTo: $('[name="pass"]')
+                        equalTo: $('[name="password"]')
                     },                    
                  },
                  messages:{
