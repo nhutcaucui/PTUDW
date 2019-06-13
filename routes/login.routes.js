@@ -39,7 +39,7 @@ router.post('/register', (req,res)=>{
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
 		}
 		else{
-			
+			autoMail.sendMail()
 		}
 	});
 
