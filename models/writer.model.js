@@ -1,6 +1,9 @@
 var db=require('./dbbase');
 
-<<<<<<< HEAD
+function all(userID){
+    return db.loaddb(`SELECT * FROM article_pending WHERE writerId =${userID}`);
+}
+
 function getCat () {
     return db.loaddb('SELECT * FROM category');
 }
@@ -14,18 +17,8 @@ function getNextID () {
 }
 
 module.exports={
-    all: userID =>{
-        return db.loaddb(`SELECT * FROM article_pending WHERE writerId =${userID}`);
-    },
+    all: all,
     getCat: getCat,
     getSubCat:getSubCat,
     getNextID:getNextID,
-=======
-function all(userID){
-    return db.loaddb(`SELECT * FROM article_pending WHERE writerId =${userID}`);
-}
-
-module.exports={
-    all: all,
->>>>>>> c3143f5d332515565ca989251388282b2da62811
 }
