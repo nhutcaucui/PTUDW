@@ -1,9 +1,18 @@
+DROP TABLE account;
+DROP TABLE article;
+DROP TABLE article_pending;
+DROP TABLE comment;
+DROP TABLE category;
+DROP TABLE subcategory;
+
 CREATE TABLE account
 (
     `username` VARCHAR(32),
     `password` VARCHAR(100),
     `is_login` BIT,
     `level` INT,
+    `token` VARCHAR(100),
+    `email` VARCHAR(100),
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 

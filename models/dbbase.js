@@ -21,19 +21,17 @@ function addtb(tableName, entity){
         else {
           resolve(value.insertId);
         }
-        connection.end();
       });
     });
 }
-function updatetb(tableName, idField, entity){
+function updatetb(tableName, updateField, conditionField, entity){
     return new Promise((resolve, reject) => {
-      var id = entity[idField];
-      delete entity[idField];
-
-      var sql = `UPDATE ${tableName} SET ? WHERE ${idField} = ?`;
-      db.query(sql, [entity, id], (error, value) => {
-        if (error)
-          reject(error);
+	  let sql = `UPDATE ${tableName} SET ${updateField}=? WHERE ${conditionField}=?`;
+	  let params = [entity.level, entity.username];
+      db.query(sql, params, (error, value) => {
+        if (error){
+			reject(error);
+		}
         else {
           resolve(value.changedRows);
         }
