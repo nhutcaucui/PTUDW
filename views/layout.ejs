@@ -75,11 +75,21 @@
                     </li>
                     <% } %>
             <%  }) %>
-        
-            <div id="user-icon">
-                <a href="/login"><i class="far fa-user"></i></a>			
-            </div>
-        
+            
+            <% if (username == "") { %>
+                <div id="user-icon">
+                    <a href="/login"><i class="far fa-user"></i></a>			
+                </div>
+            <% } else { %>
+                <div class="user-dropdown">
+                    <p><%= username %></p>
+                    <ul class="user-dropdown-content">
+                            <li><a href="/logout?username=<%= username %>">Logout</a></li>
+                            <li><a href="/profile?username=<%= username %>">Profile</a></li>
+                        </ul>
+                    
+                </div>
+            <% } %>
             <div id="searchbar">
                 <input type="text" placeholder="Search...">
                 <img src="/theme/img/magnifying-glass.png" width="32" height="32"> 			

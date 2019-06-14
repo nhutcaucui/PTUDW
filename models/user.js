@@ -249,6 +249,8 @@ function accountLogin(username, password){
 				console.log(res[0]);
 				let hash = res[0].password;
 				let level = res[0].level;
+				let is_login = (new Int16Array(res[0].is_login))[0];
+				console.log("is_login:",is_login);
 				let result = {
 					status : 'success',
 					message : '' 
@@ -259,8 +261,17 @@ function accountLogin(username, password){
 							result.status = 'failed';
 							result.message = 'Tài khoản chưa được kích hoạt';
 						}
-						else{
+						else if (is_login === 0){
+							let entity = {
+								is_login: 1,
+								username: username
+							}
 							result.message = 'Đăng nhập thành công'
+							dbbase.updatetb('account', 'is_login', 'username', entity);
+						}
+						else{
+							result.status = 'failed';
+							result.message = 'Tài khoản đã được đăng nhập';
 						}
 					}
 					else{
@@ -279,6 +290,52 @@ function accountLogin(username, password){
 
 				resolve(result);
 				//resolve('Account is not exist');
+			}
+		});
+	});
+}
+
+function accountLogout(username){
+	return new Promise((resolve, reject) => {
+		let query = "SELECT * FROM account WHERE username=?";
+		let param = [username];
+		db.query(query, param, (err, res) => {
+			if (err){
+				throw err;
+			}
+			
+			if (res.length > 0){
+				console.log(res[0]);
+				let is_login = (new Int16Array(res[0].is_login))[0];
+				let result = {
+					status : 'success',
+					message : '' 
+				}
+
+				if (is_login === 1){
+					let entity = {
+						is_login: 0,
+						username: username,
+					};
+
+					result.status ='success';
+					result.message = 'Đăng xuất thành công';
+					dbbase.updatetb('account', 'is_login', 'username', entity);
+				}
+				else{
+					result.status ='failed';
+					result.message = 'Tài khoản đã thoát';
+				}
+
+				resolve(result);
+			}
+			else{
+				let result = {
+					status: 'failed',
+					message: 'Tài khoản không tồn tại'
+				}
+
+				resolve(result);
 			}
 		});
 	});
@@ -337,6 +394,7 @@ function generate_token(){
 
 module.exports = {
   accountLogin : accountLogin,
+  accountLogout : accountLogout,
   accountVerify: accountVerify,
   accountRegister : accountRegister,
   acoountResetPassword: accountResetPassword,

@@ -4,7 +4,8 @@ var userModel = require('../models/user.model');
 var autoMail = require('../utils/auto_mail');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
-var url = require('url');  
+var url = require('url'); 
+var global = require('../global');
 const host = "localhost:8081";
 
 router.get('/login', (req,res)=>{
@@ -151,10 +152,43 @@ router.get('/logins', (req, res) => {
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log(result.message);
+			let params = {
+				title: 'Trang chủ',
+				hot: global.hot,
+				top: global.top,
+				news: global.news,
+				cats: global.cats,
+				username: username,
+			}
+
+			res.render('home', params);
 		}
 		else{
-			console.log(result.message);
+			let params = {
+				title: 'Đăng nhập',
+				error: result.message,
+				layout: false,
+			}
+			res.render('login', )
+			console.log(result.message, params);
 		}
+	});
+});
+
+router.get('/logout', (req, res) => {
+	let username = req.query.username;
+	userdb.accountLogout(username).then(result => {
+		console.log(result.message);
+		let params = {
+			title: 'Trang chủ',
+			hot: global.hot,
+			top: global.top,
+			news: global.news,
+			cats: global.cats,
+			username: '',
+		}
+
+		res.render('home', params);
 	});
 });
 
