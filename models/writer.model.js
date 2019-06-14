@@ -8,17 +8,12 @@ function getCat () {
     return db.loaddb('SELECT * FROM category');
 }
 
-function getSubCat (id) {
-    return db.loaddb(`SELECT * FROM subcategory WHERE belongto=${id}`);
-}
-
-function getNextID () {
-    return db.loaddb(`SELECT T.AUTO_INCREMENT FROM information_schema.TABLES T WHERE T.TABLE_SCHEMA = 'news' AND T.TABLE_NAME = 'article_pending';`);
+function getSubCat () {
+    return db.loaddb(`SELECT * FROM subcategory`);
 }
 
 module.exports={
     all: all,
     getCat: getCat,
     getSubCat:getSubCat,
-    getNextID:getNextID,
 }

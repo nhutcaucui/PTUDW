@@ -2,35 +2,51 @@ var express = require('express');
 var router = express.Router();
 
 var writerModel=require('../../models/writer.model');
+var newAr=require('../../models/newarticle');
+
+var multer = require("multer");
 
 router.get('/new', (req,res)=>{
     var c=writerModel.getCat();
-    var sc=[];
-    var nid=writerModel.getNextID();
+    var sc=writerModel.getSubCat();
     var i=0;
-
-    nid.then(newid=>{
-        c.then(crow=>{
-            var objects={title: 'Bài viết mới', cat:crow, newid:newid};
-            crow.forEach(function(row){
-               sc[i]=writerModel.getSubCat(row.ID);
-               i++;
-               var name='subcat'+i;
-               sc[i].then(loop=>{
-                    objects[name]= loop;
+        c.then(crow=>{                                  
+               sc.then(loop=>{
+                var objects={title: 'Bài viết mới', cat:crow, subcat:loop};                 
+                    res.render('writer/new-article', objects);   
                }).catch(err => {
                 console.log(err);
-              });
-              res.render('writer/new-article', objects);
-            }            
-            );       
+              });                                                  
         }).catch(err => {
             console.log(err);
-          });
-    }).cat(err => {
-        console.log(err);
-      });
-        
+          });       
+})
+
+
+  var storage = multer.diskStorage({
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+    destination: function (req, file, cb) {
+      cb(null, `./public/imgs/`);
+    },
+  });
+
+  var upload = multer({ storage:storage })
+
+router.route("/new").post(upload.single("image"),(req,res)=>{  
+  console.log(req.file.originalname);
+    let header=req.body.header;
+    let content=req.body.content;
+    let abstract=req.body.abstract;
+    let image='/public/imgs/' + req.file.originalname;
+    let cat=req.body.cat;
+    let subcat=req.body.subcat;
+    let writerId= 1//account.id;
+
+    newAr.addPending(header,content,abstract,image,cat,subcat,writerId);
+
+    res.redirect("/");
 })
 
 router.get('/my-article', (req,res)=>{

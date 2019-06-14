@@ -25,11 +25,11 @@
 	margin-top: 5px;
 }
 
-.new-cat{
+.new-cat, .new-subcat{
 	margin-top: 10px;
 }
 
-.new-cat select{
+.new-cat select, .new-subcat select{
 	color: white;
 	background-color: black;
 	height: 20px;
@@ -38,6 +38,10 @@
 
 .new-pic{
 	margin-top: 10px;
+}
+
+#input-b2{
+	background: #000
 }
 
 .new-abstract{
