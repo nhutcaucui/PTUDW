@@ -24,7 +24,8 @@ CREATE TABLE article_pending
     `image` VARCHAR(255),
     `cat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `subcat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-    `writerId` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci
+    `writerId` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE article
@@ -38,6 +39,7 @@ CREATE TABLE article
     `cat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `subcat` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
     `tag` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    `premium` BIT,
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
@@ -48,7 +50,6 @@ CREATE TABLE comment
     `articleID` INT,
     `ID` VARCHAR(20) PRIMARY KEY,
     `username` VARCHAR(32)
-
 );
 
 CREATE TABLE category

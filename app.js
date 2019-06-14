@@ -24,7 +24,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayout);
 app.use(require('./mdw/local.mdw'));
-require('./mdw/upload')(app);
 
 app.set('view engine', 'ejs');
 app.set("layout extractScripts", true);

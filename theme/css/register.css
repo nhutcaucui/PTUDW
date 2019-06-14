@@ -80,7 +80,7 @@ body {
     height: 50px;
   }
   
-  #register form input[type="text"], input[type="password"] {
+  #register form input[type="text"], input[type="password"],input[type="email"] {
     background-color: #3b4148;
     border-radius: 0px 3px 3px 0px;
     color: #606468;

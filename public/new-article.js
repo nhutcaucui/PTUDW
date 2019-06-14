@@ -7,5 +7,6 @@ var quill = new Quill('#quill-body', {
   modules: {
     toolbar: toolbarOptions
   },
-  theme: 'snow'
+  theme: 'snow',
+  name: 'content'
 });
