@@ -33,44 +33,62 @@ app.set("layout extractStyles", true);
 var homeModel= require('./models/home.model');
 
 app.get('/', function(req, res) {
-  var h=homeModel.hot();
-  var t=homeModel.top();
-  var n=homeModel.new();
-  var c=homeModel.cat();
-  h.then(hrows =>{
-    t.then(trows =>{
-      n.then(nrows =>{
-        c.then(crows =>{
-          let params = {
-            title: 'Trang chủ',
-            hot: hrows,
-            top: trows,
-            news: nrows,
-            cats: crows,
-            username: '',
-          }
-          global.hot = hrows;
-          global.top = trows;
-          global.news = nrows;
-          global.cats = crows;
-          res.render('home', params);
-        }).catch(err => {
-          console.log(err);
-        });
-      }).catch(err => {
-        console.log(err);
-      });
-    }).catch(err => {
-      console.log(err);
-    });
-  }).catch(err => {
-    console.log(err);
-  });
+	homeModel.getAll().then(result => {
+		if (result.status.toLowerCase().localeCompare('success') === 0){
+			global.hot = result.hot;
+          	global.top = result.top;
+          	global.news = result.news;
+			global.cats = result.cats;
+			  
+			let params = {
+				title: 'Trang chủ',
+				hot: global.hot,
+				top: global.top,
+				news: global.news,
+				cats: global.cats,
+			};
+
+			res.render('home', params);
+		}
+	});
+
+//   var h=homeModel.hot();
+//   var t=homeModel.top();
+//   var n=homeModel.new();
+//   var c=homeModel.cat();
+//   h.then(hrows =>{
+//     t.then(trows =>{
+//       n.then(nrows =>{
+//         c.then(crows =>{
+//           let params = {
+//             title: 'Trang chủ',
+//             hot: hrows,
+//             top: trows,
+//             news: nrows,
+//             cats: crows,
+//           }
+//           global.hot = hrows;
+//           global.top = trows;
+//           global.news = nrows;
+//           global.cats = crows;
+//           res.render('home', params);
+//         }).catch(err => {
+//           console.log(err);
+//         });
+//       }).catch(err => {
+//         console.log(err);
+//       });
+//     }).catch(err => {
+//       console.log(err);
+//     });
+//   }).catch(err => {
+//     console.log(err);
+//   });
     
 });
 
 app.use('/', require('./routes/user.routes'));
-//app.use('/profile', require('./routes/profile'));
+app.use('/profile', require('./routes/profile.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
 app.use('/writer', require('./routes/writer/writer.routes'));
