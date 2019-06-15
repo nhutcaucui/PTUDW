@@ -40,8 +40,10 @@ function getProfile(username){
                 resolve(result);
             }
             else{
-                res.status = 'failed';
-                res.message = 'Tài khoản không tồn tại';
+                let result = {
+                    status : 'failed',
+                    message : 'Tài khoản không tồn tại'
+                }
 
                 resolve(result);
             }

@@ -8,7 +8,11 @@ var url = require('url');
 var global = require('../global');
 const host = "localhost:8081";
 
-router.get('/login', (req,res)=>{
+router.get('/login', (req,res)=> {
+	let params = {
+		title: 'Đăng nhập',
+		layout: false,
+	}
     res.render('login', {title: 'Đăng nhập', error:'', layout: false});
 });
 
@@ -152,6 +156,10 @@ router.get('/logins', (req, res) => {
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log(result.message);
+			if (global.hot.length === 0)
+			{
+
+			}
 			let params = {
 				title: 'Trang chủ',
 				hot: global.hot,
