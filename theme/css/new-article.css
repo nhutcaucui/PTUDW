@@ -46,9 +46,10 @@
 
 .new-abstract{
 	margin-top: 10px;
+
 }
 .new-abstract textarea{
-	width: 98%;
+	width: 100%;
 	resize: none;
 	background-color: black;
 	color: white;
@@ -99,4 +100,9 @@
 	height: 20px;
 	padding-left: 10px;
 	width: 60%;
+}
+
+.error{
+	margin-top: 5px;
+	color:red;
 }
