@@ -47,7 +47,6 @@ app.get('/', function(req, res) {
             top: trows,
             news: nrows,
             cats: crows,
-            username: '',
           }
           global.hot = hrows;
           global.top = trows;
