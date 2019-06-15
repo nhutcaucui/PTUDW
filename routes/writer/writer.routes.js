@@ -25,7 +25,7 @@ router.get('/new', (req,res)=>{
 
   var storage = multer.diskStorage({
     filename: function (req, file, cb) {
-      cb(null, file.originalname);
+      cb(null, file.originalname + Date.now());
     },
     destination: function (req, file, cb) {
       cb(null, `./public/imgs/`);
@@ -35,11 +35,11 @@ router.get('/new', (req,res)=>{
   var upload = multer({ storage:storage })
 
 router.route("/new").post(upload.single("image"),(req,res)=>{  
-  console.log(req.file.originalname);
+  console.log(req.file.filename);
     let header=req.body.header;
     let content=req.body.content;
     let abstract=req.body.abstract;
-    let image='/public/imgs/' + req.file.originalname;
+    let image='/public/imgs/' + req.file.filename;
     let cat=req.body.cat;
     let subcat=req.body.subcat;
     let writerId= 1//account.id;

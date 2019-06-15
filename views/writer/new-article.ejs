@@ -16,6 +16,7 @@
                     <option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
                     <%})%>
                 </select>
+                <div></div>
             </div>
             <div class="new-subcat">
                     <span>Chuyên mục nhỏ:</span>
@@ -71,18 +72,46 @@ function populate(s1,s2){
   });
 }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
-    $(function(){
-        $('#input-b2').fileinput({
-            allowedFileExtensions: ['png', 'jpg'],
-            uploadUrl:'/new',
-            uploadASync: false,
-        })
-    })
-    $('#new-article-form').submit(function() {
-        $('div.ql-editor').attr('id', 'ql-editor');
-    var markup = $('#ql-editor', '#new-article-form').html();
-    console.log(markup);
-    $('#content', '#new-article-form').val( markup );
-});
+    $(function () {
+    $('#new-article-form').validate({
+     rules: { 
+        header:{
+            required: true,
+        },
+        cat: {
+            required: true,
+        },   
+        subcat: {
+            required: true,
+        }, 
+        image: {
+            required: true,
+            extension:"jpg|png",
+        }, 
+        abstract: {
+            required: true,
+        },                  
+     },
+     messages:{
+        header:{
+            required: 'Xin vui lòng nhập tiêu đề',
+        },
+        cat: {
+            required: '<div class=error>Xin vui lòng chọn chuyên mục lớn</div>',
+        },   
+        subcat: {
+            required: '<div class=error>Xin vui lòng chọn chuyên mục nhỏ</div>',
+        }, 
+        image: {
+            required: '<div class=error>Xin vui lòng chọn ảnh</div>',
+            required: '<div class=error>Xin vui lòng chọn dịnh dạng jpg hoặc png</div>',
+        }, 
+        abstract: {
+            required: "Xin vui lòng nhập tóm tắt",
+        }, 
+     },
+    });
+})
 </script>
