@@ -27,6 +27,20 @@ function accountPremium(username){
     });
 };
 
+function birthUpdate(username, value){
+    return new Promise((resolve, reject) => {
+        let entity = {
+            birth: value,
+            username: username
+        };
+
+        resolve(dbbase.updatetb('account', 'birth', 'username', entity));
+
+    
+    });
+}
+
 module.exports = {
     accountPremium: accountPremium,
+    birthUpdate: birthUpdate,
 }
