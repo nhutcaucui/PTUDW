@@ -48,7 +48,19 @@
                     passconfirm:{
                         required: true,
                         equalTo: $('[name="password"]')
-                    },                    
+                    },
+                    firstname: {
+                        required: true,
+                    },
+                    lastname: {
+                        required: true,
+                    },
+                    birthdate: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                    },
                  },
                  messages:{
                      username:{
@@ -61,6 +73,18 @@
                     passconfirm:{
                         required: 'Please confirm your password',
                         equalTo: 'Password doesnt match',
+                    },
+                    firstname: {
+                        required: 'Please enter your firstname',
+                    },
+                    lastname: {
+                        required: 'Please enter your lastname',
+                    },
+                    birthdate: {
+                        required: 'Please enter your day of birth',
+                    },
+                    email: {
+                        required: 'Please enter your email',
                     },   
                  },
                 });

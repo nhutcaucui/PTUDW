@@ -5,6 +5,7 @@ var writerModel=require('../../models/writer.model');
 var newAr=require('../../models/newarticle');
 
 var multer = require("multer");
+var path = require("path");
 
 router.get('/new', (req,res)=>{
     var c=writerModel.getCat();
@@ -12,7 +13,7 @@ router.get('/new', (req,res)=>{
     var i=0;
         c.then(crow=>{                                  
                sc.then(loop=>{
-                var objects={title: 'Bài viết mới', cat:crow, subcat:loop};                 
+                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '',};                 
                     res.render('writer/new-article', objects);   
                }).catch(err => {
                 console.log(err);
@@ -25,7 +26,7 @@ router.get('/new', (req,res)=>{
 
   var storage = multer.diskStorage({
     filename: function (req, file, cb) {
-      cb(null, file.originalname + Date.now());
+      cb(null, path.basename(file.originalname, path.extname(file.originalname)) + Date.now() + path.extname(file.originalname));
     },
     destination: function (req, file, cb) {
       cb(null, `./public/imgs/`);

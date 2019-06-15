@@ -21,11 +21,18 @@ $(function(){
 
 $( document ).ready(function() {
   $('div.ql-editor').attr('id', 'ql-editor');
-  $('div.ql-editor').attr('name', 'ql-editor');
 });
 
+
+
 $('#new-article-form').submit(function() { 
+  if ($('#ql-editor', '#new-article-form').html()=="<p><br></p>"){
+      $( "<div class='error'>Xin vui lòng nhập nội dung</div>" ).insertAfter( "#quill-body" );
+      return false;
+  }
+  else{
 var markup = $('#ql-editor', '#new-article-form').html();
 console.log(markup);
 $('#content', '#new-article-form').val( markup );
+  }
 });
