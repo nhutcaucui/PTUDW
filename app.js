@@ -6,6 +6,7 @@ const passport = require('passport');
 const log4js = require('log4js');
 const session = require('express-session');
 const ejs = require('ejs');
+var global = require('./global');
 var ejsLayout = require('express-ejs-layouts');
 
 const app = express();
@@ -40,7 +41,19 @@ app.get('/', function(req, res) {
     t.then(trows =>{
       n.then(nrows =>{
         c.then(crows =>{
-          res.render('home', {title: 'Trang chủ', hot: hrows, top: trows, news: nrows, cats:crows});
+          let params = {
+            title: 'Trang chủ',
+            hot: hrows,
+            top: trows,
+            news: nrows,
+            cats: crows,
+            username: '',
+          }
+          global.hot = hrows;
+          global.top = trows;
+          global.news = nrows;
+          global.cats = crows;
+          res.render('home', params);
         }).catch(err => {
           console.log(err);
         });
@@ -56,7 +69,8 @@ app.get('/', function(req, res) {
     
 });
 
-app.use('/', require('./routes/login.routes'));
+app.use('/', require('./routes/user.routes'));
+app.use('/profile', require('./routes/profile.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
 app.use('/writer', require('./routes/writer/writer.routes'));

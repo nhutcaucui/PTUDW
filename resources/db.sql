@@ -11,9 +11,10 @@ CREATE TABLE account
     `password` VARCHAR(100),
     `flname` VARCHAR(100),
     `alias` VARCHAR(100),
-    `birthday` DATE,
+    `birthday` INT,
     `is_login` BIT,
     `level` INT,
+    `premium_expired` INT,
     `token` VARCHAR(100),
     `email` VARCHAR(100),
     `ID` INT AUTO_INCREMENT PRIMARY KEY
