@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 var draftModel=require('../../models/draft.model');
+var manage=require('../../models/editor')
 
 router.get('/drafts', (req,res)=>{
     var a=draftModel.all();
 
     a.then(row=>{
-        res.render('editor/draft', {title: 'Chờ duyệt', pending: row});
+        res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
     }
     ).catch(err => {
         console.log(err);
@@ -18,10 +19,30 @@ router.get('/drafts/:id', (req,res)=>{
     var p=draftModel.preview(req.params.id);
 
     p.then(function(row) {
-        res.render('editor/preview-article', {title:'Xem trước bài viết', article: row})
+        res.render('editor/preview-article', {title:'Xem trước bài viết', article: row, username:''})
     }).catch(err => {
         console.log(err);
       });   
+})
+
+router.post('/drafts/:id', (req,res)=>{
+    var id=req.params.id;
+    if(req.body.confirm == "accept"){
+        let header=req.body.header;
+        let content=req.body.content;
+        let abstract=req.body.abstract;
+        let image=req.body.image;
+        let cat=req.body.cat;
+        let subcat=req.body.subcat;
+        let tag=req.body.tag;
+        let writerId= 1//account.id;
+
+        manage.passAndPublic(header,content,abstract,image,cat,subcat,writerId,tag,id);
+    } 
+    else{
+        manage.deny(id);
+    }
+    res.redirect('/editor/drafts');
 })
 
 module.exports = router;

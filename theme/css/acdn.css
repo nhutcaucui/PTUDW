@@ -1,0 +1,26 @@
+#dr-a-confirm, #dr-d-confirm{
+    border-radius: 5px;
+    height: 35px;
+    width: 120px;
+    font-size: 20px;
+    line-height: 35px;
+    border:1px solid #161616;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+#dr-a-confirm{
+    background: lightgreen;
+}
+
+#dr-d-confirm{
+    background: #FE3939;
+}
+
+.sticky-manage{
+	margin-top: 10px;
+	overflow: hidden;
+    background-color: #161616;
+    border-radius: 10px;
+}

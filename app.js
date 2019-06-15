@@ -70,7 +70,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/', require('./routes/user.routes'));
-app.use('/profile', require('./routes/profile'));
+//app.use('/profile', require('./routes/profile'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));
 app.use('/writer', require('./routes/writer/writer.routes'));

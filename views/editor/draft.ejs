@@ -3,26 +3,13 @@
     <div class="dr-container" id="dr-container">
         <% pending.forEach(function(row){ %>
         <div class="dr-list">
-            <a href="/editor/drafts/<%= row.ID%>"><img src="row.image"></a>
-            <div class="dr-title"><a href="/editor/drafts/<%= row.ID%>">row.header</a></div>
-            <div class="dr-abstract">row.abstract</div>
-            <div class="dr-cat">row.subcat</div>
-            <div class="dr-buttons">
-            <button class="dr-accept"><i class="fas fa-check"></i></button>
-            <button class="dr-deny" name="dr-deny"><i class="fas fa-times"></i></button>
+            <a href="/editor/drafts/<%= row.ID%>"><img src="<%=row.image%>"></a>
+            <div class="dr-title"><a href="/editor/drafts/<%= row.ID%>"><%=row.header%></a></div>
+            <div class="dr-abstract"><%=row.abstract%></div>
+            <div class="dr-cat"><%=row.subcat%></div>
             </div>
-        </div>
-        <% }) %>       
-        <!-- <div class="dr-list">
-            <a href="#"><img src="https://lunaticpsyche.files.wordpress.com/2013/11/random-pic-01.jpg"></a>
-            <div class="dr-title"><a href="#">Tiêu đề</a></div>
-            <div class="dr-abstract">Tóm tắt</div>
-            <div class="dr-cat">Chuyên mục</div>
-            <div class="dr-buttons">
-            <button class="dr-accept"><i class="fas fa-check"></i></button>
-            <button class="dr-deny" name="dr-deny"><i class="fas fa-times"></i></button>
-            </div>
-        </div> -->
+        <% }) %>   
+    </div>    
     </div>
 </div>
 
@@ -35,16 +22,3 @@
         <a href="#">5</a>
         <a href="#">&raquo;</a>
       </div>
-
-<div id="deny-modal" class="deny-modal">
-
-<!-- Modal content -->
-<div class="deny-modal-content">
-<span class="close">&times;</span>
-<span class="deny-header">Lí do từ chối:</span>
-<textarea class="dr-reason"></textarea>
-<button class="deny-confirm">Xác nhận</button>
-</div>
-</div>
-
-<script type="text/javascript" src="/public/draft.js"></script>

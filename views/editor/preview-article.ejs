@@ -1,3 +1,5 @@
+<link href="/theme/css/acdn.css" rel="stylesheet" type="text/css" />
+
 <div class="bigcontainer">
     <% article.forEach(function(row){%>
     <div class ="bigpicctn">
@@ -13,8 +15,40 @@
                 <%=row.abstract%>        
             </div>
         <div class="post-content" id="post-content">
-                <%=row.content%>
+                <%-row.content%>
         </div>
-            <div class="post-tag" id="post-tag"><a href="#">#tag1</a><a href="#">#tag2</a><a href="#">#tag3</a></div>
-              <% })%>
+            <div class="post-tag" id="post-tag"></div>
+              
         </div>
+        <div class="samesame" id="samesame">
+                <h3>Quản lí</h3>
+                <div class="sticky-manage">
+                        <form method="POST">
+                                <input hidden name='header' value="<%=row.header%>">
+                                <textarea hidden name='content' value="<%-row.content%>"></textarea>
+                                <input hidden name='abstract' value="<%=row.abstract%>">
+                                <input hidden name='image' value="<%=row.image%>">
+                                <input hidden name='cat' value="<%=row.cat%>">
+                                <input hidden name='subcat' value="<%=row.subcat%>">
+                                <input hidden name='row.tag' value="<%=row.tag%>">
+                                <button id="dr-a-confirm" name="confirm" value="accept">Duyệt</button>
+                                <button id="dr-d-confirm" name="confirm" value="deny">Từ chối</button>
+                        </form>
+                </div>                
+        <script>
+            document.onload(function(){
+                var t=<%- JSON.stringify(row.tag)%>;
+                var sp;
+                t.forEach(element => {
+                    sp=element.split(" ");
+                });
+
+                for (var i=0; i< sp.length;i++){
+                    var a=document.createElement('a');
+                    a.innerHTML=sp[i];
+                    a.href='#';
+                    document.getElementById("post-tag").appendChild(a);
+                }
+            })
+        </script>
+        <% })%>
