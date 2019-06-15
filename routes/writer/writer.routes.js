@@ -6,6 +6,7 @@ var newAr=require('../../models/newarticle');
 
 var multer = require("multer");
 var path = require("path");
+const fs = require('fs');
 
 router.get('/new', (req,res)=>{
     var c=writerModel.getCat();
@@ -23,6 +24,28 @@ router.get('/new', (req,res)=>{
           });       
 })
 
+router.get('/edit/:id', (req,res)=>{
+  var id=req.params.id;
+  var a=writerModel.getAr(id);
+  var c=writerModel.getCat();
+  var sc=writerModel.getSubCat();
+  var i=0;
+      c.then(crow=>{                                  
+             sc.then(loop=>{
+               a.then(arow=>{
+                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '', aredit:arow, edit:true};                 
+                res.render('writer/new-article', objects);
+               }).catch(err => {
+                console.log(err);
+              });                 
+             }).catch(err => {
+              console.log(err);
+            });                                                  
+      }).catch(err => {
+          console.log(err);
+        });       
+})
+
 
   var storage = multer.diskStorage({
     filename: function (req, file, cb) {
@@ -36,7 +59,33 @@ router.get('/new', (req,res)=>{
   var upload = multer({ storage:storage })
 
 router.route("/new").post(upload.single("image"),(req,res)=>{  
-  console.log(req.file.filename);
+    let header=req.body.header;
+    let content=req.body.content;
+    let abstract=req.body.abstract;
+    let image='/public/imgs/' + req.file.filename;
+    let cat=req.body.cat;
+    let subcat=req.body.subcat;
+    let writerId= 1//account.id;
+
+    newAr.addPending(header,content,abstract,image,cat,subcat,writerId);
+
+    res.redirect("/");
+})
+
+router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
+  
+    var i=writerModel.getImageDir(req.params.id)
+    i.then(irow=>{
+      irow.forEach(element => {
+        fs.unlink('../..' + element.image,(err) => {
+          if (err) throw err;
+          console.log('deleted');
+        });
+      });
+    }).catch(err => {
+      console.log(err);
+    });                 
+    
     let header=req.body.header;
     let content=req.body.content;
     let abstract=req.body.abstract;
