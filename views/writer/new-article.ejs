@@ -3,10 +3,12 @@
 <div class="bigcontainer">
     <div class="new-header">Tạo bài viết mới</div>
     <div class="new-container">
-        <form id="new-article-form" method="POST" enctype="multipart/form-data">
+            <% if(edit){%>
+                <%aredit.forEach(function(rows){%>
+        <form id="new-article-form" method="POST" enctype="multipart/form-data">          
             <div class="new-title">
                 <span>Tiêu đề:</span>
-                <input type="text" name="header" id="tieude"></input>
+                <input type="text" name="header" id="tieude" value="<%=rows.header%>"></input>
             </div>
             <div class="new-cat">
                 <span>Chuyên mục lớn:</span>
@@ -25,24 +27,68 @@
                     </select>
                 </div>
             <div class="new-pic">
-                <span>Ảnh đại diện:</span>
-                <input id="input-b2" name="image" type="file" class="file" data-show-preview="false" accept="image/*">
-            </div>
+                    <span>Ảnh đại diện (Xin vui lòng chọn lại ảnh):</span>
+                        <input id="input-b2" name="image" type="file" class="file" data-show-preview="false" accept="image/*">
+                    </div>
             <div class="new-abstract">
                 <span>Tóm tắt:</span>
-                <textarea name="abstract" id="tomtat"></textarea>
+                <textarea name="abstract" id="tomtat" value="<%=rows.abstract%>"></textarea>
             </div>
             <div class="new-body">
             <span>Nội dung:</span>
                 <div id="quill-body"></div>
-                <textarea id='content' name='content' hidden></textarea>
+                <textarea id='content' name='content' hidden value="<%-rows.content%>"></textarea>
             </div>
             <div class="new-tag">
                 <span>Gán nhãn:</span>
-                <input type="text" name="tag" placeholder="tag1,tag2,tag3">
+                <input type="text" name="tag" placeholder="tag1 tag2 tag3" value="<%=rows.tag%>">
             </div>
-            <button class="article-submit" id="article-submit">Tạo bài viết</button>
+            <button class="article-submit" id="article-submit">Sửa bài viết</button>
         </form>
+        <%})%>
+        <% }else{%>
+            <form id="new-article-form" method="POST" enctype="multipart/form-data">          
+                <div class="new-title">
+                    <span>Tiêu đề:</span>
+                    <input type="text" name="header" id="tieude"></input>
+                </div>
+                <div class="new-cat">
+                    <span>Chuyên mục lớn:</span>
+                    <select name="cat" id="chuyenmuc" onchange="populate(this.id,'chuyenmucnho')">
+                        <option value=""></option>
+                        <% cat.forEach(function(row){%>
+                        <option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
+                        <%})%>
+                    </select>
+                    <div></div>
+                </div>
+                <div class="new-subcat">
+                        <span>Chuyên mục nhỏ:</span>
+                        <select name="subcat" id="chuyenmucnho">
+                        <option value=""></option>    
+                        </select>
+                    </div>
+                <div class="new-pic">
+                    <span>Ảnh đại diện:</span>
+                    <input id="input-b2" name="image" type="file" class="file" data-show-preview="false" accept="image/*">
+                </div>
+                <div class="new-abstract">
+                    <span>Tóm tắt:</span>
+                    <textarea name="abstract" id="tomtat"></textarea>
+                </div>
+                <div class="new-body">
+                <span>Nội dung:</span>
+                    <div id="quill-body"></div>
+                    <textarea id='content' name='content' hidden></textarea>
+                </div>
+                <div class="new-tag">
+                    <span>Gán nhãn:</span>
+                    <input type="text" name="tag" placeholder="tag1 tag2 tag3">
+                </div>
+                <button class="article-submit" id="article-submit">Tạo bài viết</button>
+            </form>
+            <%}%>
+        
     </div>
 </div>
 
@@ -115,3 +161,13 @@ function populate(s1,s2){
     });
 })
 </script>
+<% if(edit){%>
+    <%aredit.forEach(function(row){%>
+    <script>
+        $( document ).ready(function() {
+            $("chuyenmuc select").val("<%=row.cat%>");
+            $("chuyenmucnho select").val("<%=row.subcat%>");
+        });
+    </script>
+    <%})%>
+<%}%>
