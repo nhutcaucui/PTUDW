@@ -19,7 +19,7 @@
 }
 
 .dr-title{
-	width: 50%;
+	width: 80%;
 	overflow: hidden;
 	display: inline-block;
 	margin-left: 10px;
@@ -29,7 +29,7 @@
 }
 
 .dr-abstract{
-	width: 50%;
+	width: 80%;
 	height: 100px;
 	display: inline-block;
 	margin-left: 10px;
@@ -41,117 +41,4 @@
 	position: absolute;
 	bottom: 5px;
 	left: 210px;
-}
-
-.dr-buttons{
-	width: 30%;
-	display: inline-block;
-	vertical-align: top;
-	border-left: 3px solid white;
-	height: 100%;
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	right: 0;
-}
-
-.dr-accept{
-	color: green;
-	background-color: white;
-	border:	none;
-	border-radius: 40px;
-	width: 40%;
-	font-size: 64px;
-	position: absolute;
-    margin: auto;
-    top: 50px;
-    left: 50px;
-    bottom: 50px;
-    height: 80px;
-    width: 80px;
-    transition: border-radius 0.5s;
-}
-	.dr-accept:hover{
-		transition: border-radius 0.5s;
-		border-radius: 20px;
-	}
-
-.dr-deny
-{
-	color: red;
-	background-color: white;
-	border:none;
-	border-radius: 40px;
-	width: 40%;
-	font-size: 64px;
-	position: absolute;
-    margin: auto;
-    top: 50px;
-    right: 50px;
-    bottom: 50px;
-    height: 80px;
-    width: 80px;
-    transition: border-radius 0.5s;
-}
-	.dr-deny:hover{
-		transition: border-radius 0.5s;
-		border-radius: 20px;
-	}
-
-.deny-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.deny-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  text-shadow: none;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-
-}
-
-.deny-header{
-	color: black;
-	font-size: 18px;
-	text-shadow: none;
-}
-
-.dr-reason{
-	width: 97%;
-	height: 60px;
-	font-size: 16px;
-	resize: none;
-}
-
-.deny-confirm{
-	margin-top: 10px;
-	font-size: 18px;
-	width: 100px;
 }

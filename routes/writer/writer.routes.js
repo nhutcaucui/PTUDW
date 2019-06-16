@@ -14,7 +14,7 @@ router.get('/new', (req,res)=>{
     var i=0;
         c.then(crow=>{                                  
                sc.then(loop=>{
-                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '',};                 
+                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '', edit:false};                 
                     res.render('writer/new-article', objects);   
                }).catch(err => {
                 console.log(err);
@@ -65,9 +65,14 @@ router.route("/new").post(upload.single("image"),(req,res)=>{
     let image='/public/imgs/' + req.file.filename;
     let cat=req.body.cat;
     let subcat=req.body.subcat;
+    let tag=req.body.tag;
+    if(typeof tag == "undefined") {
+      tag='';
+    }
+    console.log(tag);
     let writerId= 1//account.id;
 
-    newAr.addPending(header,content,abstract,image,cat,subcat,writerId);
+    newAr.addPending(header,content,abstract,image,cat,subcat,tag,writerId);
 
     res.redirect("/");
 })
@@ -94,13 +99,13 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
     let subcat=req.body.subcat;
     let writerId= 1//account.id;
 
-    newAr.addPending(header,content,abstract,image,cat,subcat,writerId);
+    newAr.updatePending(header,content,abstract,image,cat,subcat,writerId,tag,req.params.id);
 
     res.redirect("/");
 })
 
 router.get('/my-article', (req,res)=>{
-    var a=writerModel.all();
+    var a=writerModel.all(1);
     a.then(row=>{
         res.render('writer/my-article', {title: 'Bài viết của tôi', pending: row});
     }).catch(err => {

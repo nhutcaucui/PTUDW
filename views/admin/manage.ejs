@@ -1,102 +1,89 @@
 <div class="bigcontainer">
 		<div class="cat-manage">
-		<div class="admin-cat-head">Quản lý chuyên mục</div>
+				<form method="POST" id="cat-form">
+		<div class="admin-cat-head">Quản lý chuyên mục lớn</div>		
 		<div class="manage-cat-container">
-			<div class="radio-container">
-				<div>Chọn chuyên mục:</div>
-			<input type="radio" name="cat-radio" value="big">Chuyên mục lớn<br>
-			<input type="radio" name="cat-radio" value="small">Chuyên mục nhỏ<br>
+			
+			<div class="add-cat" id="addcat"> 
+				<input type="text" name="catadd" id="themchuyenmuc">
+				<button id="add-cat" formaction="/add-cat">Thêm</button>
 			</div>
-			<div class="add-cat">
-				<input type="text" name="themchuyenmuc" id="themchuyenmuc">
-				<button id="add-btn-cat">Thêm</button>
+			<div class="edt-cat" id="edtcat">
+				<input type="text" name="catedt" id="suachuyenmuc">
+				<button id="edt-cat" formaction="/edt-cat">Sửa</button>
 			</div>
-			<div class="edt-cat">
-				<input type="text" name="suachuyenmuc" id="suachuyenmuc">
-				<button id="edt-btn-cat">Sửa</button>
-			</div>
-			<div class="del-cat">
-				<button id="del-btn-cat">Xóa</button>
+			<div class="del-cat" id='delcat'>
+				<button id="del-cat" formaction="del-cat">Xóa</button>
 			</div>
 		</div>
 		<div class="ad-cat-list">
-			<select name="dschuyenmuclon" class="big-cat">
-				<option>Kinh doanh</option>
-				<option>Chính trị</option>
-				<option>Xã hội</option>
-			</select>
 			<br>
-			<select name="dschuyenmucnho" class="small-cat" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
+			<select name="cat" class="cat-box" id="edt-cat-sl" size="5" onchange="copytoEdit('edt-cat-sl','suachuyenmuc')">
+				<%cat.forEach(function(row){%>
+					<option value="<%=row.name%>"><%=row.name%></option>
+					<%})%>
 			</select>
 		</div>
+		</form>
 		</div>
-		<div class="tag-manage">
-		<div class="admin-tag-head">Quản lý nhãn</div>
-		<div class="manage-tag-container">			
-			<div class="add-tag">
-				<input type="text" name="themnhan" id="themnhan">
-				<button id="add-btn-tag">Thêm</button>
-			</div>
-			<div class="edt-tag">
-				<input type="text" name="suanhan" id="suanhan">
-				<button id="edt-btn-tag">Sửa</button>
-			</div>
-			<div class="del-tag">
-				<button id="del-btn-tag">Xóa</button>
-			</div>
-		</div>
-		<div class="ad-tag">
-			<input type="text" name="tag-manage-search">
-			<button><i class="fas fa-search"></i></button>
-			<br>
-			<select name="dsnhan" class="ad-tag-lst" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
-			</select>
-		</div>
-		</div>
-		<div class="ad-article-head">Quản lí bài viết</div>
-		<div class="dr-container" id="dr-container">
-			<div class="dr-list">
-				<a href="#"><img src="https://lunaticpsyche.files.wordpress.com/2013/11/random-pic-01.jpg"></a>
-				<div class="dr-title"><a href="#">Tiêu đề</a></div>
-				<div class="dr-abstract">Tóm tắt</div>
-				<div class="dr-cat">Chuyên mục</div>
-				<div class="dr-buttons">
-				<button class="dr-accept"><i class="fas fa-check"></i></button>
-				<button class="dr-deny" id="dr-deny"><i class="fas fa-times"></i></button>
+		<div class="cat-manage">
+			<form action="POST" id="subcat-form">
+			<div class="admin-cat-head">Quản lý chuyên mục nhỏ</div>
+			<div class="manage-cat-container">
+				
+				<div class="add-cat" id="addsubcat">
+					<input type="text" name="subcatadd" id="themchuyenmuc">
+					<button id="add-subcat">Thêm</button>
+				</div>
+				<div class="edt-cat" id="edtsubcat">
+					<input type="text" name="subcatedt" id="suachuyenmucnho">
+					<button id="edt-subcat">Sửa</button>
+				</div>
+				<div class="del-cat" id="delsubcat">
+					<button id="del-subcat">Xóa</button>
 				</div>
 			</div>
-		</div>
+			<div class="ad-cat-list">
+				<select name="sccat" class="big-cat" id='edit-sc-csl' onchange="populate('edit-sc-csl','edit-sc-sl')">
+						<option value=""></option>
+						<%cat.forEach(function(row){%>
+							<option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
+							<%})%>
+				</select>
+				<br>
+				<select name="scsubcat" id='edit-sc-sl' class="small-cat" size="5" onchange="copytoEdit('edit-sc-sl','suachuyenmucnho')">
+					
+				</select>
+			</div>
+		</form>
+			</div>			
 		<div class="ad-article-head">Quản lí người dùng</div>
 		<div class="edt-wrt-manage">
 		<div class="admin-edt-wrt-head">Quản lý biên tập viên & phóng viên</div>
 		<div class="manage-edt-wrt-container">
 			<div class="add-edt-wrt">
-				<input type="text" name="thembtvpv" id="thembtvpv">
+				<input type="text" name="username" id="thembtvpv-u" placeholder="Username">
+				<input type="password" name="password" id="thembtvpv-p" placeholder="Password">
 				<button id="add-btn-ew">Thêm</button>
-			</div>
-			<div class="edt-edt-wrt">
-				<input type="text" name="suabtvpv" id="suabtvpv">
-				<button id="edt-btn-ew">Sửa</button>
 			</div>
 			<div class="del-edt-wrt">
 				<button id="del-btn-ew">Xóa</button>
 			</div>
 		</div>
 		<div class="ad-edt-wrt-list">
-			<select name="slbtvpv" class="edt-wrt">
-				<option>Biên tập viên</option>
-				<option>Phóng viên</option>
+			<select name="slbtvpv" class="edt-wrt" id="role-select" onchange="changeUser('role-select','edtor-wrter-list')">
+				<option value="Biên tập viên">Biên tập viên</option>
+				<option value="Phóng viên">Phóng viên</option>
 			</select>
 			<br>
-			<input type="text" name="edt-wrt-search">
+			<input type="text" list="edtor-wrter-list" name="edt-wrt-search">
 			<button><i class="fas fa-search"></i></button>
-			<select name="dsbtvpv" class="edt-wrt-list" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
+			<select name="dsbtvpv" class="edt-wrt-list" id="edtor-wrter-list" size="5">
+					<% user.forEach(function(row){ %>
+						<% if(row.level==3){ %>
+							<option value="<%=row.username%>"><%=row.username%></option>
+						<%}%>
+					<%})%>
 			</select>
 		</div>
 		</div>
@@ -110,13 +97,16 @@
 				<button id="del-btn-reader">Xóa</button>
 			</div>
 		</div>
-		<div class="ad-reader">
+		<div class="ad-edt-wrt-list">
 			<input type="text" name="tag-manage-search">
 			<button><i class="fas fa-search"></i></button>
 			<br>
 			<select name="dsnhan" class="ad-reader-lst" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
+				<% user.forEach(function(row){ %>
+					<% if(row.level==1){ %>
+						<option value="<%=row.username%>"><%=row.username%></option>
+					<%}%>
+				<%})%>
 			</select>
 		</div>
 		</div>
@@ -127,24 +117,255 @@
 			<button><i class="fas fa-search"></i></button>
 			<br>
 			<select name="dsnhan" class="ad-asign-lst" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
+
 			</select>
 		</div>			
 			<div class="asign-edt">
 				<button id="asign-btn">Phân công</button>
 			</div>
 		<div class="ad-asign-cat-list">
-			<select name="dschuyenmuclon" class="big-cat">
-				<option>Kinh doanh</option>
-				<option>Chính trị</option>
-				<option>Xã hội</option>
-			</select>
-			<br>
-			<select name="dschuyenmucnho" class="small-cat" size="5">
-				<option>Nông sản</option>
-				<option>Hải sản</option>
+			<select name="dschuyenmuc" class="cat-asign" size="5">
+					<%cat.forEach(function(row){%>
+						<option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
+						<%})%>
 			</select>
 		</div>
+		</div>
+		<div class="ad-article-head">Quản lí người dùng</div>
+		<div class="tag-manage">
+			<table class="tag-table">
+				<tr>
+					<th>Tag</th>
+					<th>Bài viết</th> 
+				</tr>
+				<%tag.forEach(function(row){%>
+					<tr>
+						<td><%=row.tag%></th>
+						<td><%=row.header%></th> 
+					</tr>
+				<%})%>
+			</table>
+		</div>
+		<div class="ad-article-head">Quản lí bài viết</div>
+		<div class="dr-container" id="dr-container">
+			<%article.forEach(function(row){%>
+			<div class="dr-list">
+				<a href="/editor/drafts/<%=row.ID%>"><img src="<%=row.image%>"></a>
+				<div class="dr-title"><a href="/editor/drafts/<%=row.ID%>"><%=row.header%></a></div>
+				<div class="dr-abstract"><%=row.abstract%></div>
+				<div class="dr-cat"><%=row.cat%></div>
+				</div>
+				<%})%>
+			</div>
 		</div>
 	</div>
+
+	<script>
+		function copytoEdit(s, ip){
+			var select=document.getElementById(s);
+			var ip=document.getElementById(ip);
+
+			ip.value=select[select.selectedIndex].innerHTML;
+		}
+
+		function populate(s1,s2){
+			var s1=document.getElementById(s1);
+ 		 	var s2=document.getElementById(s2);
+  			s2.innerHTML="";
+
+  			var s1id=s1[s1.selectedIndex].id;
+
+			var sc=<%- JSON.stringify(subcat)%>
+			
+  			sc.forEach(element => {
+      			console.log(element.belongto);
+      			if(element.belongto==s1id)
+      			{
+    				var newOp=document.createElement("option");
+    				newOp.value=element.name;
+    				newOp.innerHTML=element.name;
+    				s2.options.add(newOp);
+      			}
+  			});
+		}
+
+		function changeUser(s1,s2){
+			var s1=document.getElementById(s1);
+ 		 	var s2=document.getElementById(s2);
+  			s2.innerHTML="";
+
+  			var s1v=s1[s1.selectedIndex].value;
+
+			var user=<%- JSON.stringify(user)%>;
+
+			if(s1v=="Biên tập viên"){
+  			user.forEach(element => {			
+      			if(element.level==3)
+      			{
+    				var newOp=document.createElement("option");
+    				newOp.value=element.username;
+    				newOp.innerHTML=element.username;
+    				s2.options.add(newOp);
+				  }				  
+				});
+			}
+				if(s1v=="Phóng viên"){
+					user.forEach(element => {
+					if(element.level==2)
+      			{
+    				var newOp=document.createElement("option");
+    				newOp.value=element.username;
+    				newOp.innerHTML=element.username;
+    				s2.options.add(newOp);
+				  }
+				});
+			}
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script>
+		$('#add-cat').click(function(){             
+    	$("#cat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#addcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				catadd: {
+					required: true,
+				}
+			},
+			messages:{
+				catadd:{
+					required: 'Vui lòng nhập tên chuyên mục',
+				}
+			}
+    	});             
+}); 
+
+$('#edt-cat').click(function(){             
+    	$("#cat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#edtcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				catedt: {
+					required: true,
+				},
+				cat: {
+					required:true
+				},
+			},
+			messages:{
+				catedt:{
+					required: 'Vui lòng nhập tên chuyên mục',
+				},
+				cat: {
+					required: 'Vui lòng chọn chuyên mục'
+				},
+			}
+    	});             
+}); 
+
+$('#del-cat').click(function(){             
+    	$("#cat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#delcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				cat: {
+					required:true
+				},
+			},
+			messages:{
+				cat: {
+					required: 'Vui lòng chọn chuyên mục'
+				},
+			}
+    	});             
+}); 
+
+$('#add-subcat').click(function(){             
+    	$("#subcat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#addsubcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				subcatadd:{
+					required:true,
+				},
+				sccat: {
+					required:true,
+				},
+			},
+			messages:{
+				subcatadd:{
+					required: 'Vui lòng nhập chuyên mục nhỏ cần thêm',
+				},
+				sccat: {
+					required: 'Vui lòng chọn chuyên mục lớn'
+				},
+			}
+    	});             
+}); 
+
+$('#edt-subcat').click(function(){             
+    	$("#subcat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#edtsubcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				subcatedt:{
+					required:true,
+				},
+				sccat: {
+					required:true,
+				},
+				scsubcat: {
+					required:true,
+				},
+			},
+			messages:{
+				subcatedt:{
+					required: 'Vui lòng nhập chuyên mục nhỏ cần sửa',
+				},
+				sccat: {
+					required: 'Vui lòng chọn chuyên mục lớn',
+				},
+				scsubcat: {
+					required: 'Vui lòng chọn chuyên mục nhỏ',
+				},
+			}
+    	});             
+}); 
+
+$('#del-subcat').click(function(){             
+    	$("#subcat-form").validate({
+			errorPlacement: function(error, element) {
+     			error.appendTo('#delsubcat');
+			   },
+			   errorElement: 'div',
+			rules:{
+				sccat: {
+					required:true,
+				},
+				scsubcat: {
+					required:true,
+				},
+			},
+			messages:{
+				sccat: {
+					required: 'Vui lòng chọn chuyên mục lớn',
+				},
+				scsubcat: {
+					required: 'Vui lòng chọn chuyên mục nhỏ',
+				},
+			}
+    	});             
+}); 
+	</script>

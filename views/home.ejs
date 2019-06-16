@@ -7,7 +7,7 @@
                   <% hot.forEach(function(row){ %>
                   <div class="mySlides">
                     <div class="numbertext"><%= row.subcat %></div>
-                    <div class="slidedate"><%= row.fDate %></div>
+                    <div class="slidedate"><%=row.date%></div>
                     <a href="/article/<%= row.ID %>"><img src="<%= row.image%>" style="width:100%;height: 100%"></a>
                     <div class="slidetitle"><a href="/article/<%= row.ID %>" class="slidetitle"><%= row.header %></a></div>
                   </div>
@@ -45,7 +45,7 @@
                     <div class="article">
                         <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
                         <div class="category"><%= row.subcat%></div>
-                        <div class="date"><%= row.fDate%></div>
+                        <div class="date"><%= row.date%></div>
                         <div class="title"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                     </div>
                     <%}) %>
@@ -71,7 +71,7 @@
                             <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
                             <div class="newtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                             <div class="newcategory"><%= row.subcat%></div>
-                            <div class="newdate"><%= row.fDate%></div>
+                            <div class="newdate"><%= row.date%></div>
                 </div>
                 <% }) %>
                 
@@ -104,7 +104,7 @@
                             <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
                             <div class="cattitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
                             <div class="catcategory"><%= row.subcat%></div>
-                            <div class="catdate"><%= row.fDate%></div>
+                            <div class="catdate"><%= row.date%></div>
                 </div>
                 <% }) %>
                 <!-- <div class="cat">

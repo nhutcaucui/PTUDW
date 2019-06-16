@@ -1,7 +1,7 @@
 var db = require('./dbbase');
 
 function all(){
-    return  db.loaddb('SELECT * FROM article_pending LIMIT 3');
+    return  db.loaddb('SELECT * FROM article_pending ORDER BY ID DESC LIMIT 3');
 };
 
 function preview(id){

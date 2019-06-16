@@ -24,6 +24,7 @@ function addtb(tableName, entity){
       });
     });
 }
+
 function updatetb(tableName, updateField, conditionField, entity){
     return new Promise((resolve, reject) => {
     let sql = `UPDATE ${tableName} SET ${updateField}=? WHERE ${conditionField}=?`;
@@ -38,6 +39,20 @@ function updatetb(tableName, updateField, conditionField, entity){
         }
       });
     });
+}
+
+function updatetbbyid(tableName, id, entity){
+  return new Promise((resolve, reject) => {
+  let sql = `UPDATE ${tableName} SET ? WHERE ID=${id}`;
+    db.query(sql, entity, (error, value) => {
+      if (error){
+    reject(error);
+  }
+      else {
+        resolve(value.changedRows);
+      }
+    });
+  });
 }
 
 function deletetb(tableName, idField, id){
@@ -58,4 +73,5 @@ module.exports ={
     updatetb: updatetb,
     deletetb: deletetb,
     addtb: addtb,
+    updatetbbyid:updatetbbyid,
 }

@@ -20,7 +20,7 @@
 	margin-top: 5px;
 }
 
-.ad-cat-list, .ad-tag, .ad-edt-wrt-list, .ad-reader, .ad-asign-cat-list,.ad-asign{
+.ad-cat-list, .ad-tag, .ad-edt-wrt-list, .ad-asign-cat-list,.ad-asign{
 	width: 30%;
 	display: inline-block;
 	vertical-align: top;
@@ -77,14 +77,14 @@
 	border: 1px solid white;
 }
 
-.cat-manage, .tag-manage, .edt-wrt-manage, .reader-manage,.asignment-manage{
+.cat-manage, .edt-wrt-manage, .reader-manage,.asignment-manage{
 	width: 45%;
 	display: inline-block;
 	margin-left: 15px;
 	vertical-align: top;
 }
 
-.ad-tag input, .ad-reader input, .ad-asign input{
+.ad-tag input, .ad-asign input{
 	color: white;
 	background-color: black;
 	border:1px solid white;
@@ -95,7 +95,7 @@
 	margin-top: 19px;
 }
 
-.ad-tag button,.ad-reader button, .ad-asign button{
+.ad-tag button, .ad-asign button{
 	background-color: white;
 	border: 1px solid white;
 	height: 20px;
@@ -163,4 +163,59 @@
 	height: 20px;
 	margin-top: 19px;
 	border-radius: 5px;
+}
+
+.cat-box{
+	width: 150px;
+	overflow: hidden;
+	text-align-last: center; 
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+}
+
+.manage-cat-container{
+	margin-top:10px;
+}
+
+#thembtvpv-u, #thembtvpv-p{
+	margin-top:5px;
+}
+
+.cat-asign{
+	margin-top: 50px;
+	width: 150px;
+	overflow: hidden;
+	text-align-last: center; 
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: 1px solid white;
+}
+
+.tag-manage{
+	width: 100%;
+}
+
+.tag-table{
+	margin-top:10px;
+	width: 100%;
+	table-layout: fixed;
+	overflow-wrap: break-word;
+	border: 1px solid white;
+	font-size:18px;
+}
+
+.tag-table th,td{
+	border: 1px solid white;
+	padding-left:5px;	
+}
+
+.tag-table th{
+	background: #161616;
+}
+
+.error{
+	color:red;
 }
