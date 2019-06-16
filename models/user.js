@@ -8,7 +8,7 @@ const crypto = require('crypto');
 var db = require('./index').mysql;
 var dbbase = require('./dbbase');
 
-function accountRegister(username, password, email, role){
+function accountRegister(username, password, flname, birth, email, role){
 	console.log("pass:" + password);
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
@@ -33,6 +33,8 @@ function accountRegister(username, password, email, role){
 							username: username,
 							password: hash,
 							is_login: 0,
+							flname: flname,
+							birth: birth,
 							email: email,
 							level: -1,
 							token: token,
@@ -50,21 +52,7 @@ function accountRegister(username, password, email, role){
 					});
 				})
 				
-				//resolve(bcrypt.hash("asdsadsa", SALT_ROUNDS));
-				// resolve(generate_token());
 			}
-				// resolve(bcrypt.hash().then((err, hash) =>{
-				// 	generate_token().then(token => {
-				// 		let entity = {
-				// 			username: username,
-				// 			password: hash,
-				// 			level: -1,
-				// 			token: token,
-				// 		}
-
-				// 		dbbase.addtb('account', entity);
-				// 	});
-				// }));
         });
     });
 
@@ -249,11 +237,27 @@ function accountLogin(username, password){
 				console.log(res[0]);
 				let hash = res[0].password;
 				let level = res[0].level;
+				let flname = res[0].flname;
+				let alias = res[0].alias;
+				let premium_expired = res[0].premium_expired;
+				let birth = res[0].birth;
+				let token = res[0].token;
+				let email = res[0].email;
+				let id = res[0].id;
 				let is_login = (new Int16Array(res[0].is_login))[0];
 				console.log("is_login:",is_login);
 				let result = {
 					status : 'success',
-					message : '' 
+					message : '',
+					username: username,
+					alias: alias,
+					premium_expired: premium_expired,
+					flname: flname,
+					level: level,
+					birth : birth,
+					token: token,
+					email: email,
+					id: id,
 				}
 				bcrypt.compare(password, hash).then((match) => {
 					if (match){

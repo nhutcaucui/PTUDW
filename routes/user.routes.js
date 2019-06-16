@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user.model');
 var autoMail = require('../utils/auto_mail');
+var datetime = require('../utils/datetime');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
+var homedb = require('../models/home.model');
 var url = require('url'); 
 var global = require('../global');
 const host = "localhost:8081";
@@ -133,9 +135,11 @@ router.get('/verify', (req, res) => {
 router.post('/register', (req,res)=>{
 	let username = req.body.username;
 	let password = req.body.password;
+	let flname = req.body.firstname + " " + req.body.lastname;
+	let birth = datetime.date2unix(req.body.birthday);
 	let email = req.body.email;
-	console.log("[Register] -", username, password);
-	userdb.accountRegister(username, password, email, -1).then(result => {
+	console.log("[Register] -", username, password, flname, birth, email);
+	userdb.accountRegister(username, password, flname, birth, email, -1).then(result => {
 		//console.log(result);
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
@@ -156,10 +160,27 @@ router.get('/logins', (req, res) => {
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log(result.message);
-			if (global.hot.length === 0)
-			{
 
+			let user = {
+				username: result.username,
+				flname: result.flname,
+				alias: result.alias,
+				level: result.level,
+				premium_expired: result.premium_expired,
+				birth: result.birth,
+				token: result.token,
+				email: result.email,
+				id: result.id,
 			}
+
+			global.users.push(user);
+
+			if (!global.hot)
+			{
+				res.redirect('/');
+				return;
+			}
+			
 			let params = {
 				title: 'Trang chủ',
 				hot: global.hot,
@@ -177,7 +198,7 @@ router.get('/logins', (req, res) => {
 				error: result.message,
 				layout: false,
 			}
-			res.render('login', )
+			res.render('login', params);
 			console.log(result.message, params);
 		}
 	});
@@ -187,6 +208,14 @@ router.get('/logout', (req, res) => {
 	let username = req.query.username;
 	userdb.accountLogout(username).then(result => {
 		console.log(result.message);
+
+		global.removeUser(username);
+
+		if (!global.hot){
+			res.redirect('/');
+			return;
+		}
+
 		let params = {
 			title: 'Trang chủ',
 			hot: global.hot,
