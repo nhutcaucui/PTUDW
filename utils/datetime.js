@@ -12,7 +12,12 @@ function unix2date(unix){
     return date;
 }
 
+function format(date, format){
+    return moment(date).format(format);
+}
+
 module.exports = {
     date2unix : date2unix,
     unix2date : unix2date,
+    format: format,
 }

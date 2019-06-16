@@ -8,7 +8,7 @@ const crypto = require('crypto');
 var db = require('./index').mysql;
 var dbbase = require('./dbbase');
 
-function accountRegister(username, password, flname, birth, email, role){
+function accountRegister(username, password, flname, alias, birthday, email, role){
 	console.log("pass:" + password);
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
@@ -34,7 +34,7 @@ function accountRegister(username, password, flname, birth, email, role){
 							password: hash,
 							is_login: 0,
 							flname: flname,
-							birth: birth,
+							birthday: birthday,
 							email: email,
 							level: -1,
 							token: token,
@@ -69,7 +69,7 @@ function accountResetPassword(username, email, newPass){
 		db.query(query, params, (err, res) => {
 			if (err){
 				throw err;
-			}
+			}	
 
 			if (res.length > 0){
 				bcrypt.hash(newPass, SALT_ROUNDS).then((hash) => {
@@ -240,7 +240,7 @@ function accountLogin(username, password){
 				let flname = res[0].flname;
 				let alias = res[0].alias;
 				let premium_expired = res[0].premium_expired;
-				let birth = res[0].birth;
+				let birthday = res[0].birthday;
 				let token = res[0].token;
 				let email = res[0].email;
 				let id = res[0].id;
@@ -254,7 +254,7 @@ function accountLogin(username, password){
 					premium_expired: premium_expired,
 					flname: flname,
 					level: level,
-					birth : birth,
+					birthday : birthday,
 					token: token,
 					email: email,
 					id: id,
@@ -296,6 +296,19 @@ function accountLogin(username, password){
 				//resolve('Account is not exist');
 			}
 		});
+	});
+}
+
+function logoutAll(){
+	return new Promise((resolve, reject) => {
+		let query = "UPDATE account SET is_login = 0";
+		db.query(query, (err, res) => {
+			if (err){
+				throw err;
+			}
+
+			resolve('Đăng xuất tất cả thành công');
+		})
 	});
 }
 
@@ -404,5 +417,6 @@ module.exports = {
   acoountResetPassword: accountResetPassword,
   accountChangePassword : accountChangePassword,
   userVerify : userVerify,
+  logoutAll: logoutAll,
 }
 

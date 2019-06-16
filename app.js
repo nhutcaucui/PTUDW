@@ -6,6 +6,7 @@ const passport = require('passport');
 const log4js = require('log4js');
 const session = require('express-session');
 const ejs = require('ejs');
+var userdb = require('./models/user');
 var global = require('./global');
 var ejsLayout = require('express-ejs-layouts');
 
@@ -51,39 +52,6 @@ app.get('/', function(req, res) {
 			res.render('home', params);
 		}
 	});
-
-//   var h=homeModel.hot();
-//   var t=homeModel.top();
-//   var n=homeModel.new();
-//   var c=homeModel.cat();
-//   h.then(hrows =>{
-//     t.then(trows =>{
-//       n.then(nrows =>{
-//         c.then(crows =>{
-//           let params = {
-//             title: 'Trang chủ',
-//             hot: hrows,
-//             top: trows,
-//             news: nrows,
-//             cats: crows,
-//           }
-//           global.hot = hrows;
-//           global.top = trows;
-//           global.news = nrows;
-//           global.cats = crows;
-//           res.render('home', params);
-//         }).catch(err => {
-//           console.log(err);
-//         });
-//       }).catch(err => {
-//         console.log(err);
-//       });
-//     }).catch(err => {
-//       console.log(err);
-//     });
-//   }).catch(err => {
-//     console.log(err);
-//   });
     
 });
 
@@ -110,6 +78,10 @@ app.use((error, req, res, next) => {
 app.get('/', (req, res) => {
 	console.log('hi mom');	
 	res.render('home');
+});
+
+userdb.logoutAll().then(result => {
+	console.log(result);
 });
 
 app.listen(8081);

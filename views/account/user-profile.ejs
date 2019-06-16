@@ -28,32 +28,32 @@
              <div id="page-user-profile">
                  <div class='profile-header'>Thông tin cá nhân</div>
                 <div class="detail">
-                     <span>Username: </span>
-                     <span><%= username %></span> 
-                </div>               
-                <div class="detail">
-                        <span>Password: </span><span><!--******--></span> 
-                </div>
-                <div class="detail">
                         <span>Name: </span>
                         <span><%= name %></span> 
                    </div> 
                    <div class="detail">
                         <span>Date of Birth: </span>
-                        <span><%= birth %></span> 
+                        <span><%= birthday %></span> 
                    </div> 
                    <div class="detail">
                         <span>Email: </span>
-                        <span><%= mail %></span> 
+                        <span><%= email %></span> 
                    </div>
                    <div class="detail">
                         <span>Role: </span>
-                        <span><%= role></span> 
+                        <span><%= role%></span> 
                    </div>
+                   <div class="detail">
+                        <span>Premium: </span>
+                         <span><%= premium_expired %></span>
+
+                   </div>
+                   <% if (role === "writer") { %>
                    <div class="detail">
                         <span>Alias: </span>
                         <span><%= alias %></span> 
-                   </div>    
+                   </div>
+                   <% } %>
              </div>
         </div>
 </div>

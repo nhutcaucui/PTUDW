@@ -136,10 +136,10 @@ router.post('/register', (req,res)=>{
 	let username = req.body.username;
 	let password = req.body.password;
 	let flname = req.body.firstname + " " + req.body.lastname;
-	let birth = datetime.date2unix(req.body.birthday);
+	let birthday = datetime.date2unix(req.body.birthday);
 	let email = req.body.email;
-	console.log("[Register] -", username, password, flname, birth, email);
-	userdb.accountRegister(username, password, flname, birth, email, -1).then(result => {
+	console.log("[Register] -", username, password, flname, birthday, email);
+	userdb.accountRegister(username, password, flname, birthday, email, -1).then(result => {
 		//console.log(result);
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
@@ -167,7 +167,7 @@ router.get('/logins', (req, res) => {
 				alias: result.alias,
 				level: result.level,
 				premium_expired: result.premium_expired,
-				birth: result.birth,
+				birthday: result.birthday,
 				token: result.token,
 				email: result.email,
 				id: result.id,
