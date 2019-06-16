@@ -3,6 +3,9 @@ var router = express.Router();
 
 var articleModel= require('../models/article.model.js');
 
+var dt=require('../utils/datetime');
+var moment=require('moment');
+
 router.get('/:id', (req,res)=>{
     var arId = req.params.id;
     var a=articleModel.all(arId);
@@ -15,6 +18,7 @@ router.get('/:id', (req,res)=>{
     a.then(arows =>{
         arows.forEach(row => {
             name= row.header;
+            row.date=moment(dt.unix2date(row.date)).format("DD/MM/YYYY");
         });
         r.then(rrows =>{
             c.then(crows=>{

@@ -34,21 +34,25 @@
                                 <button id="dr-a-confirm" name="confirm" value="accept">Duyệt</button>
                                 <button id="dr-d-confirm" name="confirm" value="deny">Từ chối</button>
                         </form>
-                </div>                
-        <script>
-            document.onload(function(){
-                var t=<%- JSON.stringify(row.tag)%>;
-                var sp;
-                t.forEach(element => {
-                    sp=element.split(" ");
-                });
+                </div>
 
-                for (var i=0; i< sp.length;i++){
-                    var a=document.createElement('a');
-                    a.innerHTML=sp[i];
-                    a.href='#';
-                    document.getElementById("post-tag").appendChild(a);
-                }
-            })
-        </script>
+                <script>
+                    window.onload=function(){
+                        var article=<%- JSON.stringify(article)%>;
+                        var tmp;
+                        var sp;
+                        article.forEach(element => {
+                            tmp=element.tag;
+                            sp=tmp.split(" ");
+                            console.log(sp);
+                        });
+        
+                        for (var i=0; i< sp.length;i++){
+                            var a=document.createElement('a');
+                            a.innerHTML="#"+sp[i];
+                            a.href='#';
+                            document.getElementById("post-tag").appendChild(a);
+                        }
+                    }
+                </script>
         <% })%>

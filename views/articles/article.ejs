@@ -34,7 +34,7 @@
         <div id="da-body" class="da-body">
             <div class="post-header" id="post-header">
                 <h2 class="post-title lg"><%= arow.header%></h2>
-                <i class="far fa-clock"> <%= arow.fDate%></i>
+                <i class="far fa-clock"> <%= arow.date%></i>
             </div>
             <div class="post-abstract" id="post-abstract">		
               <%= arow.abstract%>
@@ -46,7 +46,7 @@
                     </div>
                   </div>
         </div>
-                <div class="post-tag" id="post-tag"><a href="#">#tag1</a><a href="#">#tag2</a><a href="#">#tag3</a></div>
+                <div class="post-tag" id="post-tag"></div>
         </div>
         <% }) %>
         
@@ -111,3 +111,23 @@
             </div> -->
         </div>
         </div>
+
+        <script>
+            window.onload=function(){
+                var article=<%- JSON.stringify(article)%>;
+                var tmp;
+                var sp;
+                article.forEach(element => {
+                    tmp=element.tag;
+                    sp=tmp.split(" ");
+                    console.log(sp);
+                });
+
+                for (var i=0; i< sp.length;i++){
+                    var a=document.createElement('a');
+                    a.innerHTML="#"+sp[i];
+                    a.href='#';
+                    document.getElementById("post-tag").appendChild(a);
+                }
+            }
+        </script>

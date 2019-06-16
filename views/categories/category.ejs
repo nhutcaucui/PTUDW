@@ -12,9 +12,9 @@
                 <div class="listabstract">
                         <%= row.abstract%>
                 </div>
-                <div class="listtag"><a href="#">#tag</a> <a href="#">#tag1</a> <a href="#">#tag2</a> <a href="#">#tag3</a></div>
+                <div class="listtag" id="tag<%=row.ID%>"></div>
                 <div class="listcat"><%= row.subcat%></div>
-                <div class="listdate"><%= row.fDate%></div>
+                <div class="listdate"><%= row.date%></div>
             </div>
             <% }) %>
             <!-- <div class="list-articles" id="list-articles">
@@ -41,3 +41,32 @@
         </div>
         </nav>
         </body>
+
+        <script>
+            window.onload=function(){
+                var arbycat=<%- JSON.stringify(arbycat)%>;
+                var tmp;
+                var sp=[];
+                var id=[];
+                var loop=0;
+                arbycat.forEach(element => {
+                    tmp=element.tag;
+                    id[loop]=element.ID;
+                    sp[loop]=tmp.split(" ");
+                    loop++;
+                });
+
+                for (var i=0; i<= loop;i++){
+                    for(var j=0;j<sp[i].length;j++)
+                    {
+                        var name ="tag" +id[i];
+                    var a=document.createElement('a');
+                    a.innerHTML="#"+sp[i][j];
+                    a.href='#';
+                    document.getElementById(name).appendChild(a);
+                    }
+                }
+            }
+        </script>
+
+        

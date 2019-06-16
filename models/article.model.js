@@ -1,7 +1,7 @@
 var db = require('./dbbase');
 
 function all(id){
-    return db.loaddb(`SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article WHERE ID = ${id}`);
+    return db.loaddb(`SELECT * FROM article WHERE ID = ${id}`);
 }
 
 function relevant(id){
@@ -9,7 +9,7 @@ function relevant(id){
 }
 
 function comment(id){
-    return db.loaddb(`SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM comment WHERE articleID =${id}`);
+    return db.loaddb(`SELECT * FROM comment WHERE articleID =${id}`);
 }
 
 function breadCat(id){
@@ -21,11 +21,11 @@ function breadSubCat(id){
 }
 
 function byCat(id){
-    return db.loaddb(`SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article, category WHERE cat = category.name and category.ID=${id} LIMIT 3`);
+    return db.loaddb(`SELECT a.* FROM article a, category WHERE cat = category.name and category.ID=${id} LIMIT 3`);
 }
 
 function bySubCat(id){
-    return db.loaddb(`SELECT *, DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article, subcategory WHERE subcat = subcategory.name and subcategory.ID=${id} LIMIT 3`);
+    return db.loaddb(`SELECT a.* FROM article a, subcategory WHERE subcat = subcategory.name and subcategory.ID=${id} LIMIT 3`);
 }
 
 module.exports = {

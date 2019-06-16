@@ -1,27 +1,42 @@
 var db = require('./dbbase');
+var dt=require('../utils/datetime');
+var moment=require('moment');
+
 function hot(){
-    return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY date DESC, view DESC  LIMIT 4");
+    return db.loaddb("SELECT * FROM article ORDER BY date DESC, view DESC  LIMIT 4");
 }
 
 function top(){
-    return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY view DESC LIMIT 10");
+    return db.loaddb("SELECT * FROM article ORDER BY view DESC LIMIT 10");
 }
 
 function news(){
-    return db.loaddb("SELECT *,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article ORDER BY fDate DESC LIMIT 10");
+    return db.loaddb("SELECT * FROM article ORDER BY date DESC LIMIT 10");
 }
 
 function cats(){
-    return db.loaddb("SELECT  a.*,DATE_FORMAT(date,'%d/%m/%Y') AS fDate FROM article a INNER JOIN ( SELECT subcat, MAX(VIEW) max_ID FROM article GROUP BY subcat ) b ON  a.subcat = b.subcat AND a.view = b.max_ID");
+    return db.loaddb("SELECT  a.* FROM article a INNER JOIN ( SELECT subcat, MAX(VIEW) max_ID FROM article GROUP BY subcat ) b ON  a.subcat = b.subcat AND a.view = b.max_ID");
 }
 
 function getAll(){
 
     return new Promise((resolve, reject) => {
         hot().then(hrows =>{
+          hrows.forEach(element => {
+            element.date=moment(dt.unix2date(element.date)).format("DD/MM/YYYY");
+          });
             top().then(trows =>{
+              trows.forEach(element => {
+                element.date=moment(dt.unix2date(element.date)).format("DD/MM/YYYY");
+              });
               news().then(nrows =>{
+                nrows.forEach(element => {
+                  element.date=moment(dt.unix2date(element.date)).format("DD/MM/YYYY");
+                });
                 cats().then(crows =>{
+                  crows.forEach(element => {
+                    element.date=moment(dt.unix2date(element.date)).format("DD/MM/YYYY");
+                  });
                   let result = {
                     status: 'success',
                     hot: hrows,
