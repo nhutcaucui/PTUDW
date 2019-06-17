@@ -72,6 +72,8 @@ CREATE TABLE subcategory
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 
+ALTER TABLE article ADD FULLTEXT(header, content, abstract, tag);
+
 INSERT INTO `category` (`name`) VALUE ('Kinh doanh');
 INSERT INTO `category` (`name`) VALUE ('Chính trị');
 INSERT INTO `category` (`name`) VALUE ('Khoa học');
