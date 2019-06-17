@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/user.model');
 var autoMail = require('../utils/auto_mail');
+var datetime = require('../utils/datetime');
+var password = require('../utils/password');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
+var homedb = require('../models/home.model');
 var url = require('url'); 
 var global = require('../global');
 const host = "localhost:8081";
@@ -46,10 +49,18 @@ router.post('/change_password', (req, res) => {
 	let email = req.body.email;
 	let oldPass = req.body.old_password;
 	let newPass = req.body.new_password;
-	let verifyLink = host + '/cmpv?username=' + username + '&email=' + email + '&op=' + oldPass + '&np=' + newPass;
-
-	console.log('[Change password] -', username, email, oldPass, newPass);
-	autoMail.sendMail(email, 'Thay đổi mật khẩu', verifyLink);
+	let otp = req.body.otp;
+	let userIndex = global.getResetIndex(username);
+	console.log(userIndex);
+	console.log('[Change password] -', username, email, oldPass, newPass, otp);
+	console.log(global.reset_password_users[userIndex]);
+	if (global.reset_password_users[userIndex].otp === otp){
+		console.log('[Change password] -', 'Thay đổi mật khẩu thành công');
+	}
+	else{
+		console.log('[Change password] -', 'Thay đổi mật khẩu thất bại');
+	}
+	
 });
 
 router.get('/cmpv', (req, res) => {
@@ -62,7 +73,7 @@ router.get('/cmpv', (req, res) => {
 
 	userdb.accountChangePassword(username, email, old_pass, new_pass).then(result => {
 		console.log(result.message);
-	})
+	});
 });
 
 
@@ -87,6 +98,23 @@ router.post('/user_verify', (req, res) => {
 	userdb.userVerify(username, email).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log("[User verify] -", result.message);
+
+			let otp = password.generateOTP();
+			let reset_user = {
+				username : username,
+				otp : otp,
+			};
+
+			global.reset_password_users.push(reset_user);
+
+			setTimeout(() => {
+				let index = global.getResetIndex(username);
+				global.reset_password_users.splice(index, 1);
+			}, 300000);
+
+			let mailContent = "Your OTP: " + otp;
+			autoMail.sendMail(email, 'Thay đổi mật khẩu', mailContent);
+
 			let params = {
 				title: 'Đổi mật khẩu',
 				phase: 'change_password',
@@ -133,9 +161,11 @@ router.get('/verify', (req, res) => {
 router.post('/register', (req,res)=>{
 	let username = req.body.username;
 	let password = req.body.password;
+	let flname = req.body.firstname + " " + req.body.lastname;
+	let birthday = datetime.date2unix(req.body.birthday);
 	let email = req.body.email;
-	console.log("[Register] -", username, password);
-	userdb.accountRegister(username, password, email, -1).then(result => {
+	console.log("[Register] -", username, password, flname, birthday, email);
+	userdb.accountRegister(username, password, flname, birthday, email, -1).then(result => {
 		//console.log(result);
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
@@ -156,16 +186,34 @@ router.get('/logins', (req, res) => {
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log(result.message);
-			if (global.hot.length === 0)
-			{
 
+			let user = {
+				username: result.username,
+				flname: result.flname,
+				alias: result.alias,
+				level: result.level,
+				premium_expired: result.premium_expired,
+				birthday: result.birthday,
+				token: result.token,
+				email: result.email,
+				id: result.id,
 			}
+
+			global.users.push(user);
+
+			if (!global.hot)
+			{
+				res.redirect('/');
+				return;
+			}
+			
 			let params = {
 				title: 'Trang chủ',
 				hot: global.hot,
 				top: global.top,
 				news: global.news,
 				cats: global.cats,
+				layout: true,
 				username: username,
 			}
 
@@ -177,7 +225,7 @@ router.get('/logins', (req, res) => {
 				error: result.message,
 				layout: false,
 			}
-			res.render('login', params)
+			res.render('login', params);
 			console.log(result.message, params);
 		}
 	});
@@ -187,6 +235,14 @@ router.get('/logout', (req, res) => {
 	let username = req.query.username;
 	userdb.accountLogout(username).then(result => {
 		console.log(result.message);
+
+		global.removeUser(username);
+
+		if (!global.hot){
+			res.redirect('/');
+			return;
+		}
+
 		let params = {
 			title: 'Trang chủ',
 			hot: global.hot,
