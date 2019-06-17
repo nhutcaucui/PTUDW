@@ -1,3 +1,4 @@
+
 <div class="bigcontainer">
 		<div class="cat-manage">
 				<form method="POST" id="cat-form">
@@ -6,14 +7,14 @@
 			
 			<div class="add-cat" id="addcat"> 
 				<input type="text" name="catadd" id="themchuyenmuc">
-				<button id="add-cat" formaction="/add-cat">Thêm</button>
+				<button id="add-cat" type="submit" formaction="/admin/add-cat">Thêm</button>
 			</div>
 			<div class="edt-cat" id="edtcat">
 				<input type="text" name="catedt" id="suachuyenmuc">
-				<button id="edt-cat" formaction="/edt-cat">Sửa</button>
+				<button id="edt-cat" type="submit" formaction="/admin/edt-cat">Sửa</button>
 			</div>
 			<div class="del-cat" id='delcat'>
-				<button id="del-cat" formaction="del-cat">Xóa</button>
+				<button id="del-cat" type="submit" formaction="/admin/del-cat">Xóa</button>
 			</div>
 		</div>
 		<div class="ad-cat-list">
@@ -27,20 +28,20 @@
 		</form>
 		</div>
 		<div class="cat-manage">
-			<form action="POST" id="subcat-form">
+			<form method="POST" id="subcat-form">
 			<div class="admin-cat-head">Quản lý chuyên mục nhỏ</div>
 			<div class="manage-cat-container">
 				
 				<div class="add-cat" id="addsubcat">
 					<input type="text" name="subcatadd" id="themchuyenmuc">
-					<button id="add-subcat">Thêm</button>
+					<button id="add-subcat" type="submit" formaction="/admin/add-subcat">Thêm</button>
 				</div>
 				<div class="edt-cat" id="edtsubcat">
 					<input type="text" name="subcatedt" id="suachuyenmucnho">
-					<button id="edt-subcat">Sửa</button>
+					<button id="edt-subcat" type="submit" formaction="/admin/edt-subcat">Sửa</button>
 				</div>
 				<div class="del-cat" id="delsubcat">
-					<button id="del-subcat">Xóa</button>
+					<button id="del-subcat" type="submit" formaction="/admin/del-subcat">Xóa</button>
 				</div>
 			</div>
 			<div class="ad-cat-list">
@@ -59,26 +60,27 @@
 			</div>			
 		<div class="ad-article-head">Quản lí người dùng</div>
 		<div class="edt-wrt-manage">
+				<form method="POST" id='ew-form'>
 		<div class="admin-edt-wrt-head">Quản lý biên tập viên & phóng viên</div>
 		<div class="manage-edt-wrt-container">
-			<div class="add-edt-wrt">
+			<div class="add-edt-wrt" id="add-edt-wrt">
 				<input type="text" name="username" id="thembtvpv-u" placeholder="Username">
 				<input type="password" name="password" id="thembtvpv-p" placeholder="Password">
-				<button id="add-btn-ew">Thêm</button>
+				<button id="add-btn-ew" type="submit" formaction="/admin/add-ew">Thêm</button>
 			</div>
-			<div class="del-edt-wrt">
-				<button id="del-btn-ew">Xóa</button>
+			<div class="del-edt-wrt" id="del-edt-wrt">
+				<button id="del-btn-ew" type="submit" formaction="/admin/del-ew">Xóa</button>
 			</div>
 		</div>
 		<div class="ad-edt-wrt-list">
-			<select name="slbtvpv" class="edt-wrt" id="role-select" onchange="changeUser('role-select','edtor-wrter-list')">
+			<select name="slew" class="edt-wrt" id="role-select" onchange="changeUser('role-select','edtor-wrter-list')">
 				<option value="Biên tập viên">Biên tập viên</option>
 				<option value="Phóng viên">Phóng viên</option>
 			</select>
 			<br>
 			<input type="text" list="edtor-wrter-list" name="edt-wrt-search">
 			<button><i class="fas fa-search"></i></button>
-			<select name="dsbtvpv" class="edt-wrt-list" id="edtor-wrter-list" size="5">
+			<select name="listew" class="edt-wrt-list" id="edtor-wrter-list" size="5">
 					<% user.forEach(function(row){ %>
 						<% if(row.level==3){ %>
 							<option value="<%=row.username%>"><%=row.username%></option>
@@ -86,22 +88,24 @@
 					<%})%>
 			</select>
 		</div>
+	</form>
 		</div>
 		<div class="reader-manage">
+			<form method="POST" id="reader-form">
 		<div class="admin-reader-head">Quản lý đọc giả</div>
 		<div class="manage-reader-container">			
-			<div class="extend-reader">
-				<button id="add-btn-reader">Gia hạn</button>
+			<div class="extend-reader" id="extend-reader">
+				<button id="ext-btn-reader" type="submit" formaction="/admin/ext-reader">Gia hạn</button>
 			</div>
-			<div class="del-reader">
-				<button id="del-btn-reader">Xóa</button>
+			<div class="del-reader" id="del-reader">
+				<button id="del-btn-reader" type="submit" formaction="/admin/del-reader">Xóa</button>
 			</div>
 		</div>
 		<div class="ad-edt-wrt-list">
 			<input type="text" name="tag-manage-search">
 			<button><i class="fas fa-search"></i></button>
 			<br>
-			<select name="dsnhan" class="ad-reader-lst" size="5">
+			<select name="listreader" class="ad-reader-lst" size="5">
 				<% user.forEach(function(row){ %>
 					<% if(row.level==1){ %>
 						<option value="<%=row.username%>"><%=row.username%></option>
@@ -109,29 +113,36 @@
 				<%})%>
 			</select>
 		</div>
+	</form>
 		</div>
 		<div class="asignment-manage">
+		<form method="POST" id="asign-form">
 		<div class="admin-asign-head">Phân công biên tập viên</div>
 		<div class="ad-asign">
 			<input type="text" name="asign-manage-search">
 			<button><i class="fas fa-search"></i></button>
 			<br>
-			<select name="dsnhan" class="ad-asign-lst" size="5">
-
+			<select name="edtlist" class="ad-asign-lst" size="5">
+					<% user.forEach(function(row){ %>
+						<% if(row.level==3){ %>
+							<option value="<%=row.username%>"><%=row.username%></option>
+						<%}%>
+					<%})%>
 			</select>
 		</div>			
-			<div class="asign-edt">
-				<button id="asign-btn">Phân công</button>
+			<div class="asign-edt" id="asign-edt">
+				<button id="asign-btn" type="submit" formaction="/admin/asign">Phân công</button>
 			</div>
 		<div class="ad-asign-cat-list">
-			<select name="dschuyenmuc" class="cat-asign" size="5">
+			<select name="edtcatlist" class="cat-asign" size="5">
 					<%cat.forEach(function(row){%>
 						<option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
 						<%})%>
 			</select>
 		</div>
+		</form>
 		</div>
-		<div class="ad-article-head">Quản lí người dùng</div>
+		<div class="ad-article-head">Quản lí Tag</div>
 		<div class="tag-manage">
 			<table class="tag-table">
 				<tr>
@@ -224,148 +235,6 @@
 	</script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-	<script>
-		$('#add-cat').click(function(){             
-    	$("#cat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#addcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				catadd: {
-					required: true,
-				}
-			},
-			messages:{
-				catadd:{
-					required: 'Vui lòng nhập tên chuyên mục',
-				}
-			}
-    	});             
-}); 
-
-$('#edt-cat').click(function(){             
-    	$("#cat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#edtcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				catedt: {
-					required: true,
-				},
-				cat: {
-					required:true
-				},
-			},
-			messages:{
-				catedt:{
-					required: 'Vui lòng nhập tên chuyên mục',
-				},
-				cat: {
-					required: 'Vui lòng chọn chuyên mục'
-				},
-			}
-    	});             
-}); 
-
-$('#del-cat').click(function(){             
-    	$("#cat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#delcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				cat: {
-					required:true
-				},
-			},
-			messages:{
-				cat: {
-					required: 'Vui lòng chọn chuyên mục'
-				},
-			}
-    	});             
-}); 
-
-$('#add-subcat').click(function(){             
-    	$("#subcat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#addsubcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				subcatadd:{
-					required:true,
-				},
-				sccat: {
-					required:true,
-				},
-			},
-			messages:{
-				subcatadd:{
-					required: 'Vui lòng nhập chuyên mục nhỏ cần thêm',
-				},
-				sccat: {
-					required: 'Vui lòng chọn chuyên mục lớn'
-				},
-			}
-    	});             
-}); 
-
-$('#edt-subcat').click(function(){             
-    	$("#subcat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#edtsubcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				subcatedt:{
-					required:true,
-				},
-				sccat: {
-					required:true,
-				},
-				scsubcat: {
-					required:true,
-				},
-			},
-			messages:{
-				subcatedt:{
-					required: 'Vui lòng nhập chuyên mục nhỏ cần sửa',
-				},
-				sccat: {
-					required: 'Vui lòng chọn chuyên mục lớn',
-				},
-				scsubcat: {
-					required: 'Vui lòng chọn chuyên mục nhỏ',
-				},
-			}
-    	});             
-}); 
-
-$('#del-subcat').click(function(){             
-    	$("#subcat-form").validate({
-			errorPlacement: function(error, element) {
-     			error.appendTo('#delsubcat');
-			   },
-			   errorElement: 'div',
-			rules:{
-				sccat: {
-					required:true,
-				},
-				scsubcat: {
-					required:true,
-				},
-			},
-			messages:{
-				sccat: {
-					required: 'Vui lòng chọn chuyên mục lớn',
-				},
-				scsubcat: {
-					required: 'Vui lòng chọn chuyên mục nhỏ',
-				},
-			}
-    	});             
-}); 
+	<script src="/public/manage.js">
+		
 	</script>

@@ -177,7 +177,7 @@ router.get('/logins', (req, res) => {
 				error: result.message,
 				layout: false,
 			}
-			res.render('login', )
+			res.render('login', params)
 			console.log(result.message, params);
 		}
 	});

@@ -8,6 +8,7 @@ const session = require('express-session');
 const ejs = require('ejs');
 var global = require('./global');
 var ejsLayout = require('express-ejs-layouts');
+var flash=require('connect-flash')
 
 const app = express();
 
@@ -24,7 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayout);
-app.use(require('./mdw/local.mdw'));
+app.use(require('./mdw/localcat.mdw'));
+app.use(require('./mdw/localsubcat.mdw'));
+app.use(flash());
 
 app.set('view engine', 'ejs');
 app.set("layout extractScripts", true);

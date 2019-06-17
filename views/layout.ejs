@@ -45,35 +45,19 @@
                 <li><a href="#">¯\_(ツ)_/¯</a></li>
             </ul> -->
 
-            <%  lcCategories.forEach(function(row, index) { %>
-                <% if(index > 0) { %>
-                <% if(row.catName != lcCategories[index-1].catName) { %>
-            <li><a href="/category/<%= row.catID %>"><%= row.catName %></a>
+            <%  lcCategories.forEach(function(cat) { %>
+            <li><a href="/category/<%= cat.ID %>"><%= cat.name %></a>
             <div class="dropdown-content">
                 <ul>
-                <%  lcCategories.forEach(function(subcat) { %>
-                    <% if(subcat.belongto == row.catID) { %>                     
-                      <li><a href="/category/<%= row.catID %>/<%= subcat.subID %>"><%= subcat.subName %></a></li>    	
-                      <% } %>
-                      <%  }) %>			
+                <%  lcSubCategories.forEach(function(subcat) { %>
+                    <% if(subcat.belongto == cat.ID) { %>                     
+                      <li><a href="/category/<%= cat.ID %>/<%= subcat.ID %>"><%= subcat.name %></a></li>    	
+                    <% } %>
+                <%  }) %>			
                   </ul>
             </div>
             </li>
-            <%  } %>
-            <%  } %>
-            <%  if (index <= 0) { %>
-                <li><a href="/category/<%= row.catID %>"><%= row.catName %></a>
-                    <div class="dropdown-content">
-                        <ul>
-                                <%  lcCategories.forEach(function(subcat) { %>
-                                    <% if(subcat.belongto == row.catID) { %>                     
-                                      <li><a href="/category/<%= row.catID %>/<%= subcat.subID %>"><%= subcat.subName %></a></li>    	
-                                      <% } %>
-                                      <%  }) %>			
-                          </ul>
-                    </div>
-                    </li>
-                    <% } %>
+
             <%  }) %>
             
             <% if (!this.username) { %>

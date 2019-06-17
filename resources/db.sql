@@ -17,6 +17,7 @@ CREATE TABLE account
     `premium_expired` INT,
     `token` VARCHAR(100),
     `email` VARCHAR(100),
+    `asign` VARCHAR(50),
     `ID` INT AUTO_INCREMENT PRIMARY KEY
 );
 

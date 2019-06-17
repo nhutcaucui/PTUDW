@@ -68,10 +68,23 @@ function deletetb(tableName, idField, id){
     });
 }
 
+function customupdatetb(sql, entity){
+  return new Promise((resolve, reject) => {
+    db.query(sql, entity, (error, value) => {
+      if (error)
+        reject(error);
+      else {
+        resolve(value.changedRows);
+      }
+    });
+  });
+}
+
 module.exports ={
     loaddb: loaddb,
     updatetb: updatetb,
     deletetb: deletetb,
     addtb: addtb,
     updatetbbyid:updatetbbyid,
+    customupdatetb:customupdatetb,
 }

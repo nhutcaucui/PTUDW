@@ -75,6 +75,7 @@
 	color: white;
 	background-color: black;
 	border: 1px solid white;
+	overflow-y: auto !important;
 }
 
 .cat-manage, .edt-wrt-manage, .reader-manage,.asignment-manage{
@@ -150,10 +151,10 @@
 }
 
 .asign-edt{
-	width: 20%;
+	width: 34%;
 	vertical-align: top;
 	display: inline-block;
-	margin-left: 35px;
+	
 }
 
 .asign-edt button
@@ -163,6 +164,7 @@
 	height: 20px;
 	margin-top: 19px;
 	border-radius: 5px;
+	margin-left: 54px;
 }
 
 .cat-box{
@@ -173,6 +175,7 @@
 	color: white;
 	background-color: black;
 	border: 1px solid white;
+	overflow-y: auto !important;
 }
 
 .manage-cat-container{
