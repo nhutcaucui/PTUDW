@@ -33,7 +33,6 @@ function getProfile(username){
                     premium : premium,
                     email : email,
                 };
-                
                 if (is_login === 1){
                     result.message = 'Lấy thông tin thành công';
                 }
@@ -74,6 +73,10 @@ function accountPremium(username, unix){
                     status: 'success',
                     message: '',
                 };
+
+                if (!datetime.isValid(expired)){
+                    expired = datetime.date2unix(new Date());
+                }
 
                 if (expired > unix){
                     expired = expired + sevenday;

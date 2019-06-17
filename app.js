@@ -80,9 +80,10 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
-userdb.logoutAll().then(result => {
-	console.log(result);
-});
+	// userdb.logoutAll().then(result => {
+	// 	console.log(result);
+	// });
+
 
 app.listen(8081);
 

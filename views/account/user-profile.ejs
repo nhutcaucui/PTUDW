@@ -27,11 +27,11 @@
                 </div>
              <div id="page-user-profile">
                  <div class='profile-header'>Thông tin cá nhân</div>
-                <div class="detail">
+                <div class="detail" onclick="detailClick('update_name')">
                         <span>Name: </span>
                         <span><%= name %></span> 
                    </div> 
-                   <div class="detail">
+                   <div class="detail" onclick="detailClick('update_birthday')">
                         <span>Date of Birth: </span>
                         <span><%= birthday %></span> 
                    </div> 
@@ -43,17 +43,132 @@
                         <span>Role: </span>
                         <span><%= role%></span> 
                    </div>
-                   <div class="detail">
+                   <div class="detail" onclick="detailClick('update_premium')">
                         <span>Premium: </span>
                          <span><%= premium_expired %></span>
-
+                         <i class="fas fa-arrow-up"></i>
                    </div>
                    <% if (role === "writer") { %>
                    <div class="detail">
                         <span>Alias: </span>
-                        <span><%= alias %></span> 
+                        <span><%= alias %></span>
                    </div>
                    <% } %>
              </div>
         </div>
 </div>
+
+<div id="modal_updateName" class="modal">
+          <!-- Modal content -->
+     <div class="modal-content">
+          <span class="close">&times;</span>
+          <form name="update" method="POST" action="profile/update_name" onsubmit="return validateForm()">
+               <input name="username" value="<%= username %>" type="text" placeholder="First Name" required hidden></p>
+               <p><i class="fas fa-user"></i><input name="firstname" type="text" placeholder="First Name" required></p>
+               <p><i class="fas fa-user"></i><input name="lastname" type="text" placeholder="Last Name" required></p>
+               <p><input type="submit" value="Cập nhật"></p>
+          </form>
+
+     </div>
+</div>
+
+<div id="modal_updateBirthday" class="modal">
+          <!-- Modal content -->
+     <div class="modal-content">
+          <span class="close">&times;</span>
+          <form name="update" method="POST" action="profile/update_birthday" onsubmit="return validateForm()">
+               <input name="username" value="<%= username %>" type="text" placeholder="First Name" required hidden></p>
+               <p><i class="fas fa-user"></i><input name="birthday" type="date"  required></p>
+               <p><input type="submit" value="Cập nhật"></p>
+          </form>
+
+     </div>
+</div>
+
+<div id="modal_updateAlias" class="modal">
+          <!-- Modal content -->
+     <div class="modal-content">
+          <span class="close">&times;</span>
+          <form name="update" method="POST" action="profile/update_alias" onsubmit="return validateForm()">
+               <input name="username" value="<%= username %>" type="text" placeholder="First Name" required hidden></p>
+               <p><i class="fas fa-user"></i><input name="alias" type="text" placeholder="Alias" required></p>
+               <p><input type="submit" value="Cập nhật"></p>
+          </form>
+
+     </div>
+</div>
+
+<div id="modal_updatePremium" class="modal">
+          <!-- Modal content -->
+     <div class="modal-content">
+          <span class="close">&times;</span>
+          <form name="update" method="POST" action="profile/update_premium" onsubmit="return validateForm()">
+               <input name="username" value="<%= username %>" type="text" placeholder="First Name" required hidden></p>
+               <input name="date" value="<%= premium_expired %>" type="text" hidden>
+               <datalist name="packages" required>
+                    <option value="7">7 ngày</option>
+                    <option value="30">30 ngày</option>
+               </datalist>
+               <p><input type="submit" value="Mua"></p>
+          </form>
+
+     </div>
+</div>
+
+<script>
+     // Get the modal
+var modalName = document.getElementById("modal_updateName");
+var modalBirthday = document.getElementById("modal_updateBirthday");
+var modalAlias = document.getElementById("modal_updateAlias");
+var modalPremium = document.getElementById("modal_updatePremium");
+
+var span = document.getElementsByClassName("close");
+
+for (let loop = 0; loop < span.length; loop++){
+     span[loop].onclick = function (){
+          modalAlias.style.display = 'none';
+          modalBirthday.style.display = 'none';
+          modalName.style.display = 'none';
+          modalPremium.style.display = 'none';
+     }
+}
+
+function detailClick(mode){
+     this.mode = mode;
+
+     if (this.mode === "update_alias"){
+          modalAlias.style.display = "block";
+     }
+
+     if (this.mode === "update_name"){
+          modalName.style.display = "block";
+     }
+
+     if (this.mode === "update_birthday"){
+          modalBirthday.style.display = "block";
+     }
+
+     if (this.mode === "update_premium"){
+          modalPremium.style.display = "block";
+     }
+
+     alert(this.mode);
+}
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+
+
+function validateForm(){
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+          modalAlias.style.display = 'none';
+          modalBirthday.style.display = 'none';
+          modalName.style.display = 'none';
+  }
+}
+</script>

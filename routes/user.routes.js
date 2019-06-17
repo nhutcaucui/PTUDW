@@ -3,6 +3,7 @@ var router = express.Router();
 var userModel = require('../models/user.model');
 var autoMail = require('../utils/auto_mail');
 var datetime = require('../utils/datetime');
+var password = require('../utils/password');
 var bcrypt = require('bcryptjs');
 var userdb = require('../models/user');
 var homedb = require('../models/home.model');
@@ -48,10 +49,18 @@ router.post('/change_password', (req, res) => {
 	let email = req.body.email;
 	let oldPass = req.body.old_password;
 	let newPass = req.body.new_password;
-	let verifyLink = host + '/cmpv?username=' + username + '&email=' + email + '&op=' + oldPass + '&np=' + newPass;
-
-	console.log('[Change password] -', username, email, oldPass, newPass);
-	autoMail.sendMail(email, 'Thay đổi mật khẩu', verifyLink);
+	let otp = req.body.otp;
+	let userIndex = global.getResetIndex(username);
+	console.log(userIndex);
+	console.log('[Change password] -', username, email, oldPass, newPass, otp);
+	console.log(global.reset_password_users[userIndex]);
+	if (global.reset_password_users[userIndex].otp === otp){
+		console.log('[Change password] -', 'Thay đổi mật khẩu thành công');
+	}
+	else{
+		console.log('[Change password] -', 'Thay đổi mật khẩu thất bại');
+	}
+	
 });
 
 router.get('/cmpv', (req, res) => {
@@ -64,7 +73,7 @@ router.get('/cmpv', (req, res) => {
 
 	userdb.accountChangePassword(username, email, old_pass, new_pass).then(result => {
 		console.log(result.message);
-	})
+	});
 });
 
 
@@ -89,6 +98,23 @@ router.post('/user_verify', (req, res) => {
 	userdb.userVerify(username, email).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
 			console.log("[User verify] -", result.message);
+
+			let otp = password.generateOTP();
+			let reset_user = {
+				username : username,
+				otp : otp,
+			};
+
+			global.reset_password_users.push(reset_user);
+
+			setTimeout(() => {
+				let index = global.getResetIndex(username);
+				global.reset_password_users.splice(index, 1);
+			}, 300000);
+
+			let mailContent = "Your OTP: " + otp;
+			autoMail.sendMail(email, 'Thay đổi mật khẩu', mailContent);
+
 			let params = {
 				title: 'Đổi mật khẩu',
 				phase: 'change_password',
@@ -187,6 +213,7 @@ router.get('/logins', (req, res) => {
 				top: global.top,
 				news: global.news,
 				cats: global.cats,
+				layout: true,
 				username: username,
 			}
 

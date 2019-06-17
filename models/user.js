@@ -161,7 +161,7 @@ function userVerify(username, email){
 
 				if (reg_email === email){
 					result.status = 'success';
-					status.message = 'Hợp lệ';
+					result.message = 'Hợp lệ';
 				}
 				else{
 					result.status = 'failed';

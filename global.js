@@ -10,6 +10,17 @@ var tag_manager = {
 };
 
 var users = [];
+var reset_password_users = [];
+
+function getResetIndex(username){
+    for (let loop = 0; loop < reset_password_users.length; loop++){
+        if (reset_password_users[loop].username === username){
+            return loop;
+        }
+    }
+
+    return -1;
+}
 
 function getUserIndex(username){
     let index = 0;
@@ -38,6 +49,8 @@ module.exports = {
     news: news,
     cats: cats,
     users: users,
+    reset_password_users: reset_password_users,
     getUserIndex: getUserIndex,
+    getResetIndex: getResetIndex,
     removeUser: removeUser,
 }
