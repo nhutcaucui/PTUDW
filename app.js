@@ -10,6 +10,7 @@ var userdb = require('./models/user');
 var global = require('./global');
 var ejsLayout = require('express-ejs-layouts');
 var flash=require('connect-flash')
+var cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -29,7 +30,8 @@ app.use(ejsLayout);
 app.use(require('./mdw/localcat.mdw'));
 app.use(require('./mdw/localsubcat.mdw'));
 app.use(require('./mdw/localuser.mdw'))
-app.use(flash());
+app.use(cookieParser());
+require('./mdw/session')(app);
 
 app.set('view engine', 'ejs');
 app.set("layout extractScripts", true);

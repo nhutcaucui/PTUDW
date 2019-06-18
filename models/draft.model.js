@@ -7,7 +7,12 @@ function all(cat){
 function preview(id){
     return db.loaddb(`SELECT * FROM article_pending WHERE ID = ${id}`);
 }
+
+function getAsign(username){
+    return db.loaddb(`SELECT asign FROM account WHERE username  = '${username}'`);
+}
 module.exports = {
     all:all,
-    preview: preview
+    preview: preview,
+    getAsign:getAsign,
 }

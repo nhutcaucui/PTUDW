@@ -33,7 +33,7 @@ router.get('/edit/:id', (req,res)=>{
       c.then(crow=>{                                  
              sc.then(loop=>{
                a.then(arow=>{
-                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '', aredit:arow, edit:true};                 
+                var objects={title: 'Sửa bài viết', cat:crow, subcat:loop, username: '', aredit:arow, edit:true};                 
                 res.render('writer/new-article', objects);
                }).catch(err => {
                 console.log(err);
@@ -59,22 +59,22 @@ router.get('/edit/:id', (req,res)=>{
   var upload = multer({ storage:storage })
 
 router.route("/new").post(upload.single("image"),(req,res)=>{  
+  var ID = writerModel.getIdWithUsername(req.session.username);
+  ID.then(rows=>{
+    rows.forEach(row=>{
     let header=req.body.header;
     let content=req.body.content;
     let abstract=req.body.abstract;
     let image='/public/imgs/' + req.file.filename;
     let cat=req.body.cat;
     let subcat=req.body.subcat;
+    let writerId= row.ID;
     let tag=req.body.tag;
-    if(typeof tag == "undefined") {
-      tag='';
-    }
-    console.log(tag);
-    let writerId= 1//account.id;
 
-    newAr.addPending(header,content,abstract,image,cat,subcat,tag,writerId);
+    newAr.addPending(header,content,abstract,image,cat,subcat,writerId,tag);
 
     res.redirect("/");
+  })});
 })
 
 router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
@@ -82,35 +82,52 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
     var i=writerModel.getImageDir(req.params.id)
     i.then(irow=>{
       irow.forEach(element => {
-        fs.unlink('../..' + element.image,(err) => {
+        fs.unlink('.'+element.image,(err) => {
           if (err) throw err;
+          console.log('.'+element.image);
           console.log('deleted');
         });
       });
     }).catch(err => {
       console.log(err);
-    });                 
+    }); 
     
-    let header=req.body.header;
-    let content=req.body.content;
-    let abstract=req.body.abstract;
-    let image='/public/imgs/' + req.file.filename;
-    let cat=req.body.cat;
-    let subcat=req.body.subcat;
-    let writerId= 1//account.id;
+    var ID = writerModel.getIdWithUsername(req.session.username);
+    ID.then(rows=>{
+      rows.forEach(row=>{
+      let header=req.body.header;
+      let content=req.body.content;
+      let abstract=req.body.abstract;
+      let image='/public/imgs/' + req.file.filename;
+      let cat=req.body.cat;
+      let subcat=req.body.subcat;
+      let writerId= row.ID;
+      let tag=req.body.tag;
 
     newAr.updatePending(header,content,abstract,image,cat,subcat,writerId,tag,req.params.id);
 
     res.redirect("/");
+      })
+    }).catch(err => {
+      console.log(err);
+    });   
 })
 
 router.get('/my-article', (req,res)=>{
-    var a=writerModel.all(1);
+  var ID = writerModel.getIdWithUsername(req.session.username);
+  ID.then(rows=>{
+    rows.forEach(row=>{
+      var a=writerModel.all(row.ID);
     a.then(row=>{
         res.render('writer/my-article', {title: 'Bài viết của tôi', pending: row});
     }).catch(err => {
         console.log(err);
       });
+    })
+  }).catch(err => {
+    console.log(err);
+  });
+    
     
 })
 

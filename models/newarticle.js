@@ -28,9 +28,10 @@ function updatePending(header,content,abstract,image,cat,subcat,writerid,tag,id)
         subcat: subcat,
         writerId: writerid,
         tag:tag,
-        state:0,
     }
-    dbbase.updatetb('article_pending',entity,id, entity);
+    var ID=id;
+    var sql=`UPDATE article_pending SET ? WHERE ID=${ID}`
+    dbbase.customupdatetb(sql, entity);
 }
 
 module.exports={
