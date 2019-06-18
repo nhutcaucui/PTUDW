@@ -15,7 +15,7 @@ function news(){
 }
 
 function cats(){
-    return db.loaddb("SELECT  a.* FROM article a INNER JOIN ( SELECT subcat, MAX(VIEW) max_ID FROM article GROUP BY subcat ) b ON  a.subcat = b.subcat AND a.view = b.max_ID");
+    return db.loaddb("SELECT  a.* FROM article a JOIN ( SELECT subcat, MAX(date) max_date FROM article GROUP BY subcat ) b ON  a.subcat = b.subcat AND a.date = b.max_date GROUP BY subcat LIMIT 10");
 }
 
 function getAll(){

@@ -1,6 +1,7 @@
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
-  ['image','video']       // toggled buttons
+  ['image','video'],
+  [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }]       // toggled buttons
 ];
 
 var quill = new Quill('#quill-body', {
