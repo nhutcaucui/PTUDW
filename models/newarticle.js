@@ -1,7 +1,7 @@
 var db = require('./index').mysql;
 var dbbase = require('./dbbase');
 
-function addPending(header,content,abstract,image,cat,subcat,writerid,tag){
+function addPending(header,content,abstract,image,cat,subcat,writerid,tag,premium){
     console.log(header,content,abstract,image,cat,subcat,writerid,tag);
     let entity = {
         header: header,
@@ -13,11 +13,12 @@ function addPending(header,content,abstract,image,cat,subcat,writerid,tag){
         writerId: writerid,
         tag:tag,
         state:0,
+        premium:premium,
     }
     dbbase.addtb('article_pending', entity);
 }
 
-function updatePending(header,content,abstract,image,cat,subcat,writerid,tag,id){
+function updatePending(header,content,abstract,image,cat,subcat,writerid,tag,premium,id){
     console.log(header,content,abstract,image,cat,subcat,writerid,tag,id);
     let entity = {
         header: header,
@@ -28,6 +29,7 @@ function updatePending(header,content,abstract,image,cat,subcat,writerid,tag,id)
         subcat: subcat,
         writerId: writerid,
         tag:tag,
+        premium:premium,
     }
     var ID=id;
     var sql=`UPDATE article_pending SET ? WHERE ID=${ID}`

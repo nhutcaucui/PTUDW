@@ -41,6 +41,11 @@
     border: 1px solid #888;
     width: 80%;
   }
+
+  .modal-content input[type="submit"]{
+    float: none !important;
+    border:none;
+  }
   
   /* The Close Button */
   .close {

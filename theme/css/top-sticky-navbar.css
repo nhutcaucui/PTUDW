@@ -64,6 +64,16 @@
   background-color: #ddd;
 }
 
+.dropdown-content button {
+  border:none;
+  background-color: #333;
+  z-index: 2;
+  height: 100%;
+  color: white;
+  font-size: 40px;
+  margin-top: 10px;
+}
+
 #navbar li:hover div {
   opacity: 1;
   visibility: visible;
@@ -107,7 +117,18 @@
     text-align: center;
 }
 
+#user-icon:hover div{
+  opacity: 1;
+  visibility: visible;
+}
+
 .active{
   background: #ddd;
   color: #000;
+}
+#user-icon .dropdown-content{
+  margin-left: -10px;
+}
+#user-icon a{
+  padding: 5px !important;
 }

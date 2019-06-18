@@ -33,7 +33,7 @@
                                 <input hidden name='subcat' value="<%=row.subcat%>">
                                 <input hidden name='tag' value="<%=row.tag%>">
                                 <input hidden name='writerid' value="<%=row.writerId%>">
-                               
+                                <input hidden id="check" name="premium" type="checkbox" value="premium" <%if(row.premium){%>checked<%}%>>
                                 <button id="dr-a-confirm" name="confirm" value="accept">Duyệt</button>
                                 <button id="dr-d-confirm" name="confirm" value="deny">Từ chối</button>
                               

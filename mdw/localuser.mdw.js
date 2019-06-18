@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
-    if (req.username) {
-      res.locals.isAuthenticated = true;
-      res.locals.authUser = req.username;
+    if(req.user){
+      res.locals.isAuthed=true;
+      res.locals.localuserName=req.user;
     }
-    next();
+  next();
   }

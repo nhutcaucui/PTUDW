@@ -43,6 +43,10 @@
                 <span>Gán nhãn:</span>
                 <input type="text" name="tag" placeholder="tag1 tag2 tag3" value="<%=rows.tag%>">
             </div>
+            <div class="new-pic">
+                    <input id="check" name="premium" type="checkbox" value="premium" <%if(rows.premium){%>checked<%}%>><span> Premium</span>                            
+            </div>
+
             <button class="article-submit" id="article-submit">Sửa bài viết</button>
         </form>
         <%})%>
@@ -84,6 +88,9 @@
                 <div class="new-tag">
                     <span>Gán nhãn:</span>
                     <input type="text" name="tag" placeholder="tag1 tag2 tag3">
+                </div>
+                <div class="new-pic">
+                        <input id="check" name="premium" type="checkbox" value="premium"><span> Premium</span>                            
                 </div>
                 <button class="article-submit" id="article-submit">Tạo bài viết</button>
             </form>
