@@ -40,14 +40,15 @@ function countBySubCat(id){
 function search(matchs, againts){
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE MATCH(?) AGAINTS(?)";
-        let match = '';
-        let againt = '';
+        let match = matchs[0];
+        let againt = againts[0];
 
         for (let loop = 1; loop < matchs.length; loop++){
+            match = match + ',' + matchs[loop];
         }
 
         for (let loop = 1; loop < againts.length; loop++){
-
+            againt = againt + ',' + againts[loop];
         }
 
         let params = [match, againt];
@@ -58,7 +59,7 @@ function search(matchs, againts){
             }
 
             if (res.length > 0){
-
+                console.log(res);
             }
         });
     });
