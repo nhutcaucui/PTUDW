@@ -7,14 +7,22 @@ var manage=require('../../models/editor');
 var global=require('../../global');
 
 router.get('/drafts', (req,res)=>{
-    var a=draftModel.all('');
+    var asign=draftModel.getAsign(req.session.username);
+    console.log(req.session.username);
+    asign.then(rows=>{
+        rows.forEach(row=>{
+    var a=draftModel.all(row.asign);
 
     a.then(row=>{
         res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
     }
     ).catch(err => {
         console.log(err);
-      });   
+      }); 
+    })
+    }).catch(err => {
+        console.log(err);
+      });     
 })
 
 router.get('/drafts/:id', (req,res)=>{
@@ -38,7 +46,7 @@ router.post('/drafts/:id', (req,res)=>{
         let cat=req.body.cat;
         let subcat=req.body.subcat;
         let tag=req.body.tag;
-        let writerId= 1//account.id;
+        let writerId= req.body.writerid
 
         manage.passAndPublic(header,content,abstract,image,cat,subcat,writerId,tag,id);
     } 

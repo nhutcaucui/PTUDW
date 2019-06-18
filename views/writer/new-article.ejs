@@ -12,7 +12,7 @@
             </div>
             <div class="new-cat">
                 <span>Chuyên mục lớn:</span>
-                <select name="cat" id="chuyenmuc" onchange="populate(this.id,'chuyenmucnho')">
+                <select name="cat" id="chuyenmuc" onchange="populate(this.id,'chuyenmucnho')"">
                     <option value=""></option>
                     <% cat.forEach(function(row){%>
                     <option id="<%=row.ID%>" value="<%=row.name%>"><%=row.name%></option>
@@ -32,7 +32,7 @@
                     </div>
             <div class="new-abstract">
                 <span>Tóm tắt:</span>
-                <textarea name="abstract" id="tomtat" value="<%=rows.abstract%>"></textarea>
+                <textarea name="abstract" id="tomtat"><%=rows.abstract%></textarea>
             </div>
             <div class="new-body">
             <span>Nội dung:</span>
@@ -165,8 +165,11 @@ function populate(s1,s2){
     <%aredit.forEach(function(row){%>
     <script>
         $( document ).ready(function() {
-            $("chuyenmuc select").val("<%=row.cat%>");
-            $("chuyenmucnho select").val("<%=row.subcat%>");
+            $("#chuyenmuc").val("<%=row.cat%>");
+            populate("chuyenmuc","chuyenmucnho");           
+            $("#chuyenmucnho").val("<%=row.subcat%>");
+            var markup=$('#content', '#new-article-form').val();
+            $('#ql-editor', '#new-article-form').html(markup);
         });
     </script>
     <%})%>

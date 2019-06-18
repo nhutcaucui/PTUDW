@@ -182,6 +182,7 @@ router.post('/register', (req,res)=>{
 router.get('/logins', (req, res) => {
 	let username = req.query.username;
 	let password = req.query.password;
+	req.session.username= username;
 	console.log("[Login] -", username, password);
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
@@ -216,7 +217,7 @@ router.get('/logins', (req, res) => {
 				layout: true,
 				username: username,
 			}
-
+			
 			res.render('home', params);
 		}
 		else{
@@ -225,6 +226,7 @@ router.get('/logins', (req, res) => {
 				error: result.message,
 				layout: false,
 			}
+			
 			res.render('login', params);
 			console.log(result.message, params);
 		}
@@ -233,6 +235,7 @@ router.get('/logins', (req, res) => {
 
 router.get('/logout', (req, res) => {
 	let username = req.query.username;
+	req.session.destroy();
 	userdb.accountLogout(username).then(result => {
 		console.log(result.message);
 
@@ -251,7 +254,6 @@ router.get('/logout', (req, res) => {
 			cats: global.cats,
 			username: '',
 		}
-
 		res.render('home', params);
 	});
 });

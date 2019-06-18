@@ -32,7 +32,6 @@ $('#new-article-form').submit(function() {
   }
   else{
 var markup = $('#ql-editor', '#new-article-form').html();
-console.log(markup);
 $('#content', '#new-article-form').val( markup );
   }
 });

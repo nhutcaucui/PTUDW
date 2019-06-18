@@ -20,10 +20,15 @@ function getImageDir(id){
     return db.loaddb(`SELECT image FROM article_pending WHERE ID =${id}`);
 }
 
+function getIdWithUsername(username){
+    return db.loaddb(`SELECT ID FROM account WHERE username ='${username}'`);
+}
+
 module.exports={
     all: all,
     getCat: getCat,
     getSubCat:getSubCat,
     getAr:getAr,
     getImageDir:getImageDir,
+    getIdWithUsername:getIdWithUsername,
 }
