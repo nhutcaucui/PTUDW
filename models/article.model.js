@@ -39,7 +39,7 @@ function countBySubCat(id){
 
 function search(matchs, againts){
     return new Promise((resolve, reject) => {
-        let query = "SELECT * FROM account WHERE MATCH(?) AGAINTS(?)";
+        let query = "SELECT * FROM article WHERE MATCH(header) AGAINST('123')";
         let match = matchs[0];
         let againt = againts[0];
 
@@ -51,15 +51,30 @@ function search(matchs, againts){
             againt = againt + ',' + againts[loop];
         }
 
-        let params = [match, againt];
+        let params = [againts, againts, againts];
 
         db.query(query, params, (err, res) => {
             if (err){
                 throw err;
             }
+            
+            let result ={
+                status: 'success',
+                message: '',
+                articles: '',
+            }
 
             if (res.length > 0){
-                console.log(res);
+                result.message = 'Tìm kiếm thành công';
+                result.articles = res;
+
+                resolve(result);
+            }
+            else{
+                result.status = 'failed';
+                result.message = 'Không tìm thấy kết quả nào';
+
+                resolve(result);
             }
         });
     });
