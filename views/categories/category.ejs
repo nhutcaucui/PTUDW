@@ -1,10 +1,5 @@
        <div class="bigcontainer">
-            <div class="listlabel">Danh sách bài viết</div>	
-            <div class="tagsearch">
-            Nhập tag: 
-            <input type="" name="taginput" id="taginput">
-            <button id="tagbutton">Lọc</button>
-        
+            <div class="listlabel">Danh sách bài viết</div>	     
             <% arbycat.forEach(function(row){ %>
         <div class="list-articles" id="list-articles">  
                 <a href="/article/<%= row.ID%>"><img src="<%= row.image%>"></a>
@@ -30,11 +25,14 @@
         
             <div class="pagination">
           <a href="#">&laquo;</a>
-          <a href="#" class="active">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
+        <%pages.forEach(row=>{%>
+            <%if(row.active){%>
+                <a href="javascript:;" class="active"><%=row.value%></a>
+                <%}%>
+            <%if (!row.active){%>
+                <a href="?page=<%=row.value%>"><%=row.value%></a>
+                <%}%>
+        <%})%>
           <a href="#">&raquo;</a>
         </div>
         </div>

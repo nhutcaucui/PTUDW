@@ -13,11 +13,11 @@ function getUsername(){
 }
 
 function getAr(){
-    return db.loaddb('SELECT * FROM article_pending WHERE state=0 ORDER BY ID DESC LIMIT 5');
+    return db.loaddb('SELECT * FROM article_pending WHERE state=0 ORDER BY ID DESC');
 }
 
 function getTag(){
-    return db.loaddb('SELECT tag, header FROM article ORDER BY date DESC LIMIT 5');
+    return db.loaddb('SELECT tag, header FROM article ORDER BY date DESC');
 }
 
 function getCatByName(name){

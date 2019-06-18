@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 var draftModel=require('../../models/draft.model');
-var manage=require('../../models/editor')
+var manage=require('../../models/editor');
+
+var global=require('../../global');
 
 router.get('/drafts', (req,res)=>{
-    var a=draftModel.all();
+    var a=draftModel.all('');
 
     a.then(row=>{
         res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
@@ -27,6 +29,7 @@ router.get('/drafts/:id', (req,res)=>{
 
 router.post('/drafts/:id', (req,res)=>{
     var id=req.params.id;
+    
     if(req.body.confirm == "accept"){
         let header=req.body.header;
         let content=req.body.content;

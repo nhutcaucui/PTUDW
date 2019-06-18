@@ -7,8 +7,8 @@
             <div class="my-title"><a href="#"><%= row.header %></a></div>
             <div class="my-cat"><%= row.subcat %></div>
             <div class="my-status" id="my-status">
-                <div class="cur-status" id="cur-status">Đang chờ</div>
-                <button class="edt-button">Sửa bài viết</button>
+                <div class="cur-status" id="cur-status"><%if (row.state=0){%>Đang chờ<%}%><%if (row.state=1){%>Đã duyệt<%}%><%if (row.state=0){%>Từ chối<%}%></div>
+                <button class="edt-button" onclick="window.location='/writer/edit/<%=row.ID%>'">Sửa bài viết</button>
             </div>
             <% }) %>
             <!-- </div>

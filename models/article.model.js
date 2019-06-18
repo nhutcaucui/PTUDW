@@ -21,12 +21,20 @@ function breadSubCat(id){
     return dbbase.loaddb(`SELECT sc.ID FROM subcategory sc, article a WHERE a.ID = ${id} and a.subcat=name`);
 }
 
-function byCat(id){
-    return dbbase.loaddb(`SELECT a.* FROM article a, category WHERE cat = category.name and category.ID=${id} LIMIT 3`);
+function byCat(id, limit, offset){
+    return dbbase.loaddb(`SELECT a.* FROM article a, category WHERE cat = category.name and category.ID=${id} LIMIT ${limit} OFFSET ${offset}`);
 }
 
-function bySubCat(id){
-    return dbbase.loaddb(`SELECT a.* FROM article a, subcategory WHERE subcat = subcategory.name and subcategory.ID=${id} LIMIT 3`);
+function countByCat(id){
+    return dbbase.loaddb(`select count(*) as total FROM article a, category WHERE cat = category.name and category.ID=${id}`);
+}
+
+function bySubCat(id, limit, offset){
+    return dbbase.loaddb(`SELECT a.* FROM article a, subcategory WHERE subcat = subcategory.name and subcategory.ID=${id} LIMIT ${limit} OFFSET ${offset}`);
+}
+
+function countBySubCat(id){
+    return dbbase.loaddb(`select count(*) as total FROM article a, subcategory WHERE subcat = subcategory.name and subcategory.ID=${id}`);
 }
 
 function search(matchs, againts){
@@ -65,4 +73,6 @@ module.exports = {
     byCat: byCat,
     bySubCat: bySubCat,
     search : search,
+    countByCat:countByCat,
+    countBySubCat:countBySubCat,
 }

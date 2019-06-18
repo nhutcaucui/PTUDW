@@ -28,6 +28,7 @@ app.use(passport.session());
 app.use(ejsLayout);
 app.use(require('./mdw/localcat.mdw'));
 app.use(require('./mdw/localsubcat.mdw'));
+app.use(require('./mdw/localuser.mdw'))
 app.use(flash());
 
 app.set('view engine', 'ejs');

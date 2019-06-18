@@ -14,7 +14,7 @@ router.get('/new', (req,res)=>{
     var i=0;
         c.then(crow=>{                                  
                sc.then(loop=>{
-                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, username: '', edit:false};                 
+                var objects={title: 'Bài viết mới', cat:crow, subcat:loop, edit:false};                 
                     res.render('writer/new-article', objects);   
                }).catch(err => {
                 console.log(err);

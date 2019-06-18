@@ -62,7 +62,7 @@ router.post("/add-cat", (req,res)=>{
     var cat = req.body.catadd;
     adminModel.getCatByName(cat).then(rows => {
         if (rows.length > 0){
-            res.redirect("/admin");
+            res.render("aderror/aderror",{layout:false,object:"Chuyên mục"});
         }
             else{
                 var entity={
@@ -79,8 +79,7 @@ router.post("/edt-cat", (req,res)=>{
     var cat=req.body.cat;
     adminModel.getCatByName(catedt).then(rows => {
         if (rows.length > 0){
-            req.flash("Warning","Chuyên mục đã tồn tại");
-            res.redirect("/admin");
+            res.render("aderror/aderror",{layout:false,object:"Chuyên mục"});
         }
         else{
             var entity={
@@ -119,7 +118,7 @@ router.post("/add-subcat", (req,res)=>{
     });
     adminModel.getSubCatByName(cat).then(rows => {
         if (rows.length > 0){
-            res.redirect("/admin");
+            res.render("aderror/aderror",{layout:false,object:"Chuyên mục"});
         }
             else{
                 var entity={
@@ -137,7 +136,7 @@ router.post("/edt-subcat", (req,res)=>{
     var edt= req.body.scsubcat;
     adminModel.getSubCatByName(cat).then(rows => {
         if (rows.length > 0){
-            res.redirect("/admin");
+            res.render("aderror/aderror",{layout:false,object:"Chuyên mục"});
         }
             else{
                 var entity={
@@ -161,7 +160,7 @@ router.post("/add-ew", (req,res)=>{
     var role=req.body.slew;
     adminModel.getUserByUsername(username).then(rows => {
         if (rows.length > 0){
-            res.redirect("/admin");
+            res.render("aderror/aderror",{layout:false,object:"Username"});
         }
             else{
                 if (role=="Biên tập viên"){

@@ -46,7 +46,7 @@
             </ul> -->
 
             <%  lcCategories.forEach(function(cat) { %>
-            <li><a href="/category/<%= cat.ID %>"><%= cat.name %></a>
+            <li><a class="nav-categories <%if(cat.isActive){%>active<%}%>" href="/category/<%= cat.ID %>" ><%= cat.name %></a>
             <div class="dropdown-content">
                 <ul>
                 <%  lcSubCategories.forEach(function(subcat) { %>
@@ -70,6 +70,7 @@
                 </div>
             <% } %>
             <div id="searchbar">
+                
                 <input type="text" placeholder="Search...">
                 <img src="/theme/img/magnifying-glass.png" width="32" height="32"> 			
             </div>            

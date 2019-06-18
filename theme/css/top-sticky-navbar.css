@@ -106,3 +106,8 @@
     padding: 10px;
     text-align: center;
 }
+
+.active{
+  background: #ddd;
+  color: #000;
+}

@@ -1,7 +1,7 @@
 var db = require('./dbbase');
 
-function all(){
-    return  db.loaddb('SELECT * FROM article_pending ORDER BY ID DESC LIMIT 3');
+function all(cat){
+    return  db.loaddb(`SELECT * FROM article_pending WHERE state=0 AND cat='${cat}' ORDER BY ID DESC`);
 };
 
 function preview(id){
