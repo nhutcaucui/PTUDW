@@ -46,14 +46,14 @@
 
 .new-abstract{
 	margin-top: 10px;
-
+	height: 80px;
 }
 .new-abstract textarea{
 	width: 100%;
 	resize: none;
 	background-color: black;
 	color: white;
-	height: 40px;
+	height: 65px;
 	font-size: 16px;
 	padding: 5px 10px;
 	margin-top: 5px;
@@ -105,4 +105,10 @@
 .error{
 	margin-top: 5px;
 	color:red;
+}
+
+.ql-editor iframe{
+	width: 560px !important;
+	height: 315px !important;
+	margin: 0 auto;	
 }

@@ -7,38 +7,10 @@
             <div class="my-title"><a href="#"><%= row.header %></a></div>
             <div class="my-cat"><%= row.subcat %></div>
             <div class="my-status" id="my-status">
-                <div class="cur-status" id="cur-status"><%if (row.state=0){%>Đang chờ<%}%><%if (row.state=1){%>Đã duyệt<%}%><%if (row.state=0){%>Từ chối<%}%></div>
-                <button class="edt-button" onclick="window.location='/writer/edit/<%=row.ID%>'">Sửa bài viết</button>
+                <div class="cur-status" id="cur-status"><%if (row.state==0){%>Đang chờ<%}%><%if (row.state==1){%>Đã duyệt<%}%><%if (row.state==2){%>Từ chối<%}%></div>
+                <%if (row.state!=1){%><button class="edt-button" onclick="window.location='/writer/edit/<%=row.ID%>'">Sửa bài viết</button><%}%>
             </div>
             <% }) %>
-            <!-- </div>
-            <div class="my-article">
-            <a href="#"><img src="https://b.kisscc0.com/20180717/uqw/kisscc0-pepe-the-frog-internet-meme-know-your-meme-kek-donald-trump-pepe-5b4e6cd99beb38.2517328415318663296387.jpg"></a>
-            <div class="my-title"><a href="#">Tiêu đề</a></div>
-            <div class="my-cat">Chuyên mục</div>
-            <div class="my-status" id="my-status">
-                <div class="cur-status" id="cur-status">Đã duyệt</div>
-                <button class="edt-button">Sửa bài viết</button>
-            </div>
-            </div>
-            <div class="my-article">
-            <a href="#"><img src="https://b.kisscc0.com/20180717/uqw/kisscc0-pepe-the-frog-internet-meme-know-your-meme-kek-donald-trump-pepe-5b4e6cd99beb38.2517328415318663296387.jpg"></a>
-            <div class="my-title"><a href="#">Tiêu đề</a></div>
-            <div class="my-cat">Chuyên mục</div>
-            <div class="my-status" id="my-status">
-                <div class="cur-status" id="cur-status">Đã xuất bản</div>
-                <button class="edt-button">Sửa bài viết</button>
-            </div>
-            </div>
-            <div class="my-article">
-            <a href="#"><img src="https://b.kisscc0.com/20180717/uqw/kisscc0-pepe-the-frog-internet-meme-know-your-meme-kek-donald-trump-pepe-5b4e6cd99beb38.2517328415318663296387.jpg"></a>
-            <div class="my-title"><a href="#">Tiêu đề</a></div>
-            <div class="my-cat">Chuyên mục</div>
-            <div class="my-status" id="my-status">
-                <div class="cur-status" id="cur-status">Từ chối</div>
-                <div class="denied-reason"><a href="#">Lí do</a></div>
-                <button class="edt-button">Sửa bài viết</button>
-            </div> -->
             </div>
         </div>
     </div>

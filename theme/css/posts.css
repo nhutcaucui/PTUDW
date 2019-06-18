@@ -52,3 +52,9 @@
 	margin-left: 10px;
 	color: #00AADE;
 }
+
+.post-content iframe{
+	width: 560px !important;
+	height: 315px !important;
+	margin: 0 auto;	
+}

@@ -21,6 +21,7 @@
               
         </div>
         <div class="samesame" id="samesame">
+                <%if(row.state == 0 || row.state==2) {%>
                 <h3>Quản lí</h3>
                 <div class="sticky-manage">
                         <form method="POST">
@@ -32,9 +33,12 @@
                                 <input hidden name='subcat' value="<%=row.subcat%>">
                                 <input hidden name='tag' value="<%=row.tag%>">
                                 <input hidden name='writerid' value="<%=row.writerId%>">
+                               
                                 <button id="dr-a-confirm" name="confirm" value="accept">Duyệt</button>
                                 <button id="dr-d-confirm" name="confirm" value="deny">Từ chối</button>
+                              
                         </form>
+                        <%}%>
                 </div>
 
                 <script>
