@@ -22,7 +22,13 @@ router.get('/:id', (req,res)=>{
         arows.forEach(row => {
             if (row.premium==1){
                 if(!res.locals.isAuthed){
-                    res.render('403',{layout:false})
+                    let params = {
+                        title: 'Đăng nhập',
+                        error: 'Vui lòng đăng nhập',
+                        layout: false,
+                    }
+                    
+                    res.render('login', params);
                 }
                 
             }            
@@ -36,10 +42,9 @@ router.get('/:id', (req,res)=>{
                         var user=userModel.singleByUserName(res.locals.localuserName.username);
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
-                        console.log(dt.date2unix(Date.now()));
-                        console.log(urow.premium_expired);
                         if(urow.level==1 && urow.premium_expired < dt.date2unix(Date.now())){                         
-                            res.render('403',{layout:false})
+                            
+                            res.render('403', {layout:false});
                         }
                         else{
                             res.render('articles/article', {title: name, article: arows, relevant: rrows, comment: crows, breadc: cID, breads: sID});

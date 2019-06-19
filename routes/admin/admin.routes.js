@@ -5,7 +5,9 @@ var bcrypt=require('bcryptjs');
 var crypto=require('crypto');
 var SALTR=10;
 
+
 var adminModel = require('../../models/admin.model');
+var userModel=require('../../models/user.model')
 var dbbase=require('../../models/dbbase');
 
 function generate_token(){
@@ -21,6 +23,9 @@ function generate_token(){
 }
 
 router.get('/', (req,res)=>{
+    if(!res.locals.isAuthed){
+        res.render('403',{layout:false});
+      }else{
     var a=adminModel.getAr();
     var c=adminModel.getCat();
     var sc=adminModel.getSubCat();
@@ -31,15 +36,28 @@ router.get('/', (req,res)=>{
             sc.then(scrows=>{
                 t.then(trows=>{
                     u.then(urows=>{
-                        var objects={
-                            title: 'Quản lí trang',
-                            article:arows,
-                            cat:crows,
-                            subcat:scrows,
-                            tag:trows,
-                            user:urows,
+                        var user=userModel.singleByUserName(res.locals.localuserName.username);
+                user.then(userrows=>{
+                    userrows.forEach(urow=>{
+                        if(urow.level !=4){                         
+                            res.render('403',{layout:false})
                         }
-                        res.render('admin/manage', objects);
+                        else{
+                            var objects={
+                                title: 'Quản lí trang',
+                                article:arows,
+                                cat:crows,
+                                subcat:scrows,
+                                tag:trows,
+                                user:urows,
+                            }
+                            res.render('admin/manage', objects);
+                        }   
+               })   
+              }).catch(err => {
+                console.log(err);
+              });    
+                        
                     }).catch(err => {
                         console.log(err);
                       });
@@ -55,7 +73,7 @@ router.get('/', (req,res)=>{
     }).catch(err => {
         console.log(err);
       });
-    
+      }
 })
 
 router.post("/add-cat", (req,res)=>{

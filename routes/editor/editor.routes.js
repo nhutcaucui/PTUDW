@@ -3,10 +3,14 @@ var router = express.Router();
 
 var draftModel=require('../../models/draft.model');
 var manage=require('../../models/editor');
+var userModel=require('../../models/user.model')
 
 var global=require('../../global');
 
 router.get('/drafts', (req,res)=>{
+    if(!res.locals.isAuthed){
+        res.render('403',{layout:false});
+      }else{
     var asign=draftModel.getAsign(res.locals.localuserName.username);
     console.log(res.locals.localuserName.username);
     asign.then(rows=>{
@@ -14,7 +18,19 @@ router.get('/drafts', (req,res)=>{
     var a=draftModel.all(row.asign);
 
     a.then(row=>{
-        res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
+        var user=userModel.singleByUserName(res.locals.localuserName.username);
+                user.then(userrows=>{
+                    userrows.forEach(urow=>{
+                        if(urow.level !=3){                         
+                            res.render('403',{layout:false})
+                        }
+                        else{
+                            res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
+                        }   
+               })   
+              }).catch(err => {
+                console.log(err);
+              });            
     }
     ).catch(err => {
         console.log(err);
@@ -22,17 +38,34 @@ router.get('/drafts', (req,res)=>{
     })
     }).catch(err => {
         console.log(err);
-      });     
+      });  
+    }   
 })
 
 router.get('/drafts/:id', (req,res)=>{
+    if(!res.locals.isAuthed){
+        res.render('403',{layout:false});
+      }else{
     var p=draftModel.preview(req.params.id);
 
     p.then(function(row) {
-        res.render('editor/preview-article', {title:'Xem trước bài viết', article: row, username:''})
+        var user=userModel.singleByUserName(res.locals.localuserName.username);
+                user.then(userrows=>{
+                    userrows.forEach(urow=>{
+                        if(urow.level==1 || urow.level==2){                         
+                            res.render('403',{layout:false})
+                        }
+                        else{
+                            res.render('editor/preview-article', {title:'Xem trước bài viết', article: row, username:''})
+                        }   
+               })   
+              }).catch(err => {
+                console.log(err);
+              });            
     }).catch(err => {
         console.log(err);
       });   
+    }
 })
 
 router.post('/drafts/:id', (req,res)=>{
