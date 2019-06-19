@@ -86,10 +86,9 @@
     <script>
         function search(){
             var searchValue = document.getElementById("search").value;
-            alert(searchValue);
             var form = document.createElement('form');
             form.setAttribute('method', 'get');
-            form.setAttribute('action', 'search/');
+            form.setAttribute('action', '/search/');
             var input = document.createElement("input");
             input.setAttribute("type", "hidden");
             input.setAttribute("name", "againts");
