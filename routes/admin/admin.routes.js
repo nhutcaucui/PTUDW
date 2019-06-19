@@ -24,7 +24,7 @@ function generate_token(){
 
 router.get('/', (req,res)=>{
     if(!res.locals.isAuthed){
-        res.render('403',{layout:false});
+        res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
       }else{
     var a=adminModel.getAr();
     var c=adminModel.getCat();
@@ -40,7 +40,7 @@ router.get('/', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level !=4){                         
-                            res.render('403',{layout:false})
+                            res.render('403',{layout:false, error:'Bạn không phải Admin'})
                         }
                         else{
                             var objects={

@@ -65,7 +65,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/', require('./routes/user.routes'));
-//app.use('/search', require('./routes/search.routes'));
+app.use('/search', require('./routes/search.routes'));
 app.use('/profile', require('./routes/profile.routes'));
 app.use('/article', require('./routes/article.routes'));
 app.use('/category', require('./routes/category.routes'));

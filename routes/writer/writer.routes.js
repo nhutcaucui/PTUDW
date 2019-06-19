@@ -11,7 +11,7 @@ const fs = require('fs');
 
 router.get('/new', (req,res)=>{
   if(!res.locals.isAuthed){
-    res.render('403',{layout:false});
+    res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
   }
   else{
     var c=writerModel.getCat();
@@ -23,7 +23,7 @@ router.get('/new', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level!=2){                         
-                            res.render('403',{layout:false})
+                          res.render('403',{layout:false, error:'Bạn không phải Writer'});
                         }
                         else{
                 var objects={title: 'Bài viết mới', cat:crow, subcat:loop, edit:false};                 
@@ -42,7 +42,7 @@ router.get('/new', (req,res)=>{
 
 router.get('/edit/:id', (req,res)=>{
   if(!res.locals.isAuthed){
-    res.render('403',{layout:false});
+    res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
   }else{
   var id=req.params.id;
   var a=writerModel.getAr(id);
@@ -56,7 +56,7 @@ router.get('/edit/:id', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level!=2){                         
-                            res.render('403',{layout:false})
+                          res.render('403',{layout:false, error:'Bạn không phải Writer'});
                         }
                         else{
                           var objects={title: 'Sửa bài viết', cat:crow, subcat:loop, username: '', aredit:arow, edit:true};                 
@@ -161,7 +161,7 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
 
 router.get('/my-article', (req,res)=>{
   if(!res.locals.isAuthed){
-    res.render('403',{layout:false});
+    res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
   }else{
   var ID = writerModel.getIdWithUsername(res.locals.localuserName.username);
   ID.then(rows=>{
@@ -172,7 +172,7 @@ router.get('/my-article', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level!=2){                         
-                            res.render('403',{layout:false})
+                          res.render('403',{layout:false, error:'Bạn không phải Writer'});
                         }
                         else{
                           res.render('writer/my-article', {title: 'Bài viết của tôi', pending: row});

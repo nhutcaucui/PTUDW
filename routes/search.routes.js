@@ -17,7 +17,8 @@ router.get('/', (req, res) =>{
         }
         else{
             let params = {
-                title: 'Tìm kiếm'
+                title: 'Tìm kiếm',
+                result: false,
             }
             res.render('search/result', params);
         }

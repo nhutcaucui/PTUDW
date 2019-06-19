@@ -9,7 +9,7 @@ var global=require('../../global');
 
 router.get('/drafts', (req,res)=>{
     if(!res.locals.isAuthed){
-        res.render('403',{layout:false});
+        res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
       }else{
     var asign=draftModel.getAsign(res.locals.localuserName.username);
     console.log(res.locals.localuserName.username);
@@ -22,7 +22,7 @@ router.get('/drafts', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level !=3){                         
-                            res.render('403',{layout:false})
+                            res.render('403',{layout:false, error:'Bạn không phải Editor'});
                         }
                         else{
                             res.render('editor/draft', {title: 'Chờ duyệt', pending: row, username:''});
@@ -44,7 +44,7 @@ router.get('/drafts', (req,res)=>{
 
 router.get('/drafts/:id', (req,res)=>{
     if(!res.locals.isAuthed){
-        res.render('403',{layout:false});
+        res.render('403',{layout:false, error:'Bạn chưa đăng nhập'});
       }else{
     var p=draftModel.preview(req.params.id);
 
@@ -53,7 +53,7 @@ router.get('/drafts/:id', (req,res)=>{
                 user.then(userrows=>{
                     userrows.forEach(urow=>{
                         if(urow.level==1 || urow.level==2){                         
-                            res.render('403',{layout:false})
+                            res.render('403',{layout:false, error:'Bạn không có quyền duyệt bài'});
                         }
                         else{
                             res.render('editor/preview-article', {title:'Xem trước bài viết', article: row, username:''})

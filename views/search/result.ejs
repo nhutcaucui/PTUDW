@@ -1,5 +1,6 @@
 <div class="bigcontainer">
 	<div class="searchlbl">Kết quả tìm kiếm</div>%>
+	<%if(result){%>
 	<%result.forEach(function(row){%>
 	<div class="searchresult" id="searchresult">
 	<div class="searchtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
@@ -8,6 +9,7 @@
 	</div>
 </div>
 <%})%>
+<%}%>
 
 </div>
 </div>
