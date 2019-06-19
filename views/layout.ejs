@@ -48,7 +48,6 @@
                 </div>
             <% } %>
             <div id="searchbar">
-                
                 <input type="text" placeholder="Search...">
                 <img src="/theme/img/magnifying-glass.png" width="32" height="32"> 			
             </div>           
@@ -62,4 +61,21 @@
         <script src="/public/sticky-nav.js" type="text/javascript"></script>
         <%- script %>
     </body>
+    <script>
+        function search(){
+            var searchValue = document.getElementById("search").value;
+            var form = document.createElement('form');
+            form.setAttribute('method', 'get');
+            form.setAttribute('action', '/search/');
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "againts");
+            input.setAttribute("value", searchValue);
+            form.appendChild(input);
+
+            form.style.display = 'hidden';
+            document.body.appendChild(form)
+            form.submit();
+        }
+    </script>
 </html>

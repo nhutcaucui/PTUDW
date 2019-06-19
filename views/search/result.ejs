@@ -1,13 +1,14 @@
 <div class="bigcontainer">
-	<div class="searchlbl">Kết quả tìm kiếm</div>
+	<div class="searchlbl">Kết quả tìm kiếm</div>%>
 	<%result.forEach(function(row){%>
 	<div class="searchresult" id="searchresult">
 	<div class="searchtitle"><a href="/article/<%= row.ID%>"><%= row.header%></a></div>
 	<div class="searchabtract">
-			<%= row.content%>
+			<%- row.abstract%>
 	</div>
 </div>
-<%}%>
+<%})%>
+
 </div>
 </div>
 
