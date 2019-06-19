@@ -10,7 +10,7 @@ function relevant(id){
 }
 
 function comment(id){
-    return dbbase.loaddb(`SELECT * FROM comment WHERE articleID =${id}`);
+    return dbbase.loaddb(`SELECT *, DATE_FORMAT(date,'%d/%m/%Y') as fDate FROM comment WHERE articleID =${id}`);
 }
 
 function breadCat(id){

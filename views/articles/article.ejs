@@ -76,17 +76,20 @@
             </div> -->
         </div>
         </div>
+        <%if(locals.isAuthed){%>
             <div class="commentbox">
                 <div class="avatar"><img src="https://i.imgflip.com/29bq.jpg">
                 </div>
-        
+
         <div class="commentinputcontain">
-            <form>
-            <textarea name="commentinput" class="commentinput" placeholder="Bình luận..." maxlength="500"></textarea>
-        </div>
+            <form method="POST">
+            <textarea name="comment" class="commentinput" placeholder="Bình luận..." maxlength="500"></textarea>
+            </div>
+            
         <button class="sendcomment">Đăng bình luận</button>
         </form>
         </div>
+        <%}%>
         <div class="user-comments-container" id="user-comments-container">
             <div class="comment-header">Bình luận:</div>
             <% comment.forEach(function(row){ %>

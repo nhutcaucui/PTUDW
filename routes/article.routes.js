@@ -3,6 +3,7 @@ var router = express.Router();
 
 var articleModel= require('../models/article.model.js');
 var userModel=require('../models/user.model')
+var db=require('../models/dbbase')
 
 var dt=require('../utils/datetime');
 var moment=require('moment');
@@ -86,6 +87,23 @@ router.get('/:id', (req,res)=>{
                 }).catch(err => {
                     console.log(err);
                   });        
+})
+
+router.post('/:id', (req,res,next)=>{
+    var ID= req.params.id;
+    var comment=req.body.comment;
+    var username=res.locals.localuserName.username;
+    var date = moment(Date.now()).format('YYYY-MM-DD');
+    
+    let entity={
+        content:comment,
+        articleID:ID,
+        username: username,
+        date:date,
+    }
+
+    db.addtb('comment',entity)
+    res.redirect('back');
 })
 
 module.exports = router;
