@@ -15,15 +15,25 @@ var dbbase=require('../models/dbbase')
 var auth = require('../mdw/auth');
 
 router.get('/login', (req,res)=> {
+	if(res.locals.isAuthed){
+		res.render('403',{layout:false})
+	}
+	else{
 	let params = {
 		title: 'Đăng nhập',
 		layout: false,
 	}
-    res.render('login', {title: 'Đăng nhập', error:'', layout: false});
+	res.render('login', {title: 'Đăng nhập', error:'', layout: false});
+}
 });
 
 router.get('/register', (req,res)=>{
-    res.render('register', {title: 'Đăng kí', error: '', layout: false});
+	if(res.locals.isAuthed){
+		res.render('403',{layout:false})
+	}
+	else{
+	res.render('register', {title: 'Đăng kí', error: '', layout: false});
+	}
 });
 
 router.post('/verify', (req,res) => {

@@ -73,9 +73,9 @@ router.route("/new").post(upload.single("image"),(req,res)=>{
     let premium;
 
     if(req.body.premium=="premium"){
-      premium=true;
+      premium=1;
     }else{
-      premium=false;
+      premium=0;
     }
 
     newAr.addPending(header,content,abstract,image,cat,subcat,writerId,tag,premium);
@@ -113,9 +113,9 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
       let premium;
     
     if(req.body.premium=="premium"){
-      premium=true;
+      premium=1;
     }else{
-      premium=false;
+      premium=0;
     }
 
     newAr.updatePending(header,content,abstract,image,cat,subcat,writerId,tag,premium,req.params.id);

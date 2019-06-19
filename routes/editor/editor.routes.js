@@ -50,9 +50,9 @@ router.post('/drafts/:id', (req,res)=>{
         let premium;
     
     if(req.body.premium=="premium"){
-      premium=true;
+      premium=1;
     }else{
-      premium=false;
+      premium=0;
     }
 
         manage.passAndPublic(header,content,abstract,image,cat,subcat,writerId,tag,premium,id);
