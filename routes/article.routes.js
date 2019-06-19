@@ -22,54 +22,70 @@ router.get('/:id', (req,res)=>{
         arows.forEach(row => {
             if (row.premium==1){
                 if(!res.locals.isAuthed){
-                    let params = {
-                        title: 'Đăng nhập',
-                        error: 'Vui lòng đăng nhập',
-                        layout: false,
-                    }
-                    
-                    res.render('login', params);
+                    res.redirect('/login')
                 }
-                
-            }            
-            name= row.header;
-            row.date=moment(dt.unix2date(row.date)).format("DD/MM/YYYY");
-        });
-        r.then(rrows =>{
-            c.then(crows=>{
-                bc.then(cID=>{
-                    bs.then(sID=>{
-                        var user=userModel.singleByUserName(res.locals.localuserName.username);
-                user.then(userrows=>{
-                    userrows.forEach(urow=>{
-                        if(urow.level==1 && urow.premium_expired < dt.date2unix(Date.now())){                         
-                            
-                            res.render('403', {layout:false});
+                else{
+                    name= row.header;
+                    row.date=moment(dt.unix2date(row.date)).format("DD/MM/YYYY");
+                    r.then(rrows =>{
+                        c.then(crows=>{
+                            bc.then(cID=>{
+                                bs.then(sID=>{
+                                    var user=userModel.singleByUserName(res.locals.localuserName.username);
+                                    user.then(userrows=>{
+                                    userrows.forEach(urow=>{
+                                    if(urow.level==1 && urow.premium_expired < dt.date2unix(Date.now())){                         
+                                        
+                                        res.render('403', {layout:false, error:'Premium hết hạn'});
+                                    }
+                                    else{
+                                        res.render('articles/article', {title: name, article: arows, relevant: rrows, comment: crows, breadc: cID, breads: sID});
+                                    }
+                                
+                                })
+                            }).catch(err=>{
+                                console.log(err);
+                            });                               
+                    }).catch(err => {
+                                    console.log(err);
+                                  });
+                            }).catch(err => {
+                                console.log(err);
+                              });
+                        }).catch(err => {
+                            console.log(err);
+                          });
+                    }).catch(err => {
+                        console.log(err);
+                      });
+                }
+            }
+                else{
+                    name= row.header;
+                    row.date=moment(dt.unix2date(row.date)).format("DD/MM/YYYY");
+                    r.then(rrows =>{
+                        c.then(crows=>{
+                            bc.then(cID=>{
+                                bs.then(sID=>{                                   
+                                        res.render('articles/article', {title: name, article: arows, relevant: rrows, comment: crows, breadc: cID, breads: sID});
+                                
+                                })
+                            }).catch(err=>{
+                                console.log(err);
+                            });                               
+                    }).catch(err => {
+                                    console.log(err);
+                                  });
+                            }).catch(err => {
+                                console.log(err);
+                              });
                         }
-                        else{
-                            res.render('articles/article', {title: name, article: arows, relevant: rrows, comment: crows, breadc: cID, breads: sID});
-                        }
-                    })
-                }).catch(err=>{
-                    console.log(err);
-                });
-                    }
-                    ).catch(err => {
+                    }).catch(err => {
                         console.log(err);
                       });
                 }).catch(err => {
                     console.log(err);
-                  });
-            }).catch(err => {
-                console.log(err);
-              });
-        }).catch(err => {
-            console.log(err);
-          });
-    }).catch(err => {
-        console.log(err);
-      });
-   
+                  });        
 })
 
 module.exports = router;
