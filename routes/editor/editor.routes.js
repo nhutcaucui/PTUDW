@@ -7,8 +7,8 @@ var manage=require('../../models/editor');
 var global=require('../../global');
 
 router.get('/drafts', (req,res)=>{
-    var asign=draftModel.getAsign(req.session.username);
-    console.log(req.session.username);
+    var asign=draftModel.getAsign(res.locals.localuserName.username);
+    console.log(res.locals.localuserName.username);
     asign.then(rows=>{
         rows.forEach(row=>{
     var a=draftModel.all(row.asign);
@@ -47,8 +47,15 @@ router.post('/drafts/:id', (req,res)=>{
         let subcat=req.body.subcat;
         let tag=req.body.tag;
         let writerId= req.body.writerid
+        let premium;
+    
+    if(req.body.premium=="premium"){
+      premium=true;
+    }else{
+      premium=false;
+    }
 
-        manage.passAndPublic(header,content,abstract,image,cat,subcat,writerId,tag,id);
+        manage.passAndPublic(header,content,abstract,image,cat,subcat,writerId,tag,premium,id);
     } 
     else{
         manage.deny(id);

@@ -59,7 +59,7 @@ router.get('/edit/:id', (req,res)=>{
   var upload = multer({ storage:storage })
 
 router.route("/new").post(upload.single("image"),(req,res)=>{  
-  var ID = writerModel.getIdWithUsername(req.session.username);
+  var ID = writerModel.getIdWithUsername(res.locals.localuserName.username);
   ID.then(rows=>{
     rows.forEach(row=>{
     let header=req.body.header;
@@ -70,10 +70,17 @@ router.route("/new").post(upload.single("image"),(req,res)=>{
     let subcat=req.body.subcat;
     let writerId= row.ID;
     let tag=req.body.tag;
+    let premium;
 
-    newAr.addPending(header,content,abstract,image,cat,subcat,writerId,tag);
+    if(req.body.premium=="premium"){
+      premium=true;
+    }else{
+      premium=false;
+    }
 
-    res.redirect("/");
+    newAr.addPending(header,content,abstract,image,cat,subcat,writerId,tag,premium);
+
+    res.redirect("/writer/my-article");
   })});
 })
 
@@ -92,7 +99,7 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
       console.log(err);
     }); 
     
-    var ID = writerModel.getIdWithUsername(req.session.username);
+    var ID = writerModel.getIdWithUsername(res.locals.localuserName.username);
     ID.then(rows=>{
       rows.forEach(row=>{
       let header=req.body.header;
@@ -103,10 +110,17 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
       let subcat=req.body.subcat;
       let writerId= row.ID;
       let tag=req.body.tag;
+      let premium;
+    
+    if(req.body.premium=="premium"){
+      premium=true;
+    }else{
+      premium=false;
+    }
 
-    newAr.updatePending(header,content,abstract,image,cat,subcat,writerId,tag,req.params.id);
+    newAr.updatePending(header,content,abstract,image,cat,subcat,writerId,tag,premium,req.params.id);
 
-    res.redirect("/");
+    res.redirect("/writer/my-article");
       })
     }).catch(err => {
       console.log(err);
@@ -114,7 +128,7 @@ router.route("/edit/:id").post(upload.single("image"),(req,res)=>{
 })
 
 router.get('/my-article', (req,res)=>{
-  var ID = writerModel.getIdWithUsername(req.session.username);
+  var ID = writerModel.getIdWithUsername(res.locals.localuserName.username);
   ID.then(rows=>{
     rows.forEach(row=>{
       var a=writerModel.all(row.ID);

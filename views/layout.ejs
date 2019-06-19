@@ -11,40 +11,7 @@
     <body>
         <div id= "navbar">
             <ul>
-                <li><a href="/"><i class="fas fa-home"></i></a></li>
-                <!-- <li><a href="/category">Kinh Doanh</a>
-                <div class="dropdown-content">
-                    <ul>
-                          <li><a href="./articles-list/articleslist-kd-ns.html">Nông sản</a></li>    				
-                          <li><a href="./articles-list/articleslist-kd-hs.html">Hải sản</a></li>
-                      </ul>
-                </div>
-                </li>
-                <li><a href="#">Chính Trị</a>
-                <div class="dropdown-content">
-                    <ul>
-                          <li><a href="#">Trong nước</a></li>
-                          <li><a href="#">Ngoài nước</a></li>
-                      </ul>
-                </div></li>
-                <li><a href="#">Khoa Học</a>
-                <div class="dropdown-content">
-                    <ul>
-                          <li><a href="#">Công Nghệ</a></li>
-                          <li><a href="#">Tự Nhiên</a></li>
-                      </ul>
-                </div></li>
-                <li><a href="./articles-list/articleslist-xh.html">Xã Hội</a>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="./articles-list/articleslist-xh-ds.html">Đời sống</a></li>
-                            <li><a href="./articles-list/articleslist-xh-hh.html">Hài hước</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="#">¯\_(ツ)_/¯</a></li>
-            </ul> -->
-
+                <li><a href="/"><i class="fas fa-home"></i></a></li>                         
             <%  lcCategories.forEach(function(cat) { %>
             <li><a class="nav-categories <%if(cat.isActive){%>active<%}%>" href="/category/<%= cat.ID %>" ><%= cat.name %></a>
             <div class="dropdown-content">
@@ -59,20 +26,31 @@
             </li>
 
             <%  }) %>
+        </ul> 
             
-            <% if (!this.username) { %>
+            <% if (!locals.isAuthed) { %>
                 <div id="user-icon">
                     <a href="/login"><i class="far fa-user"></i></a>			
                 </div>
             <% } else { %>
                 <div id="user-icon">
-                    <a href="/profile?username=<%= username %>"><i class="far fa-user"></i></a>
+                    <ul>
+                    <li><a href="/profile?username=<%= localuserName.username %>"><i class="fas fa-bars"></i></a>             
+                    <div class="dropdown-content">
+                            <form method="POST">
+                            <ul>
+                                <li><button formaction="/logout"><i class="fas fa-door-open"></i></button></li>
+                            </ul>
+                            </form>
+                        </div>
+                    </li>   
+                    </ul>                  
                 </div>
             <% } %>
             <div id="searchbar">
-                <input id="search" type="text" placeholder="Search...">
-                <img src="/theme/img/magnifying-glass.png" onclick="search()" width="32" height="32"> 			
-            </div>            
+                <input type="text" placeholder="Search...">
+                <img src="/theme/img/magnifying-glass.png" width="32" height="32"> 			
+            </div>           
         </div>
         <div class="site">
             <a href="/"><img class="homeimg" src="https://i2.wp.com/troendesforsamling.org/wp-content/uploads/theres-nothing-new-under-the-sun-or-is-there-1-728.jpg?fit=728%2C546&resize=350%2C200"></a>

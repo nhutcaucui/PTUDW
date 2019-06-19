@@ -2,7 +2,7 @@ var dbbase = require('./dbbase');
 var moment = require('moment');
 var dt=require('../utils/datetime')
 
-function passAndPublic(header,content,abstract,image,cat,subcat,writerid,tag,id){
+function passAndPublic(header,content,abstract,image,cat,subcat,writerid,tag,premium,id){
     console.log(header,content,abstract,image,cat,subcat,writerid,tag);
     let entity = {
         header: header,
@@ -15,7 +15,7 @@ function passAndPublic(header,content,abstract,image,cat,subcat,writerid,tag,id)
         subcat: subcat,
         writerId: writerid,
         tag:tag,
-        premium:0,
+        premium:premium,
     }
     dbbase.addtb('article', entity);
 

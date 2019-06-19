@@ -27,11 +27,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayout);
-app.use(require('./mdw/localcat.mdw'));
-app.use(require('./mdw/localsubcat.mdw'));
-app.use(require('./mdw/localuser.mdw'))
+
+
 app.use(cookieParser());
 require('./mdw/session')(app);
+require('./mdw/passport')(app);
+app.use(require('./mdw/localcat.mdw'));
+app.use(require('./mdw/localsubcat.mdw'));
+app.use(require('./mdw/localuser.mdw'));
 
 app.set('view engine', 'ejs');
 app.set("layout extractScripts", true);
@@ -70,6 +73,7 @@ app.use('/writer', require('./routes/writer/writer.routes'));
 app.use('/admin', require('./routes/admin/admin.routes'));
 app.use('/editor', require('./routes/editor/editor.routes'));
 
+
 app.use((req, res, next) => {
     res.render('404', { layout: false });
 });
@@ -87,9 +91,9 @@ app.get('/', (req, res) => {
 	res.render('home');
 });
 
-	// userdb.logoutAll().then(result => {
-	// 	console.log(result);
-	// });
+	userdb.logoutAll().then(result => {
+		console.log(result);
+	});
 
 
 app.listen(8081);

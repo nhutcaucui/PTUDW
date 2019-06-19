@@ -5,11 +5,14 @@ var autoMail = require('../utils/auto_mail');
 var datetime = require('../utils/datetime');
 var password = require('../utils/password');
 var bcrypt = require('bcryptjs');
+var passport = require('passport');
 var userdb = require('../models/user');
 var homedb = require('../models/home.model');
 var url = require('url'); 
 var global = require('../global');
 const host = "localhost:8081";
+var dbbase=require('../models/dbbase')
+var auth = require('../mdw/auth');
 
 router.get('/login', (req,res)=> {
 	let params = {
@@ -186,6 +189,11 @@ router.get('/logins', (req, res) => {
 	console.log("[Login] -", username, password);
 	userdb.accountLogin(username, password).then(result => {
 		if (result.status.toLowerCase().localeCompare("success") === 0){
+			req.app.locals.username=username;
+			res.locals.username=username;
+			console.log(res.locals.username);
+			console.log(req.app.locals.username);
+			console.log(res.locals.username);
 			console.log(result.message);
 
 			let user = {
@@ -215,9 +223,8 @@ router.get('/logins', (req, res) => {
 				news: global.news,
 				cats: global.cats,
 				layout: true,
-				username: username,
-			}
-			
+			}			
+
 			res.render('home', params);
 		}
 		else{
@@ -254,6 +261,11 @@ router.get('/logout', (req, res) => {
 			cats: global.cats,
 			username: '',
 		}
+
+		for(const c in res.locals.userLocal){
+			c.isAuthenticated=true;
+		  }
+
 		res.render('home', params);
 	});
 });
@@ -268,6 +280,63 @@ router.get('/is-available', (req, res, next) => {
     });
 });
 
+router.post('/login', (req, res, next) =>{
+	passport.authenticate('local', (err, user, info) => {
+		if (err)
+		  return next(err);
+	
+		if (!user) {
+		  return res.render("login", { title: 'Đăng nhập',
+			layout: false, error:'Tài khoản hoặc mật khẩu không đúng',
+		  })
+		}
+		
+		var s=userModel.singleByUserName(req.body.username);
+		s.then(rows=>{
+			rows.forEach(row=>{
+				let user = {
+					username: row.username,
+					flname: row.flname,
+					alias: row.alias,
+					level: row.level,
+					premium_expired: row.premium_expired,
+					birthday: row.birthday,
+					token: row.token,
+					email: row.email,
+					id: row.id,
+				}
+	
+				global.users.push(user);
+			})
+			
+		}).catch(err=>{
+			console.log(err);
+		});
 
+		let entity = {
+			is_login: 1,
+			username: req.body.username
+		}
+		dbbase.updatetb('account', 'is_login', 'username', entity);
+
+		req.logIn(user, err => {
+		  if (err)
+			return next(err);
+	
+		  return res.redirect('/');
+		});
+})(req, res, next);
+})
+
+router.post('/logout', auth, (req, res, next)=>{
+	global.removeUser(res.locals.localuserName.username);
+	let entity = {
+		is_login: 0,
+		username: res.locals.localuserName.username
+	}
+	dbbase.updatetb('account', 'is_login', 'username', entity);
+	req.logOut();
+	res.redirect("/login");
+})
 
 module.exports = router;

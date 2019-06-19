@@ -26,7 +26,7 @@
 }
 
 .new-cat, .new-subcat{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .new-cat select, .new-subcat select{
@@ -37,7 +37,7 @@
 }
 
 .new-pic{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 #input-b2{
@@ -45,7 +45,7 @@
 }
 
 .new-abstract{
-	margin-top: 10px;
+	margin-top: 20px;
 	height: 80px;
 }
 .new-abstract textarea{
@@ -60,7 +60,7 @@
 }
 
 .new-body{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .new-body .ql-toolbar.ql-snow{
@@ -89,7 +89,7 @@
 	}	
 
 .new-tag{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .new-tag input
@@ -111,4 +111,8 @@
 	width: 560px !important;
 	height: 315px !important;
 	margin: 0 auto;	
+}
+
+#new-article-form input{
+	margin-right:0;	
 }
