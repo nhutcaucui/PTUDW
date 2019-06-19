@@ -8,7 +8,7 @@ const crypto = require('crypto');
 var db = require('./index').mysql;
 var dbbase = require('./dbbase');
 
-function accountRegister(username, password, flname, alias, birthday, email, role){
+function accountRegister(username, password, flname, alias, birthday, email){
 	console.log("pass:" + password);
     return new Promise((resolve, reject) => {
         let query = "SELECT * FROM account WHERE username = ?";
@@ -26,7 +26,6 @@ function accountRegister(username, password, flname, alias, birthday, email, rol
 				resolve(result);
 			}
 			else{
-				console.log(password);
 				generate_token().then(token => {
 					bcrypt.hash(password, SALT_ROUNDS, (err, hash) => {
 						let entity = {
@@ -56,9 +55,6 @@ function accountRegister(username, password, flname, alias, birthday, email, rol
         });
     });
 
-    bcrypt.hash(password, SALT_ROUNDS, (err, hash) =>{
-        console.log(hash);
-    });
 }
 
 function accountResetPassword(username, email, newPass){

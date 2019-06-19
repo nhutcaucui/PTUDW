@@ -69,9 +69,11 @@ router.post('/change_password', (req, res) => {
 	console.log(global.reset_password_users[userIndex]);
 	if (global.reset_password_users[userIndex].otp === otp){
 		console.log('[Change password] -', 'Thay đổi mật khẩu thành công');
+		res.redirect('/profile?username=' + username);
 	}
 	else{
 		console.log('[Change password] -', 'Thay đổi mật khẩu thất bại');
+		res.redirect('back');
 	}
 	
 });
@@ -178,15 +180,15 @@ router.post('/register', (req,res)=>{
 	let birthday = datetime.date2unix(req.body.birthday);
 	let email = req.body.email;
 	console.log("[Register] -", username, password, flname, birthday, email);
-	userdb.accountRegister(username, password, flname, birthday, email, -1).then(result => {
+	userdb.accountRegister(username, password, flname, '', birthday, email).then(result => {
 		//console.log(result);
 		if (result.status.toLowerCase().localeCompare('failed') === 0){
 			res.render('register', {title: 'Đăng kí', error: result.message, layout: false});
 		}
 		else{
-			console.log(result);
-			let verifyLink = host + "/verify?username=" + result.username + "&email=" + result.email + "&token=" + result.token;
-			autoMail.sendMail(result.email, "meo meo cute", verifyLink);
+			console.log('register',result);
+			let verifyLink = 'http://' + host + "/verify?username=" + result.username + "&email=" + email + "&token=" + result.token;
+			autoMail.sendMail(email, "Kích hoạt tài khoản", verifyLink);
 		}
 	});
 

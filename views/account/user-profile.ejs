@@ -6,8 +6,8 @@
 				<div id="page-body-menu">
 					<ul class="menu-lv1">
                             <li class="parent">Thông tin</li>
-							<li class="menu-tab"><a title="Thông tin cá nhân" href="#"><span>Thông tin cá nhân</span></a></li>
-							<li class="menu-tab"><a title="Đổi mật khẩu" href="#"><span>Đổi mật khẩu</span></a></li>	
+							<li class="menu-tab"><a title="Thông tin cá nhân" href="/"><span>Thông tin cá nhân</span></a></li>
+							<li class="menu-tab"><a title="Đổi mật khẩu" href="/user_verify?username=<%= username%>"><span>Đổi mật khẩu</span></a></li>	
 							<% if (role == "admin") { %>
 							<li class='parent'>Admin</li>    <!--if user=admin-->
 							<li class="menu-tab"><a title="Quản lí trang" href="/admin"><span>Quản lí trang</span></a></li>
