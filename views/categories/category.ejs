@@ -8,7 +8,7 @@
                         <%= row.abstract%>
                 </div>
                 <div class="listtag" id="tag<%=row.ID%>"></div>
-                <div class="listcat"><%= row.subcat%></div>
+                <div class="listcat"><%= row.subcat%> <%if(row.premium==1){%>- Premium<%}%></div>
                 <div class="listdate"><%= row.date%></div>
             </div>
             <% }) %>

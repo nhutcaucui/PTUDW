@@ -6,7 +6,7 @@
             <a href="/editor/drafts/<%= row.ID%>"><img src="<%=row.image%>"></a>
             <div class="dr-title"><a href="/editor/drafts/<%= row.ID%>"><%=row.header%></a></div>
             <div class="dr-abstract"><%=row.abstract%></div>
-            <div class="dr-cat"><%=row.subcat%></div>
+            <div class="dr-cat"><%=row.subcat%> <%if(row.premium==1){%>- Premium<%}%></div>
             </div>
         <% }) %>   
     </div>    
